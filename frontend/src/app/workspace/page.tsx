@@ -4,9 +4,10 @@ import React, { useState, useRef, useEffect } from "react";
 import ChatSidebar from "@/components/chat/ChatSidebar";
 import ChatInputBox from "@/components/chat/ChatInputBox";
 import ProofAnalysisMessage from "@/components/chat/ProofAnalysisMessage";
+import Logo from "@/components/common/Logo";
 import { submitProofAnalysis } from "@/services/api";
 import { AnalyzeProofResponse } from "@/types/api";
-import { PanelLeft, RotateCcw, AlertTriangle, RefreshCw, Compass, Loader2 } from "lucide-react";
+import { PanelLeft, RotateCcw, AlertTriangle, RefreshCw, Loader2 } from "lucide-react";
 
 interface SubmissionMessage {
   id: string;
@@ -149,7 +150,7 @@ export default function WorkspacePage() {
       <div className="flex-1 flex flex-col h-full overflow-hidden relative">
         {/* Top Navbar */}
         <header className="h-14 px-4 flex items-center justify-between border-b border-slate-100 bg-white/95 backdrop-blur-xs z-20">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -159,6 +160,7 @@ export default function WorkspacePage() {
               <PanelLeft className="w-5 h-5" />
             </button>
             <div className="flex items-center gap-2">
+              <Logo size={24} />
               <span className="font-bold text-sm text-slate-900 tracking-tight">
                 MathSense AI
               </span>
@@ -184,9 +186,7 @@ export default function WorkspacePage() {
           {!hasMessages ? (
             /* INITIAL CLEAN EMPTY STATE */
             <div className="min-h-full flex flex-col items-center justify-center max-w-3xl mx-auto px-4 py-12 text-center animate-in fade-in duration-300">
-              <div className="w-11 h-11 rounded-xl bg-slate-900 text-white flex items-center justify-center shadow-xs mb-4">
-                <Compass className="w-6 h-6 text-white" />
-              </div>
+              <Logo size={64} className="mb-4 drop-shadow-md" />
 
               <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-2">
                 Geometry Proof &amp; Misconception Analyzer

@@ -2,7 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { Plus, Compass, MessageSquare, PanelLeftClose } from "lucide-react";
+import { Plus, MessageSquare, PanelLeftClose } from "lucide-react";
+import Logo from "../common/Logo";
 
 interface ChatSidebarProps {
   isOpen: boolean;
@@ -14,8 +15,7 @@ interface ChatSidebarProps {
 }
 
 /**
- * Clean ChatGPT-style collapsible sidebar.
- * Minimalist session navigation without static system labels or login widgets.
+ * Clean ChatGPT-style collapsible sidebar with official MathSense AI logo.
  */
 export const ChatSidebar: React.FC<ChatSidebarProps> = ({
   isOpen,
@@ -42,10 +42,8 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
       >
         {/* Top bar: Brand & Toggle */}
         <div className="p-3.5 flex items-center justify-between border-b border-slate-200/70">
-          <Link href="/workspace" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-xs shadow-xs">
-              <Compass className="w-4 h-4" />
-            </div>
+          <Link href="/workspace" className="flex items-center gap-2.5 group">
+            <Logo size={28} className="group-hover:scale-105 transition-transform" />
             <span className="font-bold text-sm text-slate-800 tracking-tight">
               MathSense AI
             </span>

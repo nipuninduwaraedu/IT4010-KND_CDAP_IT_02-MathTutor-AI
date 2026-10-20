@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import {
-  Compass,
   AlertCircle,
   CheckCircle2,
   Unlock,
@@ -12,6 +11,7 @@ import {
 } from "lucide-react";
 import { AnalyzeProofResponse } from "@/types/api";
 import MathView from "../common/MathView";
+import Logo from "../common/Logo";
 
 interface ProofAnalysisMessageProps {
   response: AnalyzeProofResponse;
@@ -50,9 +50,9 @@ export const ProofAnalysisMessage: React.FC<ProofAnalysisMessageProps> = ({
 
   return (
     <div className="flex gap-4 max-w-3xl mx-auto py-5 px-4 text-slate-800 animate-in fade-in duration-300">
-      {/* Assistant Avatar */}
-      <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
-        <Compass className="w-4 h-4 text-white" />
+      {/* Assistant Logo Avatar */}
+      <div className="shrink-0 mt-0.5">
+        <Logo size={32} />
       </div>
 
       <div className="flex-1 space-y-5 leading-relaxed text-sm">
