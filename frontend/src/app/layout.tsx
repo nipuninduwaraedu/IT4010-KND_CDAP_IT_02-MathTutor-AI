@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "MathSense AI - Intelligent Misconception Detection & Support",
   description:
-    "SLIIT Final Year Research Project (IT4010): Intelligent Misconception Detection and Personalized Learning Support System for O/L Mathematics Students",
+    "Intelligent Misconception Detection and Personalized Learning Support System for O/L Mathematics Students",
 };
 
 export default function RootLayout({
