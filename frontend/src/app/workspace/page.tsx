@@ -4,17 +4,8 @@ import React, { useState, useRef, useEffect } from "react";
 import ChatSidebar from "@/components/chat/ChatSidebar";
 import ChatInputBox from "@/components/chat/ChatInputBox";
 import ProofAnalysisMessage from "@/components/chat/ProofAnalysisMessage";
-import { SAMPLE_PROBLEM } from "@/data/mockData";
 import { ProofStep, DiagnosisResult } from "@/types/geometry";
-import {
-  PanelLeft,
-  Sparkles,
-  RotateCcw,
-  BookOpen,
-  ArrowRight,
-  ShieldCheck,
-  CheckCircle,
-} from "lucide-react";
+import { PanelLeft, Sparkles, RotateCcw } from "lucide-react";
 
 interface ChatMessage {
   id: string;
@@ -26,9 +17,18 @@ interface ChatMessage {
   diagnosis?: DiagnosisResult;
 }
 
+interface ChatSession {
+  id: string;
+  title: string;
+  date: string;
+  messages: ChatMessage[];
+}
+
 export default function WorkspacePage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [chatHistory, setChatHistory] = useState<ChatSession[]>([]);
+  const [activeSessionId, setActiveSessionId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isReanalyzing, setIsReanalyzing] = useState(false);
 
@@ -39,7 +39,7 @@ export default function WorkspacePage() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
-  const handleSendMessage = ({
+  const handleSendMessage = async ({
     text,
     imageFile,
     previewUrl,
@@ -52,7 +52,7 @@ export default function WorkspacePage() {
     const userMsg: ChatMessage = {
       id: userMsgId,
       sender: "user",
-      text: text || "Please analyze this handwritten geometry proof sheet.",
+      text: text || (imageFile ? `Uploaded proof image: ${imageFile.name}` : ""),
       imageUrl: previewUrl,
       imageName: imageFile?.name,
     };
@@ -60,24 +60,77 @@ export default function WorkspacePage() {
     setMessages((prev) => [...prev, userMsg]);
     setIsLoading(true);
 
-    // Simulate Member 1 OCR + Member 2 Reasoning inference pipeline
-    setTimeout(() => {
-      const defaultCase = SAMPLE_PROBLEM.sampleSubmissions[0];
-      const assistantMsg: ChatMessage = {
+    try {
+      let resData;
+      if (imageFile) {
+        const formData = new FormData();
+        formData.append("file", imageFile);
+        if (text) formData.append("text", text);
+
+        const res = await fetch("/api/analyze", {
+          method: "POST",
+          body: formData,
+        });
+        resData = await res.json();
+      } else {
+        const res = await fetch("/api/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text }),
+        });
+        resData = await res.json();
+      }
+
+      const asstMsg: ChatMessage = {
         id: `asst-${Date.now()}`,
         sender: "assistant",
-        steps: defaultCase.steps,
-        diagnosis: JSON.parse(JSON.stringify(defaultCase.diagnosis)),
+        text: resData.messageText || resData.overallFeedback || "Proof received.",
+        steps: resData.steps,
+        diagnosis: resData.diagnosis,
       };
 
-      setMessages((prev) => [...prev, assistantMsg]);
+      setMessages((prev) => {
+        const updated = [...prev, asstMsg];
+        // Save session title if new
+        if (!activeSessionId) {
+          const newSessionId = `session-${Date.now()}`;
+          setActiveSessionId(newSessionId);
+          setChatHistory((hist) => [
+            {
+              id: newSessionId,
+              title: text ? text.slice(0, 30) + "..." : imageFile?.name || "Proof Analysis",
+              date: "Today",
+              messages: updated,
+            },
+            ...hist,
+          ]);
+        }
+        return updated;
+      });
+    } catch {
+      const errorMsg: ChatMessage = {
+        id: `asst-${Date.now()}`,
+        sender: "assistant",
+        text: "Connected to frontend. Ready to receive analysis from your backend pipeline.",
+      };
+      setMessages((prev) => [...prev, errorMsg]);
+    } finally {
       setIsLoading(false);
-    }, 1400);
+    }
   };
 
-  const handleNewProof = () => {
+  const handleNewChat = () => {
     setMessages([]);
+    setActiveSessionId(null);
     setIsLoading(false);
+  };
+
+  const handleSelectSession = (sessionId: string) => {
+    const session = chatHistory.find((s) => s.id === sessionId);
+    if (session) {
+      setActiveSessionId(sessionId);
+      setMessages(session.messages);
+    }
   };
 
   const handleUpdateSteps = (msgId: string, newSteps: ProofStep[]) => {
@@ -90,15 +143,7 @@ export default function WorkspacePage() {
     setIsReanalyzing(true);
     setTimeout(() => {
       setIsReanalyzing(false);
-    }, 900);
-  };
-
-  const handlePromptChipClick = (chipPrompt: string) => {
-    handleSendMessage({
-      text: chipPrompt,
-      imageFile: null,
-      previewUrl: null,
-    });
+    }, 800);
   };
 
   const hasMessages = messages.length > 0;
@@ -109,7 +154,10 @@ export default function WorkspacePage() {
       <ChatSidebar
         isOpen={isSidebarOpen}
         onToggle={() => setIsSidebarOpen(!isSidebarOpen)}
-        onNewProof={handleNewProof}
+        onNewProof={handleNewChat}
+        chatHistory={chatHistory.map((s) => ({ id: s.id, title: s.title, date: s.date }))}
+        activeChatId={activeSessionId || undefined}
+        onSelectChat={handleSelectSession}
       />
 
       {/* Main Chat Canvas */}
@@ -130,7 +178,7 @@ export default function WorkspacePage() {
                 MathSense AI
               </span>
               <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200">
-                O/L Geometry Engine
+                O/L Mathematics
               </span>
             </div>
           </div>
@@ -139,22 +187,21 @@ export default function WorkspacePage() {
             {hasMessages && (
               <button
                 type="button"
-                onClick={handleNewProof}
+                onClick={handleNewChat}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
-                New Proof
+                New Chat
               </button>
             )}
           </div>
         </header>
 
-        {/* Content Area */}
+        {/* Content Body */}
         <div className="flex-1 overflow-y-auto">
           {!hasMessages ? (
-            /* INITIAL EMPTY STATE: Exactly like ChatGPT Welcome */
+            /* INITIAL CLEAN CHATGPT STATE */
             <div className="min-h-full flex flex-col items-center justify-center max-w-3xl mx-auto px-4 py-12 text-center animate-in fade-in duration-300">
-              {/* ChatGPT-style Sparkle Avatar */}
               <div className="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center shadow-md mb-4">
                 <Sparkles className="w-6 h-6 text-indigo-300" />
               </div>
@@ -163,91 +210,16 @@ export default function WorkspacePage() {
                 What geometry proof are we analyzing today?
               </h1>
               <p className="text-xs sm:text-sm text-slate-500 max-w-md mx-auto mb-8 leading-relaxed">
-                Drop your handwritten proof image into the box below or type your steps. We’ll transcribe the OCR math and diagnose logical misconceptions.
+                Drag and drop your proof image from your device, or type your mathematical reasoning steps below.
               </p>
 
-              {/* Center Input Box in Initial State */}
-              <div className="w-full mb-8">
-                <ChatInputBox
-                  onSendMessage={handleSendMessage}
-                  isLoading={isLoading}
-                  isInitialCentered={true}
-                />
-              </div>
-
-              {/* Quick Prompt Suggestion Chips */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full max-w-2xl text-left">
-                <button
-                  type="button"
-                  onClick={() =>
-                    handlePromptChipClick(
-                      "In circle with center O, AB is diameter, C on circumference. Verify proof that ∠ACB = 90°."
-                    )
-                  }
-                  className="p-3 rounded-2xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50/80 shadow-2xs transition-all text-xs group"
-                >
-                  <p className="font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
-                    📐 Angle in a Semicircle (Thm 25.3)
-                  </p>
-                  <p className="text-[11px] text-slate-400 mt-0.5">
-                    Verify right-angle subtended by a diameter
-                  </p>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    handlePromptChipClick(
-                      "Verify proof that angle subtended by an arc at the center is double the angle at the circumference (Theorem 26.1)."
-                    )
-                  }
-                  className="p-3 rounded-2xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50/80 shadow-2xs transition-all text-xs group"
-                >
-                  <p className="font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
-                    ⭕ Center Angle vs Circumference (Thm 26.1)
-                  </p>
-                  <p className="text-[11px] text-slate-400 mt-0.5">
-                    Check central angle double relationship
-                  </p>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    handlePromptChipClick(
-                      "Analyze student proof for opposite angles of cyclic quadrilateral summing to 180°."
-                    )
-                  }
-                  className="p-3 rounded-2xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50/80 shadow-2xs transition-all text-xs group"
-                >
-                  <p className="font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
-                    🔷 Cyclic Quadrilateral (Thm 27.1)
-                  </p>
-                  <p className="text-[11px] text-slate-400 mt-0.5">
-                    Check opposite angles supplementary condition
-                  </p>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    handlePromptChipClick(
-                      "Diagnose common student fallacy: applying semicircle theorem to a non-diameter chord."
-                    )
-                  }
-                  className="p-3 rounded-2xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50/80 shadow-2xs transition-all text-xs group"
-                >
-                  <p className="font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
-                    ⚠️ Premature Theorem Application
-                  </p>
-                  <p className="text-[11px] text-slate-400 mt-0.5">
-                    Detect missing diameter prerequisite
-                  </p>
-                </button>
+              {/* Centered ChatGPT Drag & Drop Chat Box */}
+              <div className="w-full">
+                <ChatInputBox onSendMessage={handleSendMessage} isLoading={isLoading} />
               </div>
             </div>
           ) : (
-            /* CONVERSATION STREAM: Messages */
+            /* ACTIVE CONVERSATION STREAM */
             <div className="pb-36 pt-4">
               {messages.map((msg) => {
                 if (msg.sender === "user") {
@@ -263,7 +235,7 @@ export default function WorkspacePage() {
                             <img
                               src={msg.imageUrl}
                               alt="Attached proof"
-                              className="max-h-56 w-full object-contain"
+                              className="max-h-60 w-full object-contain"
                             />
                             {msg.imageName && (
                               <p className="p-2 text-[11px] text-slate-500 font-mono border-t border-slate-100">
@@ -280,10 +252,11 @@ export default function WorkspacePage() {
                   );
                 }
 
-                if (msg.sender === "assistant" && msg.steps && msg.diagnosis) {
+                if (msg.sender === "assistant") {
                   return (
                     <ProofAnalysisMessage
                       key={msg.id}
+                      messageText={msg.text}
                       steps={msg.steps}
                       diagnosis={msg.diagnosis}
                       onUpdateSteps={(newSteps) => handleUpdateSteps(msg.id, newSteps)}
@@ -304,7 +277,7 @@ export default function WorkspacePage() {
                   </div>
                   <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
                     <span className="w-2 h-2 rounded-full bg-indigo-600 animate-ping"></span>
-                    <span>Transcribing handwriting with OCR &amp; running misconception classifier...</span>
+                    <span>Analyzing proof with backend inference pipeline...</span>
                   </div>
                 </div>
               )}
