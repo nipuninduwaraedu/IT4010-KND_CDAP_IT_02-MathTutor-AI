@@ -1,222 +1,326 @@
 "use client";
 
-import React, { useState } from "react";
-import Header from "@/components/common/Header";
-import QuestionCard from "@/components/workspace/QuestionCard";
-import SubmissionCard from "@/components/workspace/SubmissionCard";
-import StepVerificationTable from "@/components/workspace/StepVerificationTable";
-import DiagnosisCard from "@/components/workspace/DiagnosisCard";
+import React, { useState, useRef, useEffect } from "react";
+import ChatSidebar from "@/components/chat/ChatSidebar";
+import ChatInputBox from "@/components/chat/ChatInputBox";
+import ProofAnalysisMessage from "@/components/chat/ProofAnalysisMessage";
 import { SAMPLE_PROBLEM } from "@/data/mockData";
 import { ProofStep, DiagnosisResult } from "@/types/geometry";
-import { Brain, FileSearch, Sparkles, Loader2, RotateCcw } from "lucide-react";
+import {
+  PanelLeft,
+  Sparkles,
+  RotateCcw,
+  BookOpen,
+  ArrowRight,
+  ShieldCheck,
+  CheckCircle,
+} from "lucide-react";
+
+interface ChatMessage {
+  id: string;
+  sender: "user" | "assistant";
+  text?: string;
+  imageUrl?: string | null;
+  imageName?: string;
+  steps?: ProofStep[];
+  diagnosis?: DiagnosisResult;
+}
 
 export default function WorkspacePage() {
-  // Submission input states (null on initial load)
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null);
-  const [manualText, setManualText] = useState<string>("");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isReanalyzing, setIsReanalyzing] = useState(false);
 
-  // Two-state workflow control
-  const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
-  const [hasSubmitted, setHasSubmitted] = useState<boolean>(false);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-  // Results state (populated ONLY upon submission)
-  const defaultCase = SAMPLE_PROBLEM.sampleSubmissions[0];
-  const [currentSteps, setCurrentSteps] = useState<ProofStep[]>(defaultCase.steps);
-  const [currentDiagnosis, setCurrentDiagnosis] = useState<DiagnosisResult>(
-    JSON.parse(JSON.stringify(defaultCase.diagnosis))
-  );
+  // Auto scroll on new messages
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isLoading]);
 
-  // File selection handler
-  const handleFileSelect = (file: File | null, previewUrl: string | null) => {
-    setUploadedFile(file);
-    setImagePreviewUrl(previewUrl);
-    // If user removes the file, keep result state clean
-    if (!file) {
-      setHasSubmitted(false);
-    }
-  };
-
-  // Trigger analysis pipeline
-  const handleAnalyzeProof = (submission: {
-    type: "image" | "text";
-    content: string;
-    file?: File;
+  const handleSendMessage = ({
+    text,
+    imageFile,
+    previewUrl,
+  }: {
+    text: string;
+    imageFile: File | null;
+    previewUrl: string | null;
   }) => {
-    setIsAnalyzing(true);
-    setHasSubmitted(false);
+    const userMsgId = `user-${Date.now()}`;
+    const userMsg: ChatMessage = {
+      id: userMsgId,
+      sender: "user",
+      text: text || "Please analyze this handwritten geometry proof sheet.",
+      imageUrl: previewUrl,
+      imageName: imageFile?.name,
+    };
 
-    // Realistic API pipeline latency (1.4s)
+    setMessages((prev) => [...prev, userMsg]);
+    setIsLoading(true);
+
+    // Simulate Member 1 OCR + Member 2 Reasoning inference pipeline
     setTimeout(() => {
-      setIsAnalyzing(false);
-      setHasSubmitted(true);
+      const defaultCase = SAMPLE_PROBLEM.sampleSubmissions[0];
+      const assistantMsg: ChatMessage = {
+        id: `asst-${Date.now()}`,
+        sender: "assistant",
+        steps: defaultCase.steps,
+        diagnosis: JSON.parse(JSON.stringify(defaultCase.diagnosis)),
+      };
+
+      setMessages((prev) => [...prev, assistantMsg]);
+      setIsLoading(false);
     }, 1400);
   };
 
-  // Re-verify reasoning after student edits transcription steps
-  const handleReanalyzeFromTable = () => {
-    setIsAnalyzing(true);
+  const handleNewProof = () => {
+    setMessages([]);
+    setIsLoading(false);
+  };
+
+  const handleUpdateSteps = (msgId: string, newSteps: ProofStep[]) => {
+    setMessages((prev) =>
+      prev.map((msg) => (msg.id === msgId ? { ...msg, steps: newSteps } : msg))
+    );
+  };
+
+  const handleReanalyze = (msgId: string) => {
+    setIsReanalyzing(true);
     setTimeout(() => {
-      setIsAnalyzing(false);
+      setIsReanalyzing(false);
     }, 900);
   };
 
-  // Reset to initial empty state
-  const handleResetToEmpty = () => {
-    setUploadedFile(null);
-    setImagePreviewUrl(null);
-    setManualText("");
-    setHasSubmitted(false);
-    setIsAnalyzing(false);
+  const handlePromptChipClick = (chipPrompt: string) => {
+    handleSendMessage({
+      text: chipPrompt,
+      imageFile: null,
+      previewUrl: null,
+    });
   };
 
-  // Scaffolded hint unlocker
-  const handleUnlockHint = (level: 1 | 2 | 3) => {
-    setCurrentDiagnosis((prev) => ({
-      ...prev,
-      hints: prev.hints.map((h) =>
-        h.level === level ? { ...h, isUnlocked: true } : h
-      ),
-    }));
-  };
+  const hasMessages = messages.length > 0;
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50">
-      {/* Top Header Navigation */}
-      <Header />
+    <div className="flex h-screen w-full bg-white text-slate-800 overflow-hidden font-sans">
+      {/* ChatGPT Collapsible Sidebar */}
+      <ChatSidebar
+        isOpen={isSidebarOpen}
+        onToggle={() => setIsSidebarOpen(!isSidebarOpen)}
+        onNewProof={handleNewProof}
+      />
 
-      {/* Workspace Subheader */}
-      <div className="bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-200/60">
-                Practice & Diagnostic Workspace
-              </span>
-              <span className="text-xs text-slate-400">•</span>
-              <span className="text-xs font-semibold text-slate-600">
-                SLIIT IT4010 Research
-              </span>
-            </div>
-            <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mt-1">
-              Circle Theorems: Step Verification & AI Diagnosis
-            </h1>
-          </div>
-
-          {hasSubmitted && (
+      {/* Main Chat Canvas */}
+      <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+        {/* Top Navbar */}
+        <header className="h-14 px-4 flex items-center justify-between border-b border-slate-100 bg-white/95 backdrop-blur-xs z-20">
+          <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={handleResetToEmpty}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+              title="Toggle sidebar"
             >
-              <RotateCcw className="w-3.5 h-3.5" />
-              Submit Another Proof
+              <PanelLeft className="w-5 h-5" />
             </button>
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-sm text-slate-900 tracking-tight">
+                MathSense AI
+              </span>
+              <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200">
+                O/L Geometry Engine
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {hasMessages && (
+              <button
+                type="button"
+                onClick={handleNewProof}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                New Proof
+              </button>
+            )}
+          </div>
+        </header>
+
+        {/* Content Area */}
+        <div className="flex-1 overflow-y-auto">
+          {!hasMessages ? (
+            /* INITIAL EMPTY STATE: Exactly like ChatGPT Welcome */
+            <div className="min-h-full flex flex-col items-center justify-center max-w-3xl mx-auto px-4 py-12 text-center animate-in fade-in duration-300">
+              {/* ChatGPT-style Sparkle Avatar */}
+              <div className="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center shadow-md mb-4">
+                <Sparkles className="w-6 h-6 text-indigo-300" />
+              </div>
+
+              <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-2">
+                What geometry proof are we analyzing today?
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-500 max-w-md mx-auto mb-8 leading-relaxed">
+                Drop your handwritten proof image into the box below or type your steps. We’ll transcribe the OCR math and diagnose logical misconceptions.
+              </p>
+
+              {/* Center Input Box in Initial State */}
+              <div className="w-full mb-8">
+                <ChatInputBox
+                  onSendMessage={handleSendMessage}
+                  isLoading={isLoading}
+                  isInitialCentered={true}
+                />
+              </div>
+
+              {/* Quick Prompt Suggestion Chips */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full max-w-2xl text-left">
+                <button
+                  type="button"
+                  onClick={() =>
+                    handlePromptChipClick(
+                      "In circle with center O, AB is diameter, C on circumference. Verify proof that ∠ACB = 90°."
+                    )
+                  }
+                  className="p-3 rounded-2xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50/80 shadow-2xs transition-all text-xs group"
+                >
+                  <p className="font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
+                    📐 Angle in a Semicircle (Thm 25.3)
+                  </p>
+                  <p className="text-[11px] text-slate-400 mt-0.5">
+                    Verify right-angle subtended by a diameter
+                  </p>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    handlePromptChipClick(
+                      "Verify proof that angle subtended by an arc at the center is double the angle at the circumference (Theorem 26.1)."
+                    )
+                  }
+                  className="p-3 rounded-2xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50/80 shadow-2xs transition-all text-xs group"
+                >
+                  <p className="font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
+                    ⭕ Center Angle vs Circumference (Thm 26.1)
+                  </p>
+                  <p className="text-[11px] text-slate-400 mt-0.5">
+                    Check central angle double relationship
+                  </p>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    handlePromptChipClick(
+                      "Analyze student proof for opposite angles of cyclic quadrilateral summing to 180°."
+                    )
+                  }
+                  className="p-3 rounded-2xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50/80 shadow-2xs transition-all text-xs group"
+                >
+                  <p className="font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
+                    🔷 Cyclic Quadrilateral (Thm 27.1)
+                  </p>
+                  <p className="text-[11px] text-slate-400 mt-0.5">
+                    Check opposite angles supplementary condition
+                  </p>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    handlePromptChipClick(
+                      "Diagnose common student fallacy: applying semicircle theorem to a non-diameter chord."
+                    )
+                  }
+                  className="p-3 rounded-2xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50/80 shadow-2xs transition-all text-xs group"
+                >
+                  <p className="font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
+                    ⚠️ Premature Theorem Application
+                  </p>
+                  <p className="text-[11px] text-slate-400 mt-0.5">
+                    Detect missing diameter prerequisite
+                  </p>
+                </button>
+              </div>
+            </div>
+          ) : (
+            /* CONVERSATION STREAM: Messages */
+            <div className="pb-36 pt-4">
+              {messages.map((msg) => {
+                if (msg.sender === "user") {
+                  return (
+                    <div
+                      key={msg.id}
+                      className="flex justify-end max-w-3xl mx-auto px-4 py-4"
+                    >
+                      <div className="max-w-xl bg-slate-100 rounded-3xl rounded-tr-md p-4 text-slate-900 text-sm space-y-2.5">
+                        {msg.imageUrl && (
+                          <div className="rounded-xl overflow-hidden border border-slate-200 bg-white">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={msg.imageUrl}
+                              alt="Attached proof"
+                              className="max-h-56 w-full object-contain"
+                            />
+                            {msg.imageName && (
+                              <p className="p-2 text-[11px] text-slate-500 font-mono border-t border-slate-100">
+                                📎 {msg.imageName}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                        {msg.text && (
+                          <p className="leading-relaxed whitespace-pre-wrap">{msg.text}</p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (msg.sender === "assistant" && msg.steps && msg.diagnosis) {
+                  return (
+                    <ProofAnalysisMessage
+                      key={msg.id}
+                      steps={msg.steps}
+                      diagnosis={msg.diagnosis}
+                      onUpdateSteps={(newSteps) => handleUpdateSteps(msg.id, newSteps)}
+                      onReanalyze={() => handleReanalyze(msg.id)}
+                      isReanalyzing={isReanalyzing}
+                    />
+                  );
+                }
+
+                return null;
+              })}
+
+              {/* Loading State Spinner */}
+              {isLoading && (
+                <div className="flex gap-4 max-w-3xl mx-auto py-5 px-4 animate-in fade-in">
+                  <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs">
+                    <Sparkles className="w-4 h-4 text-indigo-300 animate-spin" />
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                    <span className="w-2 h-2 rounded-full bg-indigo-600 animate-ping"></span>
+                    <span>Transcribing handwriting with OCR &amp; running misconception classifier...</span>
+                  </div>
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
+            </div>
           )}
         </div>
+
+        {/* Bottom Fixed Prompt Bar (When in active conversation) */}
+        {hasMessages && (
+          <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-white via-white to-transparent pt-6 pb-4">
+            <ChatInputBox onSendMessage={handleSendMessage} isLoading={isLoading} />
+          </div>
+        )}
       </div>
-
-      {/* Main Two-Column Split Screen Workbench */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* LEFT COLUMN: Problem Context, Prominent Input Upload, & Conditional Verification Table (7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
-            {/* 1. Problem Statement & Geometry Diagram */}
-            <QuestionCard
-              flaggedStepIndex={hasSubmitted ? currentDiagnosis.flaggedStepIndex : null}
-            />
-
-            {/* 2. Prominent Upload Box (Image Dropzone + Optional Viva Text) */}
-            <SubmissionCard
-              onAnalyze={handleAnalyzeProof}
-              isAnalyzing={isAnalyzing}
-              uploadedFile={uploadedFile}
-              imagePreviewUrl={imagePreviewUrl}
-              onFileSelect={handleFileSelect}
-              manualText={manualText}
-              setManualText={setManualText}
-            />
-
-            {/* 3. Extracted Step Verification Table (REVEALED ONLY AFTER SUBMISSION) */}
-            {hasSubmitted && (
-              <div className="animate-in fade-in slide-in-from-top-4 duration-300">
-                <StepVerificationTable
-                  steps={currentSteps}
-                  onUpdateSteps={setCurrentSteps}
-                  onReanalyze={handleReanalyzeFromTable}
-                  isAnalyzing={isAnalyzing}
-                  flaggedStepIndex={currentDiagnosis.flaggedStepIndex}
-                />
-              </div>
-            )}
-          </div>
-
-          {/* RIGHT COLUMN: Conditional Rendering (5 cols) */}
-          <div className="lg:col-span-5 sticky top-20">
-            {/* State A: Analyzing / Loading State */}
-            {isAnalyzing && (
-              <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-xs text-center space-y-4 animate-in fade-in duration-200">
-                <div className="w-14 h-14 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center mx-auto text-indigo-600">
-                  <Loader2 className="w-7 h-7 animate-spin" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-slate-900">
-                    Analyzing Geometry Proof
-                  </h3>
-                  <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                    Processing handwriting with OCR... Running misconception classifier...
-                  </p>
-                </div>
-                <div className="w-48 mx-auto bg-slate-100 rounded-full h-1.5 overflow-hidden">
-                  <div className="bg-indigo-600 h-1.5 rounded-full animate-pulse w-3/4"></div>
-                </div>
-              </div>
-            )}
-
-            {/* State B: Result State (Triggered ONLY after submission) */}
-            {!isAnalyzing && hasSubmitted && (
-              <div className="animate-in fade-in slide-in-from-top-4 duration-300">
-                <DiagnosisCard
-                  diagnosis={currentDiagnosis}
-                  onUnlockHint={handleUnlockHint}
-                />
-              </div>
-            )}
-
-            {/* State C: Initial Empty State Placeholder (Default on page load) */}
-            {!isAnalyzing && !hasSubmitted && (
-              <div className="bg-white border border-dashed border-slate-200 rounded-2xl p-8 shadow-2xs text-center space-y-3">
-                <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mx-auto text-slate-400">
-                  <FileSearch className="w-7 h-7" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-slate-800">
-                    Awaiting Proof Submission
-                  </h3>
-                  <p className="text-xs text-slate-500 mt-1 max-w-xs mx-auto leading-relaxed">
-                    Submit your handwritten proof to see step-by-step reasoning diagnosis.
-                  </p>
-                </div>
-
-                <div className="pt-3 border-t border-slate-100 text-[11px] text-slate-400 space-y-1.5 text-left max-w-xs mx-auto">
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                    <span>Automatic OCR extraction of geometric steps</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
-                    <span>Targeted detection of logical misconceptions</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                    <span>3-tiered scaffolded hint progression</span>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </main>
     </div>
   );
 }
