@@ -35,3 +35,10 @@ class RecommendedResource(BaseModel):
 
 class RecommendationResponse(BaseModel):
     recommendations: List[RecommendedResource]
+
+
+class UsageEvent(BaseModel):
+    student_id: str
+    resource_id: str
+    action: str
+    timestamp: str

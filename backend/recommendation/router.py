@@ -4,10 +4,12 @@ from recommendation.schemas import (
     RecommendationRequest,
     RecommendationResponse,
     RecommendedResource,
+    UsageEvent,
 )
 from recommendation.services.fallback import is_low_confidence, topic_fallback
 from recommendation.services.reason_generator import generate_reason
 from recommendation.services.recommender import get_top_resources
+from recommendation.services.tracker import log_usage
 
 router = APIRouter(prefix="/recommend", tags=["recommendation"])
 
@@ -42,5 +44,11 @@ def recommend(req: RecommendationRequest):
             )
             for r in resources
         ]
+
+    # Log a usage event for each recommended resource
+    usage_events: list[UsageEvent] = []
+    for item in items:
+        raw = log_usage(req.student_id, item.resource_id)
+        usage_events.append(UsageEvent(**raw))
 
     return RecommendationResponse(recommendations=items)

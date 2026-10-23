@@ -32,3 +32,5 @@ venv/
 __pycache__/
 *.pyc
 .pytest_cache/
+
+backend/recommendation/data/usage_log.json
