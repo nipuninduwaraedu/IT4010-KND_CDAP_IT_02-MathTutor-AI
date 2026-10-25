@@ -1,0 +1,32 @@
+# ── Python virtual environment ────────────────────────────────────────────
+venv/
+.venv/
+env/
+
+# ── Python cache ──────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# ── Pytest / coverage ─────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+.cache
+
+# ── Environment variables ─────────────────────────────────────────────────
+.env
+# .env.example is committed (contains no secrets)
+
+# ── IDE / OS ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ── Build artifacts ───────────────────────────────────────────────────────
+dist/
+build/
+*.egg-info/

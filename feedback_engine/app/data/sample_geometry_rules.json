@@ -1,0 +1,58 @@
+{
+  "_metadata": {
+    "description": "Sample geometry theorem records for development and testing.",
+    "disclaimer": "These records are ILLUSTRATIVE SAMPLES for the research prototype. They have not been verified against the official NIE Grade 10/11 Mathematics syllabus or any examiner-approved rubric. Do not present these as authoritative curriculum content.",
+    "grade_levels": ["Grade 10", "Grade 11"],
+    "curriculum_context": "Sri Lankan GCE O/L Mathematics — Geometry (Circle Theorems and Cyclic Quadrilaterals)"
+  },
+  "theorems": [
+    {
+      "theorem_id": "cyclic_opposite_angles",
+      "name": "Opposite Angles of a Cyclic Quadrilateral",
+      "statement": "The opposite angles of a cyclic quadrilateral are supplementary; that is, they sum to 180 degrees.",
+      "conditions": "The quadrilateral must be inscribed in a circle (all four vertices lie on the circle).",
+      "grade_level": "Grade 10",
+      "topic": "Cyclic Quadrilaterals"
+    },
+    {
+      "theorem_id": "angles_same_segment",
+      "name": "Angles in the Same Segment",
+      "statement": "Angles subtended by the same arc at the circumference of a circle are equal.",
+      "conditions": "Both angles must be inscribed angles subtending the same arc and lying on the same side of the chord.",
+      "grade_level": "Grade 10",
+      "topic": "Circle Theorems"
+    },
+    {
+      "theorem_id": "angle_in_semicircle",
+      "name": "Angle in a Semicircle",
+      "statement": "The angle subtended by a diameter at any point on the circumference is 90 degrees.",
+      "conditions": "The angle must be inscribed in the semicircle (the vertex lies on the circle and the subtending chord is a diameter).",
+      "grade_level": "Grade 10",
+      "topic": "Circle Theorems"
+    },
+    {
+      "theorem_id": "exterior_angle_cyclic_quad",
+      "name": "Exterior Angle of a Cyclic Quadrilateral",
+      "statement": "The exterior angle of a cyclic quadrilateral equals the interior opposite angle.",
+      "conditions": "The exterior angle is formed by extending one side of the quadrilateral; the quadrilateral must be cyclic.",
+      "grade_level": "Grade 11",
+      "topic": "Cyclic Quadrilaterals"
+    },
+    {
+      "theorem_id": "tangent_radius_perpendicular",
+      "name": "Tangent–Radius Perpendicularity",
+      "statement": "A tangent to a circle is perpendicular to the radius drawn to the point of tangency.",
+      "conditions": "The line must be tangent to the circle (touches at exactly one point).",
+      "grade_level": "Grade 11",
+      "topic": "Tangents to Circles"
+    },
+    {
+      "theorem_id": "alternate_segment_theorem",
+      "name": "Alternate Segment Theorem (Tangent–Chord Angle)",
+      "statement": "The angle between a tangent to a circle and a chord drawn from the point of tangency equals the inscribed angle subtending the same arc on the opposite side.",
+      "conditions": "A tangent and a chord must meet at the point of tangency on the circle.",
+      "grade_level": "Grade 11",
+      "topic": "Tangents to Circles"
+    }
+  ]
+}

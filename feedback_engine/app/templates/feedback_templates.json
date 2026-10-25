@@ -1,0 +1,75 @@
+{
+  "_metadata": {
+    "description": "Rule-based feedback templates for each supported misconception label.",
+    "disclaimer": "These templates are ILLUSTRATIVE SAMPLES for the research prototype. The educational content has not been validated by a qualified mathematics educator, NIE curriculum specialists, or GCE O/L examiners. Do not claim that these represent validated pedagogical guidelines.",
+    "template_variables": {
+      "{theorem_name}": "Replaced with the name field from the matched TheoremRecord",
+      "{theorem_statement}": "Replaced with the statement field from the matched TheoremRecord",
+      "{theorem_conditions}": "Replaced with the conditions field from the matched TheoremRecord",
+      "{topic}": "Replaced with the topic field from the matched TheoremRecord"
+    },
+    "fallback_note": "When no theorem is found, templates marked with _fallback are used instead."
+  },
+  "labels": [
+    {
+      "label": "Correct Reasoning",
+      "description": "The student's reasoning steps appear to follow valid geometric logic for the given context.",
+      "feedback_summary_template": "Your reasoning steps follow the expected geometric logic. Well done on applying the principles correctly.",
+      "hint_1_template": "Your argument looks sound so far. Can you verify that each step explicitly states the theorem or property it relies on?",
+      "hint_2_template": "A complete geometric proof names the theorem used at every step. Check that your justification for each step is written clearly.",
+      "hint_3_template": "Review your final step to confirm that your conclusion follows directly from the previous statements without any unstated assumptions.",
+      "feedback_summary_template_fallback": "Your reasoning steps appear to be on the right track. Check that each step is fully justified.",
+      "hint_1_template_fallback": "Read through your proof and verify that each conclusion is supported by a named theorem or given information.",
+      "hint_2_template_fallback": "A well-structured proof explicitly states the rule used at every step.",
+      "hint_3_template_fallback": "Confirm that your final conclusion follows logically from all previous steps.",
+      "remedial_topic": "Proof Writing and Mathematical Justification",
+      "remedial_note_template": "Review how to write each step of a geometric proof with a clear statement and a named justification.",
+      "teacher_review_message": "The classifier confidence is low for a Correct Reasoning prediction. A teacher should verify whether the proof is genuinely complete."
+    },
+    {
+      "label": "Incorrect Theorem Application",
+      "description": "The student has applied a theorem whose conditions are not satisfied in this context, or has applied the wrong theorem for the given geometric configuration.",
+      "feedback_summary_template": "The theorem you applied may not match the conditions of this problem. Review whether {theorem_name} applies here.",
+      "hint_1_template": "Look at the theorem you used. What are its exact conditions? Do those conditions hold in your diagram?",
+      "hint_2_template": "{theorem_name} states: '{theorem_statement}'. Its conditions require: {theorem_conditions}. Check whether your figure meets these requirements.",
+      "hint_3_template": "Identify which property of your diagram differs from the conditions of the theorem. Then look for a theorem whose conditions do match your figure.",
+      "feedback_summary_template_fallback": "The theorem you applied may not suit this problem's configuration. Review its conditions carefully.",
+      "hint_1_template_fallback": "What are the exact conditions required for the theorem you used? Do all of those conditions hold in your diagram?",
+      "hint_2_template_fallback": "Theorems only apply when their conditions are fully satisfied. Check each condition one by one against your figure.",
+      "hint_3_template_fallback": "Find a theorem whose conditions match the specific geometric configuration in your diagram.",
+      "remedial_topic": "Conditions and Correct Application of Circle Theorems",
+      "remedial_note_template": "Review the conditions required for each theorem in the topic: {topic}. Practice identifying when a theorem applies and when it does not.",
+      "teacher_review_message": "The student may be systematically confusing theorem conditions. Teacher review is recommended to identify the specific misconception pattern."
+    },
+    {
+      "label": "Incorrect Angle Relationships",
+      "description": "The student has stated an incorrect relationship between angles — for example, treating supplementary angles as equal, or vice versa.",
+      "feedback_summary_template": "The angle relationship you used does not match the geometric configuration here. Review the correct relationship for this situation.",
+      "hint_1_template": "Think carefully about the angles in your diagram. Are they equal to each other, or do they add up to a specific value such as 90 or 180 degrees?",
+      "hint_2_template": "In this configuration, the relevant theorem is: '{theorem_statement}'. What does that tell you about how these angles relate?",
+      "hint_3_template": "Use the correct angle relationship from the theorem to recalculate. Start from the angle you know and apply the rule to find the unknown.",
+      "feedback_summary_template_fallback": "The angle relationship you stated does not match the expected geometric property for this configuration.",
+      "hint_1_template_fallback": "Are the angles in your diagram equal, supplementary (summing to 180°), or complementary (summing to 90°)? Which applies here?",
+      "hint_2_template_fallback": "Review the circle theorem or angle property that applies to this type of configuration. What does it say about these angles?",
+      "hint_3_template_fallback": "Apply the correct relationship to the angle you know, and use it to determine the unknown angle without guessing.",
+      "remedial_topic": "Angle Relationships in Circles and Cyclic Quadrilaterals",
+      "remedial_note_template": "Practice distinguishing between equal angles (same segment theorem) and supplementary angles (opposite angles in a cyclic quadrilateral) using worked examples.",
+      "teacher_review_message": "The student may be confusing multiple angle relationships. A focused session on distinguishing circle theorem angle properties is recommended."
+    },
+    {
+      "label": "Missing Proof Step",
+      "description": "The student's proof contains a reasoning gap — a conclusion is reached without a stated justification connecting it to the previous step.",
+      "feedback_summary_template": "There appears to be a missing justification in your proof. Check the connection between your reasoning steps.",
+      "hint_1_template": "Read through your proof step by step. Is there a point where you reach a conclusion without explaining why it follows from the previous statement?",
+      "hint_2_template": "In a complete proof, every statement must be supported by either given information, a definition, or a named theorem. Which step is missing its justification?",
+      "hint_3_template": "Between the step where you established what you know and your final conclusion, write the intermediate statement that connects them. Name the theorem or property that justifies it.",
+      "feedback_summary_template_fallback": "Your proof appears to skip a reasoning step. Identify where the logical gap occurs and add the missing justification.",
+      "hint_1_template_fallback": "Does every step in your proof follow clearly from the step before it? Look for a point where the connection is unclear.",
+      "hint_2_template_fallback": "Each step in a proof needs a stated reason — given information, a definition, or a theorem. Which step is missing its reason?",
+      "hint_3_template_fallback": "Write the missing intermediate step and state the theorem or rule that justifies it.",
+      "remedial_topic": "Proof Structure and Logical Deduction",
+      "remedial_note_template": "Practice writing two-column or paragraph proofs that include a justification for every step. Review the structure of a complete geometric proof.",
+      "teacher_review_message": "The missing step may be due to OCR failure rather than a genuine reasoning gap. A teacher should examine the original handwritten work before concluding this is a conceptual error."
+    }
+  ]
+}
