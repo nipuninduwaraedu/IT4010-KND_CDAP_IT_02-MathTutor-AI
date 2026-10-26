@@ -69,15 +69,23 @@ class FeedbackGuidance:
     """
     Feedback template data for a specific misconception label.
     Retrieved from the knowledge base and passed to HintGenerator.
+
+    Fallback template fields (``*_fallback``) are used by HintGenerator when
+    no TheoremRecord is available.  They are stored as proper slots rather than
+    dynamic attributes so the class works correctly with ``__slots__``.
     """
 
     __slots__ = (
         "label",
         "description",
         "feedback_summary_template",
+        "feedback_summary_template_fallback",
         "hint_1_template",
+        "hint_1_template_fallback",
         "hint_2_template",
+        "hint_2_template_fallback",
         "hint_3_template",
+        "hint_3_template_fallback",
         "remedial_topic",
         "remedial_note_template",
         "teacher_review_message",
@@ -95,13 +103,26 @@ class FeedbackGuidance:
         remedial_topic: str,
         remedial_note_template: str,
         teacher_review_message: str,
+        # Fallback templates used when no theorem record is available.
+        # Default to the primary template so callers that do not provide them
+        # continue to work without crashing.
+        feedback_summary_template_fallback: str = "",
+        hint_1_template_fallback: str = "",
+        hint_2_template_fallback: str = "",
+        hint_3_template_fallback: str = "",
     ) -> None:
         self.label: str = label
         self.description: str = description
         self.feedback_summary_template: str = feedback_summary_template
+        self.feedback_summary_template_fallback: str = (
+            feedback_summary_template_fallback or feedback_summary_template
+        )
         self.hint_1_template: str = hint_1_template
+        self.hint_1_template_fallback: str = hint_1_template_fallback or hint_1_template
         self.hint_2_template: str = hint_2_template
+        self.hint_2_template_fallback: str = hint_2_template_fallback or hint_2_template
         self.hint_3_template: str = hint_3_template
+        self.hint_3_template_fallback: str = hint_3_template_fallback or hint_3_template
         self.remedial_topic: str = remedial_topic
         self.remedial_note_template: str = remedial_note_template
         self.teacher_review_message: str = teacher_review_message

@@ -189,6 +189,10 @@ pip install pytest-cov
 pytest tests/ -v --cov=app --cov-report=term-missing
 ```
 
+> **Note:** A `pytest.ini` file is present in `feedback_engine/` and sets the default verbosity,
+> test path, and `asyncio_mode = auto` to suppress `pytest-asyncio` warnings.
+
+
 ---
 
 ## Example API Requests

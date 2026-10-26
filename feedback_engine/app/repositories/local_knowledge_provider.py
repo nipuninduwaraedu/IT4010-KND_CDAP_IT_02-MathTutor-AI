@@ -115,9 +115,15 @@ class LocalKnowledgeProvider:
                     label=label,
                     description=entry.get("description", ""),
                     feedback_summary_template=entry.get("feedback_summary_template", ""),
+                    feedback_summary_template_fallback=entry.get(
+                        "feedback_summary_template_fallback", ""
+                    ),
                     hint_1_template=entry.get("hint_1_template", ""),
+                    hint_1_template_fallback=entry.get("hint_1_template_fallback", ""),
                     hint_2_template=entry.get("hint_2_template", ""),
+                    hint_2_template_fallback=entry.get("hint_2_template_fallback", ""),
                     hint_3_template=entry.get("hint_3_template", ""),
+                    hint_3_template_fallback=entry.get("hint_3_template_fallback", ""),
                     remedial_topic=entry.get("remedial_topic", ""),
                     remedial_note_template=entry.get("remedial_note_template", ""),
                     teacher_review_message=entry.get("teacher_review_message", ""),

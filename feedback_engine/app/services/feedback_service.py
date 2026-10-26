@@ -138,6 +138,7 @@ class FeedbackService:
             theorem_used=theorem_used,
             confidence=confidence,
             requires_review=requires_review,
+            theorem_id_was_requested=theorem_id is not None,
         )
 
     # ------------------------------------------------------------------
@@ -175,12 +176,17 @@ class FeedbackService:
         theorem_used: Optional[str],
         confidence: Optional[float],
         requires_review: bool,
+        theorem_id_was_requested: bool = False,
     ) -> FeedbackResponse:
         """Standard feedback for the three misconception labels."""
-        # Fallback status when theorem was requested but not found
+        # Only use FALLBACK_FEEDBACK when a theorem_id was explicitly requested
+        # but could not be found in the knowledge base.  If no theorem_id was
+        # provided at all, the primary templates are used and the status is
+        # FEEDBACK_GENERATED (not a fallback — the caller simply did not
+        # request theorem enrichment).
         status = (
             FeedbackStatus.FALLBACK_FEEDBACK
-            if (label != MisconceptionLabel.CORRECT_REASONING and theorem is None)
+            if theorem_id_was_requested and theorem is None
             else FeedbackStatus.FEEDBACK_GENERATED
         )
         hints = hint_generator.generate_hints(guidance, theorem)
@@ -280,6 +286,3 @@ class FeedbackService:
         if confidence is None:
             return False
         return confidence < config.LOW_CONFIDENCE_THRESHOLD
-
-
-

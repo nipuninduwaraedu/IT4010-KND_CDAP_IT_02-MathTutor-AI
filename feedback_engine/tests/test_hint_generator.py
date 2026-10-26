@@ -19,22 +19,21 @@ from app.services.hint_generator import (
 @pytest.fixture()
 def guidance() -> FeedbackGuidance:
     """SYNTHETIC FeedbackGuidance fixture."""
-    g = FeedbackGuidance(
+    return FeedbackGuidance(
         label="Incorrect Angle Relationships",
         description="Wrong angle relationship used.",
         feedback_summary_template="Review {theorem_name} for this configuration.",
+        feedback_summary_template_fallback="Review the angle relationship.",
         hint_1_template="Are these angles equal or supplementary?",
+        hint_1_template_fallback="Are these angles equal or supplementary?",
         hint_2_template="The theorem: '{theorem_statement}'.",
+        hint_2_template_fallback="Check the relevant property.",
         hint_3_template="Apply the rule to find the unknown angle.",
+        hint_3_template_fallback="Apply the correct rule.",
         remedial_topic="Angle Relationships",
         remedial_note_template="Study {topic} examples.",
         teacher_review_message="Teacher review recommended.",
     )
-    g.feedback_summary_template_fallback = "Review the angle relationship."
-    g.hint_1_template_fallback = "Are these angles equal or supplementary?"
-    g.hint_2_template_fallback = "Check the relevant property."
-    g.hint_3_template_fallback = "Apply the correct rule."
-    return g
 
 
 @pytest.fixture()

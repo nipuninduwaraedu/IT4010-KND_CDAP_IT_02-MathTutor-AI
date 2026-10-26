@@ -103,20 +103,18 @@ def sample_guidance_incorrect_angle() -> FeedbackGuidance:
     """
     SYNTHETIC FeedbackGuidance for 'Incorrect Angle Relationships'.
     """
-    g = FeedbackGuidance(
+    return FeedbackGuidance(
         label="Incorrect Angle Relationships",
         description="Student used wrong angle relationship.",
         feedback_summary_template="Review the angle relationship for {theorem_name}.",
+        feedback_summary_template_fallback="Review the angle relationship here.",
         hint_1_template="Are these angles equal or supplementary?",
+        hint_1_template_fallback="Are these angles equal or supplementary?",
         hint_2_template="The theorem states: '{theorem_statement}'.",
+        hint_2_template_fallback="Check the relevant angle relationship.",
         hint_3_template="Apply the correct rule to find the unknown angle.",
+        hint_3_template_fallback="Apply the correct rule.",
         remedial_topic="Angle Relationships in Circles",
         remedial_note_template="Study {topic} examples.",
         teacher_review_message="Teacher review recommended.",
     )
-    # Add fallback attributes
-    g.feedback_summary_template_fallback = "Review the angle relationship here."
-    g.hint_1_template_fallback = "Are these angles equal or supplementary?"
-    g.hint_2_template_fallback = "Check the relevant angle relationship."
-    g.hint_3_template_fallback = "Apply the correct rule."
-    return g

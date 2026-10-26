@@ -39,13 +39,6 @@ _HINT_TITLES = {
     3: "Apply the rule",
 }
 
-# Special titles when a theorem was found and used
-_HINT_TITLES_WITH_THEOREM = {
-    1: "Think about the relationship",
-    2: "Recall the theorem",
-    3: "Apply the rule",
-}
-
 
 def generate_hints(
     guidance: FeedbackGuidance,
@@ -76,20 +69,20 @@ def generate_hints(
         h1 = fill_template(guidance.hint_1_template, **substitutions)
         h2 = fill_template(guidance.hint_2_template, **substitutions)
         h3 = fill_template(guidance.hint_3_template, **substitutions)
-        titles = _HINT_TITLES_WITH_THEOREM
         logger.debug("Hints generated using theorem '%s'.", theorem.theorem_id)
     else:
-        # Use fallback templates — these contain no theorem-specific placeholders
-        h1 = guidance.hint_1_template_fallback if hasattr(guidance, "hint_1_template_fallback") else guidance.hint_1_template
-        h2 = guidance.hint_2_template_fallback if hasattr(guidance, "hint_2_template_fallback") else guidance.hint_2_template
-        h3 = guidance.hint_3_template_fallback if hasattr(guidance, "hint_3_template_fallback") else guidance.hint_3_template
-        titles = _HINT_TITLES
+        # Use the fallback templates (no theorem-specific placeholders).
+        # FeedbackGuidance guarantees these slots exist; they default to the
+        # primary template when not set in the JSON source.
+        h1 = guidance.hint_1_template_fallback
+        h2 = guidance.hint_2_template_fallback
+        h3 = guidance.hint_3_template_fallback
         logger.debug("Hints generated using fallback templates (no theorem record).")
 
     return [
-        HintItem(level=1, title=titles[1], message=h1),
-        HintItem(level=2, title=titles[2], message=h2),
-        HintItem(level=3, title=titles[3], message=h3),
+        HintItem(level=1, title=_HINT_TITLES[1], message=h1),
+        HintItem(level=2, title=_HINT_TITLES[2], message=h2),
+        HintItem(level=3, title=_HINT_TITLES[3], message=h3),
     ]
 
 
@@ -112,11 +105,8 @@ def generate_feedback_summary(
         )
         return fill_template(guidance.feedback_summary_template, **substitutions)
 
-    # Use fallback if available, otherwise use the standard template as-is
-    fallback_attr = "feedback_summary_template_fallback"
-    if hasattr(guidance, fallback_attr):
-        return getattr(guidance, fallback_attr)
-    return guidance.feedback_summary_template
+    # FeedbackGuidance guarantees feedback_summary_template_fallback exists.
+    return guidance.feedback_summary_template_fallback
 
 
 def generate_remedial_guidance(
