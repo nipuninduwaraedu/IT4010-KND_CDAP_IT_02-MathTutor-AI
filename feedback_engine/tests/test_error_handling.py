@@ -1,9 +1,5 @@
-"""
-Tests: Error handling, edge cases, and safety rules.
+# Error handling, edge cases, and safety rules (tests 8–14).
 
-Covers test IDs 8–14 from the testing requirements.
-All test cases are SYNTHETIC.
-"""
 
 from __future__ import annotations
 
@@ -16,9 +12,8 @@ from app.schemas.feedback import FeedbackRequest, FeedbackStatus, MisconceptionL
 from app.services.feedback_service import FeedbackService
 
 
-# ---------------------------------------------------------------------------
 # Test 8: Invalid misconception labels (via API)
-# ---------------------------------------------------------------------------
+
 
 class TestInvalidLabel:
     """Test 8: Invalid misconception labels."""
@@ -44,9 +39,8 @@ class TestInvalidLabel:
         assert "detail" in data
 
 
-# ---------------------------------------------------------------------------
 # Test 9: Empty or malformed reasoning steps (via API)
-# ---------------------------------------------------------------------------
+
 
 class TestMalformedReasoningSteps:
     """Test 9: Empty or malformed reasoning steps."""
@@ -87,9 +81,8 @@ class TestMalformedReasoningSteps:
         assert response.status_code == 422
 
 
-# ---------------------------------------------------------------------------
 # Test 10: Missing knowledge-provider data
-# ---------------------------------------------------------------------------
+
 
 class TestMissingProviderData:
     """Test 10: Service behaviour when guidance data is unavailable."""
@@ -131,9 +124,8 @@ class TestMissingProviderData:
         assert result.theorem_reference is None
 
 
-# ---------------------------------------------------------------------------
 # Test 11: Low-confidence predictions
-# ---------------------------------------------------------------------------
+
 
 class TestLowConfidencePredictions:
     """Test 11: Low-confidence predictions trigger cautious feedback."""
@@ -186,9 +178,8 @@ class TestLowConfidencePredictions:
         assert result.status != FeedbackStatus.CAUTIOUS_FEEDBACK
 
 
-# ---------------------------------------------------------------------------
 # Test 12: Missing confidence values
-# ---------------------------------------------------------------------------
+
 
 class TestMissingConfidence:
     """Test 12: Missing confidence values must not trigger cautious feedback."""
@@ -220,18 +211,14 @@ class TestMissingConfidence:
         assert len(result.hints) == 3
 
 
-# ---------------------------------------------------------------------------
 # Test 13: Service exceptions return 503
-# ---------------------------------------------------------------------------
+
 
 class TestServiceExceptions:
     """Test 13: Unexpected service exceptions return HTTP 503."""
 
     def test_service_exception_returns_503(self, client: TestClient) -> None:
-        """
-        If FeedbackService.generate_feedback raises an unexpected exception,
-        the API must return 503 (not 500 with an unhandled traceback).
-        """
+        """Unexpected service errors must return 503, not an unhandled 500."""
         # Inject a broken service into the app state
         broken_service = MagicMock()
         broken_service.generate_feedback.side_effect = RuntimeError(
@@ -269,9 +256,8 @@ class TestServiceExceptions:
             client.app.state.feedback_service = original
 
 
-# ---------------------------------------------------------------------------
 # Test 14: Feedback response schema validation (via API)
-# ---------------------------------------------------------------------------
+
 
 class TestFeedbackResponseSchema:
     """Test 14: Full POST /feedback response must conform to the schema."""

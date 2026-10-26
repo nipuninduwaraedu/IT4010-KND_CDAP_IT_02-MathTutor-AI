@@ -1,14 +1,5 @@
-"""
-Misconception label mapping and normalisation.
+# Normalises raw misconception labels to MisconceptionLabel enum.
 
-Converts the raw predicted_label string (received from Member 2) into the
-MisconceptionLabel enum.  Although FastAPI/Pydantic will already validate
-the label in the request schema, this module can also be used independently
-(e.g., from the service layer when reprocessing stored data).
-
-Centralised here so that any future aliasing or label-versioning logic has
-a single home.
-"""
 
 from __future__ import annotations
 
@@ -19,11 +10,8 @@ from app.schemas.feedback import MisconceptionLabel
 
 logger = logging.getLogger(__name__)
 
-# ---------------------------------------------------------------------------
-# Optional aliases — allows minor label variations from Member 2 to resolve
-# without breaking the engine.  Only add entries that the team explicitly
-# agrees on; do not silently absorb arbitrary strings.
-# ---------------------------------------------------------------------------
+# Team-agreed label aliases for minor variations from Member 2.
+
 _LABEL_ALIASES: dict[str, MisconceptionLabel] = {
     # Canonical forms (redundant but explicit)
     "Correct Reasoning": MisconceptionLabel.CORRECT_REASONING,

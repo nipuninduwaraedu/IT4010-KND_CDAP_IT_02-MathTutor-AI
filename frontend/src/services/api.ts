@@ -3,10 +3,7 @@ import { AnalyzeProofResponse } from "@/types/api";
 const BACKEND_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-/**
- * Submits a handwritten proof image and optional problem context
- * to the FastAPI backend gateway: POST /api/v1/analyze-proof
- */
+// Submit proof image (+ optional problem text) to POST /api/v1/analyze-proof.
 export async function submitProofAnalysis(
   image: File,
   problemText?: string

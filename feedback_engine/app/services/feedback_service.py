@@ -1,25 +1,5 @@
-"""
-FeedbackService — the central orchestrator for Member 3's component.
+# Orchestrates feedback generation from a validated FeedbackRequest.
 
-Responsibility:
-    Given a validated FeedbackRequest, produce a FeedbackResponse by:
-    1. Resolving the misconception label.
-    2. Retrieving the matching feedback guidance from the knowledge provider.
-    3. Optionally retrieving a theorem record if theorem_id is present.
-    4. Applying confidence-threshold safety rules.
-    5. Delegating hint and summary generation to HintGenerator.
-    6. Assembling and returning the structured FeedbackResponse.
-
-This class depends only on the KnowledgeProvider Protocol, not on any
-concrete provider implementation.  Dependency injection (via the FastAPI
-app state) allows the provider to be swapped at startup.
-
-Safety rules enforced here:
-    - Predictions below LOW_CONFIDENCE_THRESHOLD trigger cautious feedback.
-    - Missing theorem records trigger safe fallback feedback.
-    - No student reasoning steps are logged.
-    - No invented theorems or confidence scores.
-"""
 
 from __future__ import annotations
 
@@ -46,27 +26,11 @@ logger = logging.getLogger(__name__)
 
 
 class FeedbackService:
-    """
-    Orchestrates feedback generation for a single student proof submission.
-
-    Injected with a KnowledgeProvider at construction; all public methods
-    are stateless with respect to student data.
-    """
-
     def __init__(self, knowledge_provider: KnowledgeProvider) -> None:
         self._kp = knowledge_provider
 
-    # ------------------------------------------------------------------
-    # Public API
-    # ------------------------------------------------------------------
-
     def generate_feedback(self, request: FeedbackRequest) -> FeedbackResponse:
-        """
-        Main entry point.  Produces a FeedbackResponse from the request.
-
-        Never raises an unhandled exception — all error paths return a
-        structured FeedbackResponse with an appropriate status.
-        """
+        # Build FeedbackResponse; error paths return structured statuses, not raw exceptions.
         label = request.predicted_label
         confidence = request.confidence
         theorem_id = request.theorem_id
@@ -80,7 +44,7 @@ class FeedbackService:
             # NOTE: reasoning_steps are intentionally NOT logged (privacy rule)
         )
 
-        # ── Step 1: Retrieve feedback guidance ──────────────────────────
+        # Load feedback guidance for the label.
         guidance = self._kp.get_feedback_guidance(label.value)
         if guidance is None:
             logger.error(
@@ -89,7 +53,7 @@ class FeedbackService:
             )
             return self._generic_fallback_response(label, confidence)
 
-        # ── Step 2: Retrieve theorem record (optional) ───────────────────
+        # Optional theorem lookup.
         theorem: Optional[TheoremRecord] = None
         theorem_used: Optional[str] = None
         if theorem_id:
@@ -102,7 +66,7 @@ class FeedbackService:
                     theorem_id,
                 )
 
-        # ── Step 3: Confidence safety check ─────────────────────────────
+        # Low-confidence safety check.
         is_low_confidence = self._is_low_confidence(confidence)
         requires_review = is_low_confidence
 
@@ -121,7 +85,7 @@ class FeedbackService:
                 confidence=confidence,
             )
 
-        # ── Step 4: Correct Reasoning path ──────────────────────────────
+        # Correct Reasoning branch.
         if label == MisconceptionLabel.CORRECT_REASONING:
             return self._correct_reasoning_response(
                 guidance=guidance,
@@ -130,7 +94,7 @@ class FeedbackService:
                 confidence=confidence,
             )
 
-        # ── Step 5: Standard misconception path ─────────────────────────
+        # Standard misconception branch.
         return self._standard_feedback_response(
             label=label,
             guidance=guidance,
@@ -140,10 +104,6 @@ class FeedbackService:
             requires_review=requires_review,
             theorem_id_was_requested=theorem_id is not None,
         )
-
-    # ------------------------------------------------------------------
-    # Private response builders
-    # ------------------------------------------------------------------
 
     def _correct_reasoning_response(
         self,
@@ -212,10 +172,7 @@ class FeedbackService:
         theorem_used: Optional[str],
         confidence: Optional[float],
     ) -> FeedbackResponse:
-        """
-        Low-confidence path.  Returns hints and summary but marks the response
-        as cautious and flags it for teacher review.
-        """
+        # Low confidence: same hints but cautious status and teacher-review flag.
         hints = hint_generator.generate_hints(guidance, theorem)
         summary = hint_generator.generate_feedback_summary(guidance, theorem)
         remedial = hint_generator.generate_remedial_guidance(guidance, theorem)
@@ -238,10 +195,7 @@ class FeedbackService:
         label: MisconceptionLabel,
         confidence: Optional[float],
     ) -> FeedbackResponse:
-        """
-        Last-resort response when guidance data is completely unavailable.
-        Returns a safe prompt to review the relevant geometry section.
-        """
+        # No guidance in knowledge base — safe generic hints only.
         return FeedbackResponse(
             status=FeedbackStatus.FALLBACK_FEEDBACK,
             misconception_label=label.value,
@@ -272,17 +226,9 @@ class FeedbackService:
             confidence_acknowledged=confidence,
         )
 
-    # ------------------------------------------------------------------
-    # Helpers
-    # ------------------------------------------------------------------
-
     @staticmethod
     def _is_low_confidence(confidence: Optional[float]) -> bool:
-        """
-        Return True only when confidence is provided AND below the threshold.
-        If confidence is None (not provided), we cannot determine it is low
-        — we do NOT fabricate a default.
-        """
+        # True only when confidence is present and below threshold (never guess if missing).
         if confidence is None:
             return False
         return confidence < config.LOW_CONFIDENCE_THRESHOLD

@@ -1,14 +1,5 @@
-"""
-Local JSON-backed knowledge provider for development and testing.
+# JSON-file knowledge provider for development and tests.
 
-Reads theorem records from `data/sample_geometry_rules.json` and feedback
-guidance templates from `templates/feedback_templates.json`.  Both files
-are loaded once at construction time; the provider is then stateless.
-
-This class satisfies the KnowledgeProvider Protocol without inheritance.
-When Member 1's knowledge base is ready, a new provider class that also
-satisfies the Protocol can replace this one — no other code needs to change.
-"""
 
 from __future__ import annotations
 
@@ -23,12 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 class LocalKnowledgeProvider:
-    """
-    KnowledgeProvider backed by local JSON files.
-
-    Satisfies the KnowledgeProvider Protocol (see knowledge_provider.py).
-    Intended for development and automated testing only.
-    """
+    """KnowledgeProvider implementation backed by local JSON files."""
 
     provider_name: str = "local_json"
 
@@ -47,32 +33,19 @@ class LocalKnowledgeProvider:
             len(self._guidance),
         )
 
-    # ------------------------------------------------------------------
-    # Protocol methods
-    # ------------------------------------------------------------------
-
     def get_theorem(self, theorem_id: str) -> Optional[TheoremRecord]:
-        """
-        Return the TheoremRecord for the given ID, or None if not found.
-        Callers must handle None without inventing a theorem.
-        """
+        """Return theorem by id, or None if not found."""
         record = self._theorems.get(theorem_id)
         if record is None:
             logger.debug("Theorem ID '%s' not found in local knowledge base.", theorem_id)
         return record
 
     def get_feedback_guidance(self, label: str) -> Optional[FeedbackGuidance]:
-        """
-        Return the FeedbackGuidance for the given misconception label, or None.
-        """
+        """Return feedback templates for a label, or None."""
         guidance = self._guidance.get(label)
         if guidance is None:
             logger.warning("No feedback guidance found for label '%s'.", label)
         return guidance
-
-    # ------------------------------------------------------------------
-    # Private loading helpers
-    # ------------------------------------------------------------------
 
     def _load_theorems(self, path: Path) -> None:
         """Load theorem records from the geometry rules JSON file."""

@@ -1,8 +1,5 @@
-"""
-Tests: HintGenerator — unit tests with controlled inputs.
+# Unit tests for hint generation.
 
-All test cases are SYNTHETIC.
-"""
 
 from __future__ import annotations
 

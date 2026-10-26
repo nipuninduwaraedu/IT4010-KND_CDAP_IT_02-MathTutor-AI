@@ -1,11 +1,5 @@
-"""
-Logging configuration for the Feedback Engine.
+# Logging setup; never log student reasoning content at INFO+.
 
-Privacy rules enforced here:
-- Reasoning step content is never logged at INFO or above.
-- question_id is logged only for tracing (it is opaque, not a student name).
-- Student-identifying information must not appear in logs.
-"""
 
 from __future__ import annotations
 

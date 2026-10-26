@@ -1,15 +1,5 @@
-"""
-Pydantic schemas for the Intelligent Feedback and Explanation Engine.
+# Pydantic request/response models for the feedback API.
 
-These models define the API contract between Member 3's service and its callers
-(Member 2's orchestrator / the backend gateway).  They are intentionally kept
-separate from feedback-generation logic so the schema can be updated
-independently of business rules.
-
-NOTE: These schemas are illustrative data contracts designed for the research
-prototype.  They have not been validated against a production NIE curriculum
-specification or examiner-approved rubrics.
-"""
 
 from __future__ import annotations
 
@@ -19,34 +9,22 @@ from typing import Optional
 from pydantic import BaseModel, Field, field_validator
 
 
-# ---------------------------------------------------------------------------
 # Supported misconception labels
-# ---------------------------------------------------------------------------
+
 
 class MisconceptionLabel(str, Enum):
-    """
-    The four classification categories produced by Member 2's classifier.
-    Using an Enum guarantees that invalid labels are caught at the schema
-    validation layer before reaching any business logic.
-    """
+    """Misconception categories from Member 2's classifier."""
     CORRECT_REASONING = "Correct Reasoning"
     INCORRECT_THEOREM_APPLICATION = "Incorrect Theorem Application"
     INCORRECT_ANGLE_RELATIONSHIPS = "Incorrect Angle Relationships"
     MISSING_PROOF_STEP = "Missing Proof Step"
 
 
-# ---------------------------------------------------------------------------
 # Request schema
-# ---------------------------------------------------------------------------
+
 
 class FeedbackRequest(BaseModel):
-    """
-    Payload sent by Member 2's orchestrator (or the backend gateway) when
-    requesting personalised feedback for a student's geometry proof.
-
-    Fields marked Optional are genuinely optional; Member 3's service must
-    handle their absence gracefully without fabricating values.
-    """
+    """Input for personalised feedback on a geometry proof submission."""
 
     reasoning_steps: list[str] = Field(
         ...,
@@ -131,9 +109,8 @@ class FeedbackRequest(BaseModel):
     }
 
 
-# ---------------------------------------------------------------------------
 # Response sub-models
-# ---------------------------------------------------------------------------
+
 
 class HintItem(BaseModel):
     """A single scaffolded hint at a specific disclosure level."""
@@ -161,16 +138,7 @@ class FeedbackStatus(str, Enum):
 
 
 class FeedbackResponse(BaseModel):
-    """
-    Structured feedback returned by Member 3 to its caller.
-
-    The caller (Member 2's gateway or Member 4's integration layer) is
-    responsible for mapping `hints` into the frontend's ScaffoldedFeedback
-    shape:
-        hints[0].message  →  level_1_hint
-        hints[1].message  →  level_2_hint
-        hints[2].message  →  level_3_guiding_question
-    """
+    """Structured feedback with summary, three hints, and optional remedial guidance."""
 
     status: FeedbackStatus = Field(..., description="Outcome of the feedback generation attempt.")
     misconception_label: str = Field(..., description="The predicted misconception label, echoed back.")
@@ -251,9 +219,8 @@ class FeedbackResponse(BaseModel):
     }
 
 
-# ---------------------------------------------------------------------------
 # Labels endpoint response
-# ---------------------------------------------------------------------------
+
 
 class LabelInfo(BaseModel):
     """Description of a single misconception label."""
@@ -266,9 +233,8 @@ class LabelsResponse(BaseModel):
     labels: list[LabelInfo]
 
 
-# ---------------------------------------------------------------------------
 # Health endpoint response
-# ---------------------------------------------------------------------------
+
 
 class HealthResponse(BaseModel):
     """Response for GET /health."""

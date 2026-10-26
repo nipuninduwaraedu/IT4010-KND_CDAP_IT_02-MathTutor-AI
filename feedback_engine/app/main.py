@@ -1,16 +1,6 @@
-"""
-FastAPI application factory for the Feedback and Explanation Engine.
+# FastAPI application factory for the Feedback and Explanation Engine.
+# Selects the knowledge provider and registers routes.
 
-Startup sequence:
-    1. Configure structured logging.
-    2. Instantiate the knowledge provider based on the KNOWLEDGE_PROVIDER env var.
-    3. Instantiate FeedbackService with the provider (dependency injection).
-    4. Store both on app.state so routes can access them via Request.
-    5. Register API routers.
-
-This module is the only place that knows which concrete KnowledgeProvider
-is used at runtime.  All other modules depend only on the Protocol.
-"""
 
 from __future__ import annotations
 
@@ -32,20 +22,16 @@ from app.services.feedback_service import FeedbackService
 logger = logging.getLogger(__name__)
 
 
-# ---------------------------------------------------------------------------
 # Lifespan — startup / shutdown
-# ---------------------------------------------------------------------------
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    """
-    Application lifespan manager.
-    Runs startup logic before yielding, then teardown on shutdown.
-    """
+    # Startup: logging, knowledge provider, FeedbackService on app.state.
     configure_logging()
     logger.info("Starting Feedback Engine v%s ...", config.APP_VERSION)
 
-    # ── Knowledge provider factory ────────────────────────────────────────
+    # Knowledge provider factory
     provider_name = config.KNOWLEDGE_PROVIDER
     if provider_name == "local_json":
         provider = LocalKnowledgeProvider(
@@ -79,9 +65,8 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     logger.info("Feedback Engine shutting down.")
 
 
-# ---------------------------------------------------------------------------
 # Application factory
-# ---------------------------------------------------------------------------
+
 
 def create_app() -> FastAPI:
     """Create and configure the FastAPI application."""
@@ -95,9 +80,7 @@ def create_app() -> FastAPI:
         openapi_url="/openapi.json",
     )
 
-    # ── CORS ─────────────────────────────────────────────────────────────
-    # Allow the Next.js frontend (Member 4) to call this service directly
-    # during development.  Tighten these origins for production deployment.
+    # CORS for local Next.js dev (tighten origins in production).
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
@@ -106,7 +89,6 @@ def create_app() -> FastAPI:
         allow_headers=["Content-Type"],
     )
 
-    # ── Custom validation-error handler ──────────────────────────────────
     @app.exception_handler(ValidationError)
     async def pydantic_validation_handler(
         request: Request, exc: ValidationError
@@ -117,15 +99,13 @@ def create_app() -> FastAPI:
             content={"detail": exc.errors()},
         )
 
-    # ── Routers ──────────────────────────────────────────────────────────
     app.include_router(health.router)
     app.include_router(feedback.router)
 
     return app
 
 
-# ---------------------------------------------------------------------------
 # Application instance (used by uvicorn)
-# ---------------------------------------------------------------------------
+
 
 app = create_app()

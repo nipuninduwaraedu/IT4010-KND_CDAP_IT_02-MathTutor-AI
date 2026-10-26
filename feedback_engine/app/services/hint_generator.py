@@ -1,22 +1,5 @@
-"""
-Scaffolded hint generation for the Feedback Engine.
+# Rule-based scaffolded hints (three levels); no LLM.
 
-Produces exactly three hints (levels 1–3) from a FeedbackGuidance record and
-an optional TheoremRecord.  All logic is rule-based — no external LLM or
-generative AI is used.
-
-Design decisions:
-- When a theorem is found, templates referencing {theorem_name}, etc. are
-  filled with the actual theorem data.
-- When no theorem is found, the _fallback template fields are used instead,
-  providing a safe generic hint rather than an empty or invented message.
-- The generator never fabricates theorem content.
-- The generator never reveals a final numerical answer.
-
-IMPORTANT: The educational content of these hints is illustrative.  The
-templates in feedback_templates.json must be reviewed by a qualified educator
-before this system is used with real students.
-"""
 
 from __future__ import annotations
 
@@ -29,9 +12,8 @@ from app.utils.text_utils import fill_template
 
 logger = logging.getLogger(__name__)
 
-# ---------------------------------------------------------------------------
 # Hint level titles — defined here so they can be changed in one place
-# ---------------------------------------------------------------------------
+
 
 _HINT_TITLES = {
     1: "Think about the relationship",
@@ -44,21 +26,7 @@ def generate_hints(
     guidance: FeedbackGuidance,
     theorem: Optional[TheoremRecord],
 ) -> list[HintItem]:
-    """
-    Produce a list of exactly three HintItem objects.
-
-    Parameters
-    ----------
-    guidance:
-        Feedback template data retrieved from the knowledge provider.
-    theorem:
-        Matched theorem record, or None when theorem_id was absent or not found.
-
-    Returns
-    -------
-    list[HintItem]
-        Exactly three items with levels 1, 2, 3 in order.
-    """
+    """Return exactly three scaffolded hints (levels 1–3)."""
     if theorem is not None:
         substitutions = dict(
             theorem_name=theorem.name,

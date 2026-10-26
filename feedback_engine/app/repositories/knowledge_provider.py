@@ -1,39 +1,16 @@
-"""
-Abstract knowledge-provider interface for the Feedback Engine.
+# KnowledgeProvider protocol and DTOs for theorems and feedback templates.
 
-This module defines the Protocol that all knowledge providers must satisfy.
-The local JSON provider is used during development and testing.
-Member 1's PostgreSQL/FastAPI-backed provider will be an adapter implementing
-this same Protocol — no changes to FeedbackService will be needed at that time.
-
-Design note: Python's typing.Protocol is used rather than ABC so that
-provider implementations do not need to explicitly inherit from a base class.
-This makes it easier for Member 1 to wrap their own data layer without
-coupling their codebase to Member 3's class hierarchy.
-"""
 
 from __future__ import annotations
 
 from typing import Optional, Protocol, runtime_checkable
 
 
-# ---------------------------------------------------------------------------
 # Data transfer objects returned by the knowledge provider
-# ---------------------------------------------------------------------------
+
 
 class TheoremRecord:
-    """
-    Represents a single geometry theorem retrieved from the knowledge base.
-
-    All fields are typed str so that the provider can be backed by any
-    storage medium (JSON, PostgreSQL, REST) without conversion overhead.
-
-    IMPORTANT: These theorem statements are illustrative samples used during
-    development.  They must be verified against authoritative curriculum
-    sources (e.g., the NIE Grade 10/11 Mathematics syllabus) before
-    production use.  Do not claim mathematical correctness beyond what is
-    established in the curriculum.
-    """
+    """Geometry theorem record from the knowledge base (sample data in dev)."""
 
     __slots__ = (
         "theorem_id",
@@ -66,14 +43,7 @@ class TheoremRecord:
 
 
 class FeedbackGuidance:
-    """
-    Feedback template data for a specific misconception label.
-    Retrieved from the knowledge base and passed to HintGenerator.
-
-    Fallback template fields (``*_fallback``) are used by HintGenerator when
-    no TheoremRecord is available.  They are stored as proper slots rather than
-    dynamic attributes so the class works correctly with ``__slots__``.
-    """
+    """Feedback templates for a misconception label, including fallbacks when no theorem is found."""
 
     __slots__ = (
         "label",
@@ -131,43 +101,19 @@ class FeedbackGuidance:
         return f"FeedbackGuidance(label={self.label!r})"
 
 
-# ---------------------------------------------------------------------------
 # Protocol interface
-# ---------------------------------------------------------------------------
+
 
 @runtime_checkable
 class KnowledgeProvider(Protocol):
-    """
-    Interface that all knowledge providers must satisfy.
-
-    Callers depend only on this Protocol — never on a concrete class.
-    This allows LocalKnowledgeProvider to be hot-swapped with
-    Member1KnowledgeProvider (future REST/DB adapter) without touching
-    FeedbackService.
-
-    Integration note for Member 1:
-        Implement this Protocol in a new file, e.g.
-        `repositories/member1_knowledge_provider.py`, and update the
-        provider factory in `core/config.py` to instantiate it.
-        No other files need to change.
-    """
+    """Protocol for theorem and feedback-template lookups (swappable providers)."""
 
     def get_theorem(self, theorem_id: str) -> Optional[TheoremRecord]:
-        """
-        Retrieve a theorem record by its unique identifier.
-
-        Returns None if the theorem_id is not found — callers must handle
-        the None case gracefully (fallback feedback, no invented theorem).
-        """
+        """Return theorem by id, or None if not found."""
         ...
 
     def get_feedback_guidance(self, label: str) -> Optional[FeedbackGuidance]:
-        """
-        Retrieve the feedback template data for a given misconception label.
-
-        Returns None if the label has no associated guidance — callers
-        must handle this case without crashing.
-        """
+        """Return feedback templates for a label, or None."""
         ...
 
     @property

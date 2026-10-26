@@ -17,11 +17,7 @@ interface ProofAnalysisMessageProps {
   response: AnalyzeProofResponse;
 }
 
-/**
- * Renders the real model response from the FastAPI backend gateway.
- * Displays extracted steps, prediction misconception classification,
- * flagged step highlight, 3-tiered hints, and remedial guidance.
- */
+// Backend analysis UI: steps, misconception, hints, and remedial guidance.
 export const ProofAnalysisMessage: React.FC<ProofAnalysisMessageProps> = ({
   response,
 }) => {

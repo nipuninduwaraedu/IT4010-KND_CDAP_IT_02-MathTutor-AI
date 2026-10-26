@@ -4,9 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Logo from "./Logo";
 
-/**
- * Top header component with official MathSense AI logo.
- */
+// App header with logo and workspace link.
 export const Header: React.FC = () => {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">

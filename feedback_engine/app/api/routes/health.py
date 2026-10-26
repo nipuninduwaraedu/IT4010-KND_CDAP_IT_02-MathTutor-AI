@@ -1,9 +1,5 @@
-"""
-Health check endpoint.
+# Health check endpoint for monitoring and integration.
 
-Returns the application's operational status and the active knowledge provider.
-This endpoint must always respond successfully as long as the process is running.
-"""
 
 from __future__ import annotations
 

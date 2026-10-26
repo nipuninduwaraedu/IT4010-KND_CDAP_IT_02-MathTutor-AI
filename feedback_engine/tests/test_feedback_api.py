@@ -1,9 +1,5 @@
-"""
-Tests: Health endpoint and supported labels endpoint.
+# API integration tests for feedback routes.
 
-Test IDs 1–2 from the testing requirements.
-All test cases are SYNTHETIC.
-"""
 
 from __future__ import annotations
 

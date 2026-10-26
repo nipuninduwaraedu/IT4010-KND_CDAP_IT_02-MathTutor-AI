@@ -1,10 +1,5 @@
-"""
-Tests: FeedbackService for all four misconception labels.
+# Unit tests for FeedbackService.
 
-Test IDs 3–6 from the testing requirements.
-All test cases are SYNTHETIC.  These tests do not validate real student
-learning outcomes or curriculum correctness.
-"""
 
 from __future__ import annotations
 
@@ -14,9 +9,8 @@ from app.schemas.feedback import FeedbackResponse, FeedbackStatus, Misconception
 from app.services.feedback_service import FeedbackService
 
 
-# ---------------------------------------------------------------------------
 # Helpers
-# ---------------------------------------------------------------------------
+
 
 def _make_request(
     label: str,
@@ -49,9 +43,8 @@ def _assert_valid_response(response: FeedbackResponse) -> None:
     assert response.reveal_final_answer is False
 
 
-# ---------------------------------------------------------------------------
 # Test 3: Correct Reasoning
-# ---------------------------------------------------------------------------
+
 
 class TestCorrectReasoning:
     """Test 3: Correct Reasoning feedback."""
@@ -78,9 +71,8 @@ class TestCorrectReasoning:
         assert result.misconception_label == "Correct Reasoning"
 
 
-# ---------------------------------------------------------------------------
 # Test 4: Incorrect Theorem Application
-# ---------------------------------------------------------------------------
+
 
 class TestIncorrectTheoremApplication:
     """Test 4: Incorrect Theorem Application feedback."""
@@ -127,9 +119,8 @@ class TestIncorrectTheoremApplication:
         _assert_valid_response(result)
 
 
-# ---------------------------------------------------------------------------
 # Test 5: Incorrect Angle Relationships
-# ---------------------------------------------------------------------------
+
 
 class TestIncorrectAngleRelationships:
     """Test 5: Incorrect Angle Relationships feedback."""
@@ -167,9 +158,8 @@ class TestIncorrectAngleRelationships:
         assert result.confidence_acknowledged == pytest.approx(0.94)
 
 
-# ---------------------------------------------------------------------------
 # Test 6: Missing Proof Step
-# ---------------------------------------------------------------------------
+
 
 class TestMissingProofStep:
     """Test 6: Missing Proof Step feedback."""

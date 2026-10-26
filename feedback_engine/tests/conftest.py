@@ -1,10 +1,5 @@
-"""
-Shared pytest fixtures for the Feedback Engine test suite.
+# Pytest fixtures; all test data is synthetic.
 
-All test data is SYNTHETIC and clearly labelled as such.
-No real student data is used.  These tests do not validate real-world
-educational effectiveness or learning outcomes.
-"""
 
 from __future__ import annotations
 
@@ -20,18 +15,16 @@ from app.repositories.local_knowledge_provider import LocalKnowledgeProvider
 from app.services.feedback_service import FeedbackService
 
 
-# ---------------------------------------------------------------------------
 # Paths to the real data files (used by integration-style tests)
-# ---------------------------------------------------------------------------
+
 
 _APP_DIR = Path(__file__).resolve().parent.parent / "app"
 GEOMETRY_RULES_PATH = _APP_DIR / "data" / "sample_geometry_rules.json"
 FEEDBACK_TEMPLATES_PATH = _APP_DIR / "templates" / "feedback_templates.json"
 
 
-# ---------------------------------------------------------------------------
 # Real local provider + service (uses actual JSON files)
-# ---------------------------------------------------------------------------
+
 
 @pytest.fixture(scope="session")
 def real_provider() -> LocalKnowledgeProvider:
@@ -48,9 +41,8 @@ def real_service(real_provider: LocalKnowledgeProvider) -> FeedbackService:
     return FeedbackService(knowledge_provider=real_provider)
 
 
-# ---------------------------------------------------------------------------
 # Mock provider — for isolated unit tests that control provider responses
-# ---------------------------------------------------------------------------
+
 
 @pytest.fixture()
 def mock_provider() -> MagicMock:
@@ -66,9 +58,8 @@ def service_with_mock(mock_provider: MagicMock) -> FeedbackService:
     return FeedbackService(knowledge_provider=mock_provider)
 
 
-# ---------------------------------------------------------------------------
 # FastAPI test client (full app lifecycle, real data files)
-# ---------------------------------------------------------------------------
+
 
 @pytest.fixture(scope="session")
 def client() -> TestClient:
@@ -78,9 +69,8 @@ def client() -> TestClient:
         yield c
 
 
-# ---------------------------------------------------------------------------
 # Synthetic theorem record (reused across multiple tests)
-# ---------------------------------------------------------------------------
+
 
 @pytest.fixture()
 def cyclic_theorem() -> TheoremRecord:

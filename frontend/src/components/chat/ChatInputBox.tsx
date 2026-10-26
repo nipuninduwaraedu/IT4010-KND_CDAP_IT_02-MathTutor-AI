@@ -8,11 +8,7 @@ interface ChatInputBoxProps {
   isLoading: boolean;
 }
 
-/**
- * Clean ChatGPT-style Input Box.
- * Supports dragging and dropping handwritten proof images, uploading from device,
- * and entering optional geometry problem text.
- */
+// Proof image upload (drag/drop or file) and optional problem text.
 export const ChatInputBox: React.FC<ChatInputBoxProps> = ({
   onSendMessage,
   isLoading,

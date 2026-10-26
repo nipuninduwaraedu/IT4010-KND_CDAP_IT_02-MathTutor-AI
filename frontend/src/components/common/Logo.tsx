@@ -8,10 +8,7 @@ interface LogoProps {
   variant?: "mark" | "full";
 }
 
-/**
- * MathSense AI System Logo Component.
- * Features the geometric proof triangle with neural nodes and angle arc.
- */
+// MathSense logo (mark or full wordmark).
 export const Logo: React.FC<LogoProps> = ({
   className = "",
   size = 32,

@@ -14,9 +14,7 @@ interface ChatSidebarProps {
   onSelectChat?: (id: string) => void;
 }
 
-/**
- * Clean ChatGPT-style collapsible sidebar with official MathSense AI logo.
- */
+// Collapsible sidebar with chat history and new-proof action.
 export const ChatSidebar: React.FC<ChatSidebarProps> = ({
   isOpen,
   onToggle,

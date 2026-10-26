@@ -1,9 +1,4 @@
-/**
- * Live Backend API Integration Contracts
- * SLIIT Final Year Research Project (IT4010)
- *
- * Backend Gateway: POST /api/v1/analyze-proof
- */
+// API types for POST /api/v1/analyze-proof (backend gateway).
 
 export type MisconceptionCategory =
   | "Incorrect Theorem Application"

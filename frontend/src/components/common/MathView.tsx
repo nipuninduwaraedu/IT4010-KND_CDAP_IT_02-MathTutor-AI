@@ -10,10 +10,7 @@ interface MathViewProps {
   className?: string;
 }
 
-/**
- * Renders mathematical formulas and notation using KaTeX.
- * Handles both pure TeX expressions and text with embedded $...$ delimiters.
- */
+// KaTeX rendering for TeX or inline $...$ in text.
 export const MathView: React.FC<MathViewProps> = ({
   math,
   children,

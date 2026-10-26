@@ -1,17 +1,5 @@
-"""
-Feedback API routes.
+# Feedback routes: GET /feedback/labels and POST /feedback.
 
-Endpoints:
-    GET  /feedback/labels   — list the four supported misconception labels.
-    POST /feedback          — generate personalised feedback for a proof submission.
-
-Error handling strategy:
-    - Pydantic validation errors (422) are handled automatically by FastAPI.
-    - Unknown labels are caught by the MisconceptionLabel enum (also 422).
-    - Service-level exceptions are caught here and returned as 500 responses
-      with a safe generic message (no internal detail leaked to the caller).
-    - All 4xx/5xx responses use FastAPI's standard JSON detail format.
-"""
 
 from __future__ import annotations
 
@@ -31,9 +19,8 @@ from app.services.feedback_service import FeedbackService
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/feedback", tags=["Feedback"])
 
-# ---------------------------------------------------------------------------
 # Label descriptions — shown to API consumers in GET /feedback/labels
-# ---------------------------------------------------------------------------
+
 
 _LABEL_DESCRIPTIONS: dict[MisconceptionLabel, str] = {
     MisconceptionLabel.CORRECT_REASONING: (
@@ -56,9 +43,8 @@ _LABEL_DESCRIPTIONS: dict[MisconceptionLabel, str] = {
 }
 
 
-# ---------------------------------------------------------------------------
 # GET /feedback/labels
-# ---------------------------------------------------------------------------
+
 
 @router.get(
     "/labels",
@@ -80,9 +66,8 @@ async def get_labels() -> LabelsResponse:
     )
 
 
-# ---------------------------------------------------------------------------
 # POST /feedback
-# ---------------------------------------------------------------------------
+
 
 @router.post(
     "",
@@ -109,10 +94,7 @@ async def generate_feedback(
     payload: FeedbackRequest,
     request: Request,
 ) -> FeedbackResponse:
-    """
-    Generate personalised, scaffolded feedback for a student geometry proof.
-    """
-    # Retrieve the service from app state (injected at startup in main.py)
+    # Generate scaffolded feedback via FeedbackService on app.state.
     service: FeedbackService = request.app.state.feedback_service
 
     try:
