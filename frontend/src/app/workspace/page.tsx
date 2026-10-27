@@ -162,7 +162,7 @@ export default function WorkspacePage() {
             <div className="flex items-center gap-2">
               <Logo size={24} />
               <span className="font-bold text-sm text-slate-900 tracking-tight">
-                MathSense AI
+                MathTutor AI
               </span>
             </div>
           </div>

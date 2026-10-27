@@ -15,7 +15,7 @@ interface ChatSidebarProps {
 }
 
 /**
- * Clean ChatGPT-style collapsible sidebar with official MathSense AI logo.
+ * Clean ChatGPT-style collapsible sidebar with official MathTutor AI logo.
  */
 export const ChatSidebar: React.FC<ChatSidebarProps> = ({
   isOpen,
@@ -45,7 +45,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
           <Link href="/workspace" className="flex items-center gap-2.5 group">
             <Logo size={28} className="group-hover:scale-105 transition-transform" />
             <span className="font-bold text-sm text-slate-800 tracking-tight">
-              MathSense AI
+              MathTutor AI
             </span>
           </Link>
           <button

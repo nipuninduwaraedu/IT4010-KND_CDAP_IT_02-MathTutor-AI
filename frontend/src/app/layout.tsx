@@ -14,7 +14,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MathSense AI - Intelligent Misconception Detection & Support",
+  title: "MathTutor AI - Intelligent Misconception Detection & Support",
   description:
     "Intelligent Misconception Detection and Personalized Learning Support System for O/L Mathematics Students",
 };

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Logo from "./Logo";
 
 /**
- * Top header component with official MathSense AI logo.
+ * Top header component with official MathTutor AI logo.
  */
 export const Header: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
           <Link href="/workspace" className="flex items-center gap-2.5 group">
             <Logo size={30} className="group-hover:scale-105 transition-transform" />
             <span className="font-extrabold text-base tracking-tight text-slate-900">
-              MathSense AI
+              MathTutor AI
             </span>
           </Link>
         </div>

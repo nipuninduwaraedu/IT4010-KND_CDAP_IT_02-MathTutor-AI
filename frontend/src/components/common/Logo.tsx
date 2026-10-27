@@ -9,7 +9,7 @@ interface LogoProps {
 }
 
 /**
- * MathSense AI System Logo Component.
+ * MathTutor AI System Logo Component.
  * Features the geometric proof triangle with neural nodes and angle arc.
  */
 export const Logo: React.FC<LogoProps> = ({
@@ -143,7 +143,7 @@ export const Logo: React.FC<LogoProps> = ({
             textAnchor="middle"
             letterSpacing="-1"
           >
-            MathSense
+            MathTutor
           </text>
           <g transform="translate(325, -34)">
             <rect width="64" height="34" rx="8" fill="url(#logoPrimaryGrad)" />

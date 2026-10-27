@@ -236,7 +236,7 @@ export const ChatInputBox: React.FC<ChatInputBoxProps> = ({
       </div>
 
       <p className="text-center text-[11px] text-slate-400 mt-2">
-        MathSense AI
+        MathTutor AI
       </p>
     </div>
   );
