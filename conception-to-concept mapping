@@ -1,0 +1,10 @@
+[33m2aec713[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/chamal-remedial-recommendation[m[33m)[m feat: add ranking by difficulty and resource type
+[33m6a38e57[m feat: implement rule-based resource matching
+[33mbdd9400[m feat: implement misconception-to-concept mapping
+[33md78092b[m fix: add missing content to basic resources JSON
+[33m26af247[m feat: add sample resources for circles and triangles
+[33med9ac6d[m feat: add sample tagged resources JSON (Pythagoras, angles)
+[33m938e16d[m feat: define learning resource model with tags
+[33m09c8fb9[m feat: define misconception and concept schema
+[33m78ffba3[m[33m ([m[1;31morigin/feature/chamal-remedial-recommendation[m[33m)[m docs: add module README and shared data format notes
+[33m0cdde93[m chore: initialize recommendation module folder structure
