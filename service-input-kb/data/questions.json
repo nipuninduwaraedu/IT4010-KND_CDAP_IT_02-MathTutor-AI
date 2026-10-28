@@ -1,0 +1,82 @@
+[
+  {
+    "question_id": "GEO_Q01",
+    "topic": "Vertically Opposite Angles and Angles on a Straight Line",
+    "grade": 10,
+    "problem_text": "In the given figure, the straight lines AB, CD and EF intersect each other at O. Find (i) the value of DÔB (ii) the value of AÔC.",
+    "target_theorem_id": "TH_LINES_01",
+    "diagram_description": "Straight lines AB, CD and EF intersecting at O, with EÔD = 57° and FÔB = 43° marked below line EF."
+  },
+  {
+    "question_id": "GEO_Q02",
+    "topic": "Exterior Angle of a Triangle",
+    "grade": 10,
+    "problem_text": "Find the value of x according to the data given in the figure.",
+    "target_theorem_id": "TH_TRIANGLE_02",
+    "diagram_description": "Triangle with interior angles 3x at the apex and 2x at the bottom-left, and an exterior angle of 150° formed by producing the base at the bottom-right vertex."
+  },
+  {
+    "question_id": "GEO_Q03",
+    "topic": "Congruence of Triangles (AAS)",
+    "grade": 10,
+    "problem_text": "Name a pair of congruent triangles in the given figure and state the case under which they are congruent.",
+    "target_theorem_id": "TH_CONGRUENCE_01",
+    "diagram_description": "Line segments PR and SQ intersecting at T with PT = TR (tick marks) and PS ∥ RQ (arrows), forming triangles PTS and RTQ, with P joined to Q."
+  },
+  {
+    "question_id": "GEO_Q04",
+    "topic": "Angle Sum of a Triangle and Vertically Opposite Angles",
+    "grade": 10,
+    "problem_text": "Find the values of x and y according to the information given in the figure.",
+    "target_theorem_id": "TH_TRIANGLE_01",
+    "diagram_description": "Two triangles meeting at a common vertex where two straight lines cross (120° marked between the lines); the left triangle has angles 2x and 2x, the right triangle has angles x and y."
+  },
+  {
+    "question_id": "GEO_Q05",
+    "topic": "Exterior Angle of a Triangle",
+    "grade": 10,
+    "problem_text": "Write down the value of x° in terms of c°.",
+    "target_theorem_id": "TH_TRIANGLE_02",
+    "diagram_description": "Triangle with base angle 2c° at the left and c° at the apex, a vertical line from the apex to the base, and a line from the left side to the base crossing it with angle c° marked, meeting the base at angle x°."
+  },
+  {
+    "question_id": "GEO_Q06",
+    "topic": "Co-interior (Allied) Angles in Parallel Lines",
+    "grade": 10,
+    "problem_text": "Find the value of a in the figure.",
+    "target_theorem_id": "TH_PARALLEL_03",
+    "diagram_description": "Two parallel lines (arrows) joined at the top by a straight line making 110° with the left line; at the top-right corner a slanted line forms angle a with the top line and 25° with the right parallel line."
+  },
+  {
+    "question_id": "GEO_Q07",
+    "topic": "Alternate Angles in Parallel Lines",
+    "grade": 10,
+    "problem_text": "Find the value of b in the figure.",
+    "target_theorem_id": "TH_PARALLEL_01",
+    "diagram_description": "Two parallel lines (arrows) cut by a transversal making 130° with the lower line; at the upper intersection a line segment makes 20° with the upper line and angle b with the transversal."
+  },
+  {
+    "question_id": "GEO_Q08",
+    "topic": "Isosceles Triangle Base Angles with Parallel Lines",
+    "grade": 10,
+    "problem_text": "In the given figure, BC ∥ PQ. Find the value of b.",
+    "target_theorem_id": "TH_ISOSCELES_01",
+    "diagram_description": "Triangle ABC with BÂC = 80° and AB̂C = 30°, P on AC, PQ ∥ BC, and PC = CQ (tick marks) forming triangle PCQ with angle b at Q."
+  },
+  {
+    "question_id": "GEO_Q09",
+    "topic": "Alternate Angles in Parallel Lines and Angle Sum of a Triangle",
+    "grade": 10,
+    "problem_text": "In triangle ABC, BÂC = 100°, AC ∥ EF and CĜF = 50°. Find the value of x.",
+    "target_theorem_id": "TH_PARALLEL_01",
+    "diagram_description": "Triangle ABC with BÂC = 100°, line EF parallel to AC (arrows) cutting AB and cutting BC at G, CĜF = 50°, and angle x at vertex B."
+  },
+  {
+    "question_id": "GEO_Q10",
+    "topic": "Angles on a Straight Line",
+    "grade": 10,
+    "problem_text": "Find x + y according to the data given in the figure.",
+    "target_theorem_id": "TH_LINES_02",
+    "diagram_description": "Straight line ABC with rays BP, BQ and BR drawn from B on one side, forming consecutive angles x, x, y, y between BA and BC."
+  }
+]

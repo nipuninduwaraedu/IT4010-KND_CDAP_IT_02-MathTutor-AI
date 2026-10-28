@@ -1,0 +1,274 @@
+[
+  {
+    "theorem_id": "TH_LINES_01",
+    "name_en": "Vertically Opposite Angles and Angles on a Straight Line",
+    "name_si": "ප්‍රතිමුඛ කෝණ සහ සරල රේඛාවක් මත බද්ධ කෝණ",
+    "grade": 10,
+    "topic": "Intersecting Straight Lines",
+    "formal_statement": "When two straight lines intersect, the vertically opposite angles formed are equal, and adjacent angles on a straight line sum to 180 degrees.",
+    "required_conditions": [
+      "Lines intersecting at the vertex must be continuous straight lines.",
+      "Angles on a straight line must share a common straight base line."
+    ],
+    "bugs": [
+      {
+        "bug_id": "BUG_LINES_01A",
+        "category": "Incorrect Angle Relationships",
+        "description": "Equating angles on a straight line to 360 degrees instead of 180 degrees."
+      },
+      {
+        "bug_id": "BUG_LINES_01B",
+        "category": "Incorrect Theorem Application",
+        "description": "Treating non-collinear rays as forming vertically opposite angles."
+      },
+      {
+        "bug_id": "BUG_LINES_01C",
+        "category": "Missing Proof Step",
+        "description": "Writing the final angle value without stating the straight-line or vertically opposite angle justification."
+      },
+      {
+        "bug_id": "BUG_LINES_01D",
+        "category": "Correct Reasoning",
+        "description": "Correctly applying both supplementary straight-line sum (180 degrees) and vertically opposite angle equality."
+      }
+    ]
+  },
+  {
+    "theorem_id": "TH_LINES_02",
+    "name_en": "Adjacent Angles on a Straight Line",
+    "name_si": "සරල රේඛාවක් මත පිහිටි බද්ධ කෝණ",
+    "grade": 10,
+    "topic": "Angles on a Straight Line",
+    "formal_statement": "The sum of adjacent angles formed on one side of a straight line at a given point is equal to 180 degrees (two right angles).",
+    "required_conditions": [
+      "All rays must originate from a common point on a single straight line.",
+      "All rays must lie on the same side of the straight line."
+    ],
+    "bugs": [
+      {
+        "bug_id": "BUG_LINES_02A",
+        "category": "Incorrect Angle Relationships",
+        "description": "Setting the sum of angles on one side of a straight line to 360 degrees or 90 degrees."
+      },
+      {
+        "bug_id": "BUG_LINES_02B",
+        "category": "Incorrect Theorem Application",
+        "description": "Applying the angle-at-a-point property (360 degrees) to angles on a half-plane."
+      },
+      {
+        "bug_id": "BUG_LINES_02C",
+        "category": "Missing Proof Step",
+        "description": "Omitting the algebraic factorization step 2(x + y) = 180 degrees before concluding x + y = 90 degrees."
+      },
+      {
+        "bug_id": "BUG_LINES_02D",
+        "category": "Correct Reasoning",
+        "description": "Summing all adjacent angles to 180 degrees and simplifying accurately."
+      }
+    ]
+  },
+  {
+    "theorem_id": "TH_TRIANGLE_01",
+    "name_en": "Interior Angle Sum of a Triangle",
+    "name_si": "ත්‍රිකෝණයක අභ්‍යන්තර කෝණවල ඓක්‍යය",
+    "grade": 10,
+    "topic": "Angle Sum of a Triangle and Vertically Opposite Angles",
+    "formal_statement": "The sum of the three interior angles of any triangle is 180 degrees.",
+    "required_conditions": [
+      "The figure must be a closed three-sided polygon (triangle).",
+      "All three angles must be interior angles of the same triangle."
+    ],
+    "bugs": [
+      {
+        "bug_id": "BUG_TRI_01A",
+        "category": "Incorrect Angle Relationships",
+        "description": "Using the exterior intersection angle (120 degrees) directly as the interior vertex angle without subtracting from 180 degrees."
+      },
+      {
+        "bug_id": "BUG_TRI_01B",
+        "category": "Incorrect Theorem Application",
+        "description": "Assuming both meeting triangles are isosceles or congruent without given conditions."
+      },
+      {
+        "bug_id": "BUG_TRI_01C",
+        "category": "Missing Proof Step",
+        "description": "Jumping directly to x = 30 degrees without showing how the third interior angle (60 degrees) was obtained."
+      },
+      {
+        "bug_id": "BUG_TRI_01D",
+        "category": "Correct Reasoning",
+        "description": "Finding the 60 degree interior angle via straight-line supplement and summing interior angles to 180 degrees."
+      }
+    ]
+  },
+  {
+    "theorem_id": "TH_TRIANGLE_02",
+    "name_en": "Exterior Angle of a Triangle Theorem",
+    "name_si": "ත්‍රිකෝණයක බාහිර කෝණ ප්‍රමේයය",
+    "grade": 10,
+    "topic": "Exterior Angle of a Triangle",
+    "formal_statement": "If one side of a triangle is produced, the exterior angle so formed is equal to the sum of the two interior opposite angles.",
+    "required_conditions": [
+      "One side of the triangle must be extended as a straight line beyond the vertex.",
+      "The two summed angles must be the interior opposite angles (excluding the adjacent interior angle)."
+    ],
+    "bugs": [
+      {
+        "bug_id": "BUG_TRI_02A",
+        "category": "Incorrect Angle Relationships",
+        "description": "Subtracting the interior opposite angles (3x - 2x = 150) or adding the adjacent interior angle."
+      },
+      {
+        "bug_id": "BUG_TRI_02B",
+        "category": "Incorrect Theorem Application",
+        "description": "Setting 3x + 2x = 180 degrees by confusing the exterior angle property with the interior angle sum theorem."
+      },
+      {
+        "bug_id": "BUG_TRI_02C",
+        "category": "Missing Proof Step",
+        "description": "In multi-triangle figures, skipping the intermediate exterior angle expression before stating x = 4c."
+      },
+      {
+        "bug_id": "BUG_TRI_02D",
+        "category": "Correct Reasoning",
+        "description": "Equating the exterior angle to the sum of the two remote interior angles with explicit theorem citation."
+      }
+    ]
+  },
+  {
+    "theorem_id": "TH_CONGRUENCE_01",
+    "name_en": "Congruence of Triangles (AAS / ASA)",
+    "name_si": "ත්‍රිකෝණ අංගසම වීම (කෝ.කෝ.පා. අවස්ථාව)",
+    "grade": 10,
+    "topic": "Congruence of Triangles (AAS)",
+    "formal_statement": "Two triangles are congruent if two angles and a corresponding side of one triangle are respectively equal to two angles and the corresponding side of the other triangle (AAS).",
+    "required_conditions": [
+      "Two pairs of corresponding angles must be proved equal.",
+      "One pair of corresponding sides (in the same relative position) must be equal."
+    ],
+    "bugs": [
+      {
+        "bug_id": "BUG_CONG_01A",
+        "category": "Incorrect Theorem Application",
+        "description": "Claiming parallel segments PS and RQ are equal in length (PS = RQ) and citing SAS instead of AAS."
+      },
+      {
+        "bug_id": "BUG_CONG_01B",
+        "category": "Incorrect Angle Relationships",
+        "description": "Identifying wrong alternate angle pairs across non-parallel lines."
+      },
+      {
+        "bug_id": "BUG_CONG_01C",
+        "category": "Missing Proof Step",
+        "description": "Stating the two triangles are congruent under AAS without proving the second pair of equal angles (vertically opposite or alternate)."
+      },
+      {
+        "bug_id": "BUG_CONG_01D",
+        "category": "Correct Reasoning",
+        "description": "Establishing two equal angle pairs (alternate and vertically opposite) and one equal side (PT = TR) to conclude AAS congruence."
+      }
+    ]
+  },
+  {
+    "theorem_id": "TH_PARALLEL_01",
+    "name_en": "Alternate Angles on Parallel Lines",
+    "name_si": "සමාන්තර රේඛා අතර ඒකාන්තර කෝණ",
+    "grade": 10,
+    "topic": "Alternate Angles in Parallel Lines",
+    "formal_statement": "When two parallel straight lines are cut by a transversal, the alternate interior angles formed are equal.",
+    "required_conditions": [
+      "The two lines intersected by the transversal must be given as parallel.",
+      "The angles must lie on opposite sides of the transversal between the two parallel lines."
+    ],
+    "bugs": [
+      {
+        "bug_id": "BUG_PAR_01A",
+        "category": "Incorrect Angle Relationships",
+        "description": "Treating alternate angles as supplementary (summing to 180 degrees) instead of equal."
+      },
+      {
+        "bug_id": "BUG_PAR_01B",
+        "category": "Incorrect Theorem Application",
+        "description": "Citing corresponding angles instead of alternate angles for Z-configured interior angles."
+      },
+      {
+        "bug_id": "BUG_PAR_01C",
+        "category": "Missing Proof Step",
+        "description": "Not stating which pair of lines is parallel when equating alternate angles."
+      },
+      {
+        "bug_id": "BUG_PAR_01D",
+        "category": "Correct Reasoning",
+        "description": "Equating the full alternate angle to the lower transversal angle and solving correctly."
+      }
+    ]
+  },
+  {
+    "theorem_id": "TH_PARALLEL_03",
+    "name_en": "Co-interior (Allied) Angles on Parallel Lines",
+    "name_si": "සමාන්තර රේඛා අතර මිත්‍ර කෝණ",
+    "grade": 10,
+    "topic": "Co-interior (Allied) Angles in Parallel Lines",
+    "formal_statement": "When two parallel straight lines are intersected by a transversal, the co-interior (allied) angles on the same side of the transversal are supplementary (sum to 180 degrees).",
+    "required_conditions": [
+      "The two intersected lines must be parallel.",
+      "Both angles must be interior and on the same side of the transversal."
+    ],
+    "bugs": [
+      {
+        "bug_id": "BUG_PAR_03A",
+        "category": "Incorrect Angle Relationships",
+        "description": "Treating co-interior (allied) angles as equal (110 degrees) instead of supplementary (180 - 110 = 70 degrees)."
+      },
+      {
+        "bug_id": "BUG_PAR_03B",
+        "category": "Incorrect Theorem Application",
+        "description": "Applying the alternate angle equality rule to U-shaped co-interior angles."
+      },
+      {
+        "bug_id": "BUG_PAR_03C",
+        "category": "Missing Proof Step",
+        "description": "Writing a = 45 degrees without showing the co-interior angle calculation (180 - 110 = 70 degrees)."
+      },
+      {
+        "bug_id": "BUG_PAR_03D",
+        "category": "Correct Reasoning",
+        "description": "Using allied angles summing to 180 degrees to find the corner angle (70 degrees) and subtracting 25 degrees."
+      }
+    ]
+  },
+  {
+    "theorem_id": "TH_ISOSCELES_01",
+    "name_en": "Isosceles Triangle Base Angles Theorem",
+    "name_si": "සමද්විපාද ත්‍රිකෝණයක සමාන පාදවලට සම්මුඛ කෝණ",
+    "grade": 10,
+    "topic": "Isosceles Triangle Base Angles with Parallel Lines",
+    "formal_statement": "In an isosceles triangle, the angles opposite to the equal sides are equal.",
+    "required_conditions": [
+      "Two sides of the triangle must be given or proved equal in length.",
+      "The equated angles must be the exact angles opposite to those two equal sides."
+    ],
+    "bugs": [
+      {
+        "bug_id": "BUG_ISO_01A",
+        "category": "Incorrect Angle Relationships",
+        "description": "Equating the vertex angle between the equal sides to one of the base angles."
+      },
+      {
+        "bug_id": "BUG_ISO_01B",
+        "category": "Incorrect Theorem Application",
+        "description": "Applying the isosceles base angle property to triangle ABC without equal sides."
+      },
+      {
+        "bug_id": "BUG_ISO_01C",
+        "category": "Missing Proof Step",
+        "description": "Stating angle ACB = 70 degrees and b = 70 degrees without citing the angle sum of triangle ABC or equal sides PC = CQ."
+      },
+      {
+        "bug_id": "BUG_ISO_01D",
+        "category": "Correct Reasoning",
+        "description": "Finding angle ACB = 70 degrees via triangle angle sum and equating base angle b = 70 degrees opposite equal sides PC = CQ."
+      }
+    ]
+  }
+]
