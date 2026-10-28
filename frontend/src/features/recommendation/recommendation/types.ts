@@ -1,13 +1,3 @@
-export type Difficulty = "basic" | "medium" | "advanced";
-
-export interface RecommendedResource {
-    resource_id: string;
-    title: string;
-    type: string;
-    difficulty: Difficulty;
-    reason: string;
-}
-
-export interface RecommendationResponse {
-    recommendations: RecommendedResource[];
-}
+// This file intentionally re-exports the canonical types to avoid duplication.
+// Always import from "../types" (one level up) in new code.
+export * from "../types";
