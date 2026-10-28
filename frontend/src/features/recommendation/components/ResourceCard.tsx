@@ -1,4 +1,4 @@
-import { BookOpen, FileText, PenLine, PlayCircle } from "lucide-react";
+import { BookOpen, ExternalLink, FileText, PenLine, PlayCircle } from "lucide-react";
 import type { Difficulty, RecommendedResource } from "../types";
 
 const DIFFICULTY_STYLE: Record<Difficulty, string> = {
@@ -21,6 +21,11 @@ interface Props {
 
 export default function ResourceCard({ resource, onOpen }: Props) {
     const Icon = TYPE_ICON[resource.type] ?? BookOpen;
+
+    function handleOpen() {
+        onOpen?.(resource.resource_id);
+    }
+
     return (
         <div className="flex flex-col rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
             <div className="mb-3 flex items-center gap-2">
@@ -34,12 +39,24 @@ export default function ResourceCard({ resource, onOpen }: Props) {
             </div>
             <h3 className="mb-1 text-base font-semibold text-slate-900">{resource.title}</h3>
             <p className="mb-4 flex-1 text-sm text-slate-500">{resource.reason}</p>
-            <button
-                onClick={() => onOpen?.(resource.resource_id)}
-                className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
-            >
-                Start
-            </button>
+            {resource.url ? (
+                <a
+                    href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleOpen}
+                    className="inline-flex items-center justify-center gap-1 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+                >
+                    Start <ExternalLink size={14} />
+                </a>
+            ) : (
+                <button
+                    onClick={handleOpen}
+                    className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+                >
+                    Start
+                </button>
+            )}
         </div>
     );
-}
+}
