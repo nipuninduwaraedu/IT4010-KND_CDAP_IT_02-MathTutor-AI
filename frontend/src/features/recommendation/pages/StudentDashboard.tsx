@@ -1,5 +1,7 @@
 "use client";
 
+import LearningFocus from "../components/LearningFocus";
+import ProgressCurve from "../components/ProgressCurve";
 import { useEffect, useState } from "react";
 import RecommendationLayout from "../components/RecommendationLayout";
 import ResourceCard from "../components/ResourceCard";
@@ -37,6 +39,10 @@ export default function StudentDashboard() {
                     ))}
                 </div>
             </section>
+            <div className="grid gap-4 md:grid-cols-2">
+                <ProgressCurve />
+                <LearningFocus weakness="Theorem Application" accuracy={65} goal={80} />
+            </div>
         </RecommendationLayout>
     );
 }
