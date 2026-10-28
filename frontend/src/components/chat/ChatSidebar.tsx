@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Plus, MessageSquare, PanelLeftClose } from "lucide-react";
+import { Plus, MessageSquare, PanelLeftClose, BookOpen } from "lucide-react";
 import Logo from "../common/Logo";
 
 interface ChatSidebarProps {
@@ -58,8 +58,8 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
           </button>
         </div>
 
-        {/* New Submission Button */}
-        <div className="p-3">
+        {/* New Submission & Remedial Practice Buttons */}
+        <div className="p-3 space-y-2">
           <button
             type="button"
             onClick={onNewProof}
@@ -68,6 +68,19 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
             <Plus className="w-4 h-4 text-slate-600" />
             <span>New Proof Submission</span>
           </button>
+
+          <Link
+            href="/recommendation"
+            className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl border border-indigo-200/80 bg-indigo-50/70 hover:bg-indigo-100/80 text-indigo-900 text-xs font-semibold transition-all duration-150"
+          >
+            <span className="flex items-center gap-2">
+              <BookOpen className="w-4 h-4 text-indigo-600" />
+              <span>Remedial Practice</span>
+            </span>
+            <span className="rounded-full bg-blue-100 px-2 py-0.5 text-[10px] font-semibold text-blue-700">
+              Recommended
+            </span>
+          </Link>
         </div>
 
         {/* Submissions List */}

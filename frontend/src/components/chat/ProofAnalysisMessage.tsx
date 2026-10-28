@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import {
   AlertCircle,
+  ArrowRight,
   CheckCircle2,
   Unlock,
   Lightbulb,
@@ -15,6 +17,31 @@ import Logo from "../common/Logo";
 
 interface ProofAnalysisMessageProps {
   response: AnalyzeProofResponse;
+}
+
+function normalizeMisconception(raw?: string | null): string {
+  if (!raw) return "incorrect_theorem_application";
+  const key = raw.trim().toLowerCase();
+  if (key.includes("angle")) return "incorrect_angle_relationship";
+  if (key.includes("missing") || key.includes("step")) return "missing_proof_step";
+  if (key.includes("assumption") || key.includes("invalid")) return "invalid_assumption";
+  return "incorrect_theorem_application";
+}
+
+function normalizeConcept(raw?: string | null, misconception?: string): string {
+  if (raw) {
+    const c = raw.trim().toLowerCase();
+    if (c.includes("angle")) return "angles";
+    if (c.includes("triangle") || c.includes("congruence") || c.includes("proof"))
+      return "triangles";
+    if (c.includes("pythag")) return "pythagoras";
+    if (c.includes("circle") || c.includes("cyclic") || c.includes("tangent"))
+      return "circle_theorems";
+  }
+  const m = normalizeMisconception(misconception);
+  if (m === "incorrect_angle_relationship") return "angles";
+  if (m === "missing_proof_step") return "triangles";
+  return "circle_theorems";
 }
 
 /**
@@ -47,6 +74,22 @@ export const ProofAnalysisMessage: React.FC<ProofAnalysisMessageProps> = ({
   const unlockLevel = (level: number) => {
     setUnlockedLevels((prev) => ({ ...prev, [level]: true }));
   };
+
+  const normalizedMisconception = normalizeMisconception(
+    prediction?.misconception_category
+  );
+  const normalizedConcept = normalizeConcept(
+    remedial_guidance?.topic,
+    prediction?.misconception_category
+  );
+  const rawConf = prediction?.confidence_score ?? 0.91;
+  const normalizedConfidence = rawConf > 1 ? rawConf / 100 : rawConf;
+
+  const remedialHref = `/recommendation?student_id=S001&misconception=${encodeURIComponent(
+    normalizedMisconception
+  )}&concept=${encodeURIComponent(
+    normalizedConcept
+  )}&confidence=${encodeURIComponent(String(normalizedConfidence))}`;
 
   return (
     <div className="flex gap-4 max-w-3xl mx-auto py-5 px-4 text-slate-800 animate-in fade-in duration-300">
@@ -271,16 +314,37 @@ export const ProofAnalysisMessage: React.FC<ProofAnalysisMessageProps> = ({
           </div>
         )}
 
-        {/* 4. Remedial Guidance (When provided by backend) */}
-        {remedial_guidance && (
-          <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1">
-            <div className="flex items-center gap-1.5 font-bold text-slate-800">
-              <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
-              <span>Remedial Topic: {remedial_guidance.topic}</span>
+        {/* 4. Remedial Guidance & Direct Remedial Action Banner */}
+        {(!isCorrect || remedial_guidance) && (
+          <div className="p-4 rounded-2xl bg-indigo-50/70 border border-indigo-200 text-xs space-y-3">
+            {remedial_guidance && (
+              <div className="space-y-1">
+                <div className="flex items-center gap-1.5 font-bold text-slate-800">
+                  <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
+                  <span>Remedial Topic: {remedial_guidance.topic}</span>
+                </div>
+                <p className="text-slate-600 leading-relaxed pl-5">
+                  <MathView math={remedial_guidance.recommendation_note} />
+                </p>
+              </div>
+            )}
+
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-1 border-t border-indigo-200/60">
+              <div className="flex items-center gap-2 text-indigo-950 font-semibold">
+                <BookOpen className="w-4 h-4 text-indigo-600 shrink-0" />
+                <span>
+                  3 recommended practice materials ready to help you master this concept
+                </span>
+              </div>
+
+              <Link
+                href={remedialHref}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs shadow-xs transition-colors"
+              >
+                <span>View My Recommended Exercises</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
-            <p className="text-slate-600 leading-relaxed pl-5">
-              <MathView math={remedial_guidance.recommendation_note} />
-            </p>
           </div>
         )}
       </div>

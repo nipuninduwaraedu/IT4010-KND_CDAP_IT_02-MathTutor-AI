@@ -18,6 +18,24 @@ export const Header: React.FC = () => {
               MathTutor AI
             </span>
           </Link>
+
+          <nav className="flex items-center gap-5">
+            <Link
+              href="/workspace"
+              className="text-sm font-medium text-slate-700 hover:text-indigo-600 transition-colors"
+            >
+              Workspace
+            </Link>
+            <Link
+              className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors flex items-center gap-1.5"
+              href="/recommendation"
+            >
+              <span>Remedial Practice</span>
+              <span className="rounded-full bg-blue-100 px-2 py-0.5 text-[10px] font-semibold text-blue-700">
+                Recommended
+              </span>
+            </Link>
+          </nav>
         </div>
       </div>
     </header>

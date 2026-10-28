@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import ChatSidebar from "@/components/chat/ChatSidebar";
 import ChatInputBox from "@/components/chat/ChatInputBox";
 import ProofAnalysisMessage from "@/components/chat/ProofAnalysisMessage";
@@ -167,7 +168,17 @@ export default function WorkspacePage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
+            <Link
+              className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors flex items-center gap-1.5"
+              href="/recommendation"
+            >
+              <span>Remedial Practice</span>
+              <span className="rounded-full bg-blue-100 px-2 py-0.5 text-[10px] font-semibold text-blue-700">
+                Recommended
+              </span>
+            </Link>
+
             {hasMessages && (
               <button
                 type="button"
