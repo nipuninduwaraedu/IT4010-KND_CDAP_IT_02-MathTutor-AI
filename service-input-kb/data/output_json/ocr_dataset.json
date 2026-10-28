@@ -1,0 +1,1454 @@
+[
+  {
+    "sample_id": "SMP_001_STU01_GEO_Q01",
+    "student_id": "STU01",
+    "question_id": "GEO_Q01",
+    "topic": "Vertically Opposite Angles and Angles on a Straight Line",
+    "problem_text": "In the given figure, the straight lines AB, CD and EF intersect each other at O. Find (i) the value of DÔB (ii) the value of AÔC.",
+    "target_theorem_id": "TH_LINES_01",
+    "raw_image": "data/raw_images/STU01_GEO_Q01.png",
+    "enhanced_image": "data/enhanced_images/STU01_GEO_Q01.png",
+    "raw_ocr_text": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 180^\\circ$ (Angles on straight line EF)\n$57^\\circ + D\\hat{O}B + 43^\\circ = 180^\\circ$ (Substitution of given angles)\n$D\\hat{O}B = 80^\\circ$ (Simplification)\n$A\\hat{O}C = D\\hat{O}B = 80^\\circ$ (Vertically opposite angles)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 180^\\circ$",
+        "justification": "Angles on straight line EF",
+        "raw_line": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 180^\\circ$ (Angles on straight line EF)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$57^\\circ + D\\hat{O}B + 43^\\circ = 180^\\circ$",
+        "justification": "Substitution of given angles",
+        "raw_line": "$57^\\circ + D\\hat{O}B + 43^\\circ = 180^\\circ$ (Substitution of given angles)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$D\\hat{O}B = 80^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$D\\hat{O}B = 80^\\circ$ (Simplification)"
+      },
+      {
+        "step_number": 4,
+        "statement": "$A\\hat{O}C = D\\hat{O}B = 80^\\circ$",
+        "justification": "Vertically opposite angles",
+        "raw_line": "$A\\hat{O}C = D\\hat{O}B = 80^\\circ$ (Vertically opposite angles)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_002_STU01_GEO_Q02",
+    "student_id": "STU01",
+    "question_id": "GEO_Q02",
+    "topic": "Exterior Angle of a Triangle",
+    "problem_text": "Find the value of x according to the data given in the figure.",
+    "target_theorem_id": "TH_TRIANGLE_02",
+    "raw_image": "data/raw_images/STU01_GEO_Q02.png",
+    "enhanced_image": "data/enhanced_images/STU01_GEO_Q02.png",
+    "raw_ocr_text": "$3x + 2x = 150^\\circ$ (Exterior angle of a triangle equals sum of interior opposite angles)\n$5x = 150^\\circ$ (Adding like terms)\n$x = 30^\\circ$ (Dividing both sides by 5)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$3x + 2x = 150^\\circ$",
+        "justification": "Exterior angle of a triangle equals sum of interior opposite angles",
+        "raw_line": "$3x + 2x = 150^\\circ$ (Exterior angle of a triangle equals sum of interior opposite angles)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$5x = 150^\\circ$",
+        "justification": "Adding like terms",
+        "raw_line": "$5x = 150^\\circ$ (Adding like terms)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$x = 30^\\circ$",
+        "justification": "Dividing both sides by 5",
+        "raw_line": "$x = 30^\\circ$ (Dividing both sides by 5)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_003_STU01_GEO_Q03",
+    "student_id": "STU01",
+    "question_id": "GEO_Q03",
+    "topic": "Congruence of Triangles (AAS)",
+    "problem_text": "Name a pair of congruent triangles in the given figure and state the case under which they are congruent.",
+    "target_theorem_id": "TH_CONGRUENCE_01",
+    "raw_image": "data/raw_images/STU01_GEO_Q03.png",
+    "enhanced_image": "data/enhanced_images/STU01_GEO_Q03.png",
+    "raw_ocr_text": "In $\\triangle PTS$ and $\\triangle RTQ$, $PT = TR$ (Given)\n$P\\hat{T}S = R\\hat{T}Q$ (Vertically opposite angles)\n$T\\hat{P}S = T\\hat{R}Q$ (Alternate angles, $PS \\parallel RQ$)\n$\\triangle PTS \\equiv \\triangle RTQ$ (AAS congruence condition)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "In $\\triangle PTS$ and $\\triangle RTQ$, $PT = TR$",
+        "justification": "Given",
+        "raw_line": "In $\\triangle PTS$ and $\\triangle RTQ$, $PT = TR$ (Given)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$P\\hat{T}S = R\\hat{T}Q$",
+        "justification": "Vertically opposite angles",
+        "raw_line": "$P\\hat{T}S = R\\hat{T}Q$ (Vertically opposite angles)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$T\\hat{P}S = T\\hat{R}Q$",
+        "justification": "Alternate angles, $PS \\parallel RQ$",
+        "raw_line": "$T\\hat{P}S = T\\hat{R}Q$ (Alternate angles, $PS \\parallel RQ$)"
+      },
+      {
+        "step_number": 4,
+        "statement": "$\\triangle PTS \\equiv \\triangle RTQ$",
+        "justification": "AAS congruence condition",
+        "raw_line": "$\\triangle PTS \\equiv \\triangle RTQ$ (AAS congruence condition)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_004_STU01_GEO_Q04",
+    "student_id": "STU01",
+    "question_id": "GEO_Q04",
+    "topic": "Angle Sum of a Triangle and Vertically Opposite Angles",
+    "problem_text": "Find the values of x and y according to the information given in the figure.",
+    "target_theorem_id": "TH_TRIANGLE_01",
+    "raw_image": "data/raw_images/STU01_GEO_Q04.png",
+    "enhanced_image": "data/enhanced_images/STU01_GEO_Q04.png",
+    "raw_ocr_text": "Vertically opposite interior angle $= 180^\\circ - 120^\\circ = 60^\\circ$ (Angles on a straight line)\n$2x + 2x + 60^\\circ = 180^\\circ$ (Angle sum of a triangle)\n$4x = 120^\\circ \\Rightarrow x = 30^\\circ$ (Solving for x)\n$x + y + 60^\\circ = 180^\\circ \\Rightarrow y = 90^\\circ$ (Angle sum of right triangle)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Vertically opposite interior angle $= 180^\\circ - 120^\\circ = 60^\\circ$",
+        "justification": "Angles on a straight line",
+        "raw_line": "Vertically opposite interior angle $= 180^\\circ - 120^\\circ = 60^\\circ$ (Angles on a straight line)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$2x + 2x + 60^\\circ = 180^\\circ$",
+        "justification": "Angle sum of a triangle",
+        "raw_line": "$2x + 2x + 60^\\circ = 180^\\circ$ (Angle sum of a triangle)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$4x = 120^\\circ \\Rightarrow x = 30^\\circ$",
+        "justification": "Solving for x",
+        "raw_line": "$4x = 120^\\circ \\Rightarrow x = 30^\\circ$ (Solving for x)"
+      },
+      {
+        "step_number": 4,
+        "statement": "$x + y + 60^\\circ = 180^\\circ \\Rightarrow y = 90^\\circ$",
+        "justification": "Angle sum of right triangle",
+        "raw_line": "$x + y + 60^\\circ = 180^\\circ \\Rightarrow y = 90^\\circ$ (Angle sum of right triangle)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_005_STU01_GEO_Q05",
+    "student_id": "STU01",
+    "question_id": "GEO_Q05",
+    "topic": "Exterior Angle of a Triangle",
+    "problem_text": "Write down the value of x° in terms of c°.",
+    "target_theorem_id": "TH_TRIANGLE_02",
+    "raw_image": "data/raw_images/STU01_GEO_Q05.png",
+    "enhanced_image": "data/enhanced_images/STU01_GEO_Q05.png",
+    "raw_ocr_text": "Exterior angle at intermediate intersection $= 2c^\\circ + c^\\circ = 3c^\\circ$ (Exterior angle of triangle)\n$x^\\circ = 3c^\\circ + c^\\circ$ (Exterior angle of small triangle)\n$x^\\circ = 4c^\\circ$ (Simplification)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Exterior angle at intermediate intersection $= 2c^\\circ + c^\\circ = 3c^\\circ$",
+        "justification": "Exterior angle of triangle",
+        "raw_line": "Exterior angle at intermediate intersection $= 2c^\\circ + c^\\circ = 3c^\\circ$ (Exterior angle of triangle)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$x^\\circ = 3c^\\circ + c^\\circ$",
+        "justification": "Exterior angle of small triangle",
+        "raw_line": "$x^\\circ = 3c^\\circ + c^\\circ$ (Exterior angle of small triangle)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$x^\\circ = 4c^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$x^\\circ = 4c^\\circ$ (Simplification)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_006_STU01_GEO_Q06",
+    "student_id": "STU01",
+    "question_id": "GEO_Q06",
+    "topic": "Co-interior (Allied) Angles in Parallel Lines",
+    "problem_text": "Find the value of a in the figure.",
+    "target_theorem_id": "TH_PARALLEL_03",
+    "raw_image": "data/raw_images/STU01_GEO_Q06.png",
+    "enhanced_image": "data/enhanced_images/STU01_GEO_Q06.png",
+    "raw_ocr_text": "Interior angle at top-right $= 180^\\circ - 110^\\circ = 70^\\circ$ (Allied angles, parallel lines)\n$a + 25^\\circ = 70^\\circ$ (Angle addition at vertex)\n$a = 45^\\circ$ (Subtracting $25^\\circ$ from both sides)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Interior angle at top-right $= 180^\\circ - 110^\\circ = 70^\\circ$",
+        "justification": "Allied angles, parallel lines",
+        "raw_line": "Interior angle at top-right $= 180^\\circ - 110^\\circ = 70^\\circ$ (Allied angles, parallel lines)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$a + 25^\\circ = 70^\\circ$",
+        "justification": "Angle addition at vertex",
+        "raw_line": "$a + 25^\\circ = 70^\\circ$ (Angle addition at vertex)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$a = 45^\\circ$",
+        "justification": "Subtracting $25^\\circ$ from both sides",
+        "raw_line": "$a = 45^\\circ$ (Subtracting $25^\\circ$ from both sides)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_007_STU01_GEO_Q07",
+    "student_id": "STU01",
+    "question_id": "GEO_Q07",
+    "topic": "Alternate Angles in Parallel Lines",
+    "problem_text": "Find the value of b in the figure.",
+    "target_theorem_id": "TH_PARALLEL_01",
+    "raw_image": "data/raw_images/STU01_GEO_Q07.png",
+    "enhanced_image": "data/enhanced_images/STU01_GEO_Q07.png",
+    "raw_ocr_text": "Alternate angle at upper intersection $= 130^\\circ$ (Alternate angles, parallel lines)\n$b + 20^\\circ = 130^\\circ$ (Adjacent angles composing alternate angle)\n$b = 110^\\circ$ (Simplification)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Alternate angle at upper intersection $= 130^\\circ$",
+        "justification": "Alternate angles, parallel lines",
+        "raw_line": "Alternate angle at upper intersection $= 130^\\circ$ (Alternate angles, parallel lines)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$b + 20^\\circ = 130^\\circ$",
+        "justification": "Adjacent angles composing alternate angle",
+        "raw_line": "$b + 20^\\circ = 130^\\circ$ (Adjacent angles composing alternate angle)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$b = 110^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$b = 110^\\circ$ (Simplification)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_008_STU01_GEO_Q08",
+    "student_id": "STU01",
+    "question_id": "GEO_Q08",
+    "topic": "Isosceles Triangle Base Angles with Parallel Lines",
+    "problem_text": "In the given figure, BC ∥ PQ. Find the value of b.",
+    "target_theorem_id": "TH_ISOSCELES_01",
+    "raw_image": "data/raw_images/STU01_GEO_Q08.png",
+    "enhanced_image": "data/enhanced_images/STU01_GEO_Q08.png",
+    "raw_ocr_text": "$A\\hat{C}B = 180^\\circ - (80^\\circ + 30^\\circ) = 70^\\circ$ (Angle sum of $\\triangle ABC$)\n$P\\hat{Q}C = P\\hat{C}Q = 70^\\circ$ (Angles opposite equal sides $PC = CQ$)\n$C\\hat{P}Q = 180^\\circ - 140^\\circ = 40^\\circ$ (Angle sum of $\\triangle PCQ$)\n$b = 70^\\circ$ (Base angle of isosceles triangle $\\triangle PCQ$)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$A\\hat{C}B = 180^\\circ -",
+        "justification": "80^\\circ + 30^\\circ) = 70^\\circ$ (Angle sum of $\\triangle ABC$",
+        "raw_line": "$A\\hat{C}B = 180^\\circ - (80^\\circ + 30^\\circ) = 70^\\circ$ (Angle sum of $\\triangle ABC$)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$P\\hat{Q}C = P\\hat{C}Q = 70^\\circ$",
+        "justification": "Angles opposite equal sides $PC = CQ$",
+        "raw_line": "$P\\hat{Q}C = P\\hat{C}Q = 70^\\circ$ (Angles opposite equal sides $PC = CQ$)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$C\\hat{P}Q = 180^\\circ - 140^\\circ = 40^\\circ$",
+        "justification": "Angle sum of $\\triangle PCQ$",
+        "raw_line": "$C\\hat{P}Q = 180^\\circ - 140^\\circ = 40^\\circ$ (Angle sum of $\\triangle PCQ$)"
+      },
+      {
+        "step_number": 4,
+        "statement": "$b = 70^\\circ$",
+        "justification": "Base angle of isosceles triangle $\\triangle PCQ$",
+        "raw_line": "$b = 70^\\circ$ (Base angle of isosceles triangle $\\triangle PCQ$)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_009_STU01_GEO_Q10",
+    "student_id": "STU01",
+    "question_id": "GEO_Q10",
+    "topic": "Angles on a Straight Line",
+    "problem_text": "Find x + y according to the data given in the figure.",
+    "target_theorem_id": "TH_LINES_02",
+    "raw_image": "data/raw_images/STU01_GEO_Q10.png",
+    "enhanced_image": "data/enhanced_images/STU01_GEO_Q10.png",
+    "raw_ocr_text": "$x + x + y + y = 180^\\circ$ (Angles on straight line ABC)\n$2x + 2y = 180^\\circ$ (Combining like terms)\n$2(x + y) = 180^\\circ \\Rightarrow x + y = 90^\\circ$ (Dividing by 2)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$x + x + y + y = 180^\\circ$",
+        "justification": "Angles on straight line ABC",
+        "raw_line": "$x + x + y + y = 180^\\circ$ (Angles on straight line ABC)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$2x + 2y = 180^\\circ$",
+        "justification": "Combining like terms",
+        "raw_line": "$2x + 2y = 180^\\circ$ (Combining like terms)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$2",
+        "justification": "x + y) = 180^\\circ \\Rightarrow x + y = 90^\\circ$ (Dividing by 2",
+        "raw_line": "$2(x + y) = 180^\\circ \\Rightarrow x + y = 90^\\circ$ (Dividing by 2)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_010_STU02_GEO_Q01",
+    "student_id": "STU02",
+    "question_id": "GEO_Q01",
+    "topic": "Vertically Opposite Angles and Angles on a Straight Line",
+    "problem_text": "In the given figure, the straight lines AB, CD and EF intersect each other at O. Find (i) the value of DÔB (ii) the value of AÔC.",
+    "target_theorem_id": "TH_LINES_01",
+    "raw_image": "data/raw_images/STU02_GEO_Q01.png",
+    "enhanced_image": "data/enhanced_images/STU02_GEO_Q01.png",
+    "raw_ocr_text": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 360^\\circ$ (Angles on straight line EF)\n$57^\\circ + D\\hat{O}B + 43^\\circ = 360^\\circ$ (Substitution)\n$D\\hat{O}B = 260^\\circ$ (Simplification)\n$A\\hat{O}C = 260^\\circ$ (Vertically opposite angles)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 360^\\circ$",
+        "justification": "Angles on straight line EF",
+        "raw_line": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 360^\\circ$ (Angles on straight line EF)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$57^\\circ + D\\hat{O}B + 43^\\circ = 360^\\circ$",
+        "justification": "Substitution",
+        "raw_line": "$57^\\circ + D\\hat{O}B + 43^\\circ = 360^\\circ$ (Substitution)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$D\\hat{O}B = 260^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$D\\hat{O}B = 260^\\circ$ (Simplification)"
+      },
+      {
+        "step_number": 4,
+        "statement": "$A\\hat{O}C = 260^\\circ$",
+        "justification": "Vertically opposite angles",
+        "raw_line": "$A\\hat{O}C = 260^\\circ$ (Vertically opposite angles)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_011_STU02_GEO_Q06",
+    "student_id": "STU02",
+    "question_id": "GEO_Q06",
+    "topic": "Co-interior (Allied) Angles in Parallel Lines",
+    "problem_text": "Find the value of a in the figure.",
+    "target_theorem_id": "TH_PARALLEL_03",
+    "raw_image": "data/raw_images/STU02_GEO_Q06.png",
+    "enhanced_image": "data/enhanced_images/STU02_GEO_Q06.png",
+    "raw_ocr_text": "Top-right angle $= 110^\\circ$ (Co-interior angles are equal)\n$a + 25^\\circ = 110^\\circ$ (Angle sum)\n$a = 85^\\circ$ (Simplification)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Top-right angle $= 110^\\circ$",
+        "justification": "Co-interior angles are equal",
+        "raw_line": "Top-right angle $= 110^\\circ$ (Co-interior angles are equal)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$a + 25^\\circ = 110^\\circ$",
+        "justification": "Angle sum",
+        "raw_line": "$a + 25^\\circ = 110^\\circ$ (Angle sum)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$a = 85^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$a = 85^\\circ$ (Simplification)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_012_STU02_GEO_Q07",
+    "student_id": "STU02",
+    "question_id": "GEO_Q07",
+    "topic": "Alternate Angles in Parallel Lines",
+    "problem_text": "Find the value of b in the figure.",
+    "target_theorem_id": "TH_PARALLEL_01",
+    "raw_image": "data/raw_images/STU02_GEO_Q07.png",
+    "enhanced_image": "data/enhanced_images/STU02_GEO_Q07.png",
+    "raw_ocr_text": "Upper angle $= 180^\\circ - 130^\\circ = 50^\\circ$ (Alternate angles sum to $180^\\circ$)\n$b + 20^\\circ = 50^\\circ$ (Substitution)\n$b = 30^\\circ$ (Simplification)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Upper angle $= 180^\\circ - 130^\\circ = 50^\\circ$",
+        "justification": "Alternate angles sum to $180^\\circ$",
+        "raw_line": "Upper angle $= 180^\\circ - 130^\\circ = 50^\\circ$ (Alternate angles sum to $180^\\circ$)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$b + 20^\\circ = 50^\\circ$",
+        "justification": "Substitution",
+        "raw_line": "$b + 20^\\circ = 50^\\circ$ (Substitution)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$b = 30^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$b = 30^\\circ$ (Simplification)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_013_STU02_GEO_Q10",
+    "student_id": "STU02",
+    "question_id": "GEO_Q10",
+    "topic": "Angles on a Straight Line",
+    "problem_text": "Find x + y according to the data given in the figure.",
+    "target_theorem_id": "TH_LINES_02",
+    "raw_image": "data/raw_images/STU02_GEO_Q10.png",
+    "enhanced_image": "data/enhanced_images/STU02_GEO_Q10.png",
+    "raw_ocr_text": "$x + x + y + y = 360^\\circ$ (Angles on straight line ABC)\n$2(x + y) = 360^\\circ$ (Factoring)\n$x + y = 180^\\circ$ (Dividing by 2)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$x + x + y + y = 360^\\circ$",
+        "justification": "Angles on straight line ABC",
+        "raw_line": "$x + x + y + y = 360^\\circ$ (Angles on straight line ABC)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$2",
+        "justification": "x + y) = 360^\\circ$ (Factoring",
+        "raw_line": "$2(x + y) = 360^\\circ$ (Factoring)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$x + y = 180^\\circ$",
+        "justification": "Dividing by 2",
+        "raw_line": "$x + y = 180^\\circ$ (Dividing by 2)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_014_STU03_GEO_Q01",
+    "student_id": "STU03",
+    "question_id": "GEO_Q01",
+    "topic": "Vertically Opposite Angles and Angles on a Straight Line",
+    "problem_text": "In the given figure, the straight lines AB, CD and EF intersect each other at O. Find (i) the value of DÔB (ii) the value of AÔC.",
+    "target_theorem_id": "TH_LINES_01",
+    "raw_image": "data/raw_images/STU03_GEO_Q01.png",
+    "enhanced_image": "data/enhanced_images/STU03_GEO_Q01.png",
+    "raw_ocr_text": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 180^\\circ$ (Angles on straight line EF)\n$57^\\circ + D\\hat{O}B + 43^\\circ = 180^\\circ$ (Substitution of given angles)\n$D\\hat{O}B = 80^\\circ$ (Simplification)\n$A\\hat{O}C = D\\hat{O}B = 80^\\circ$ (Vertically opposite angles)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 180^\\circ$",
+        "justification": "Angles on straight line EF",
+        "raw_line": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 180^\\circ$ (Angles on straight line EF)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$57^\\circ + D\\hat{O}B + 43^\\circ = 180^\\circ$",
+        "justification": "Substitution of given angles",
+        "raw_line": "$57^\\circ + D\\hat{O}B + 43^\\circ = 180^\\circ$ (Substitution of given angles)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$D\\hat{O}B = 80^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$D\\hat{O}B = 80^\\circ$ (Simplification)"
+      },
+      {
+        "step_number": 4,
+        "statement": "$A\\hat{O}C = D\\hat{O}B = 80^\\circ$",
+        "justification": "Vertically opposite angles",
+        "raw_line": "$A\\hat{O}C = D\\hat{O}B = 80^\\circ$ (Vertically opposite angles)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_015_STU03_GEO_Q02",
+    "student_id": "STU03",
+    "question_id": "GEO_Q02",
+    "topic": "Exterior Angle of a Triangle",
+    "problem_text": "Find the value of x according to the data given in the figure.",
+    "target_theorem_id": "TH_TRIANGLE_02",
+    "raw_image": "data/raw_images/STU03_GEO_Q02.png",
+    "enhanced_image": "data/enhanced_images/STU03_GEO_Q02.png",
+    "raw_ocr_text": "$3x - 2x = 150^\\circ$ (Exterior angle theorem)\n$x = 150^\\circ$ (Simplification)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$3x - 2x = 150^\\circ$",
+        "justification": "Exterior angle theorem",
+        "raw_line": "$3x - 2x = 150^\\circ$ (Exterior angle theorem)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$x = 150^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$x = 150^\\circ$ (Simplification)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_016_STU03_GEO_Q03",
+    "student_id": "STU03",
+    "question_id": "GEO_Q03",
+    "topic": "Congruence of Triangles (AAS)",
+    "problem_text": "Name a pair of congruent triangles in the given figure and state the case under which they are congruent.",
+    "target_theorem_id": "TH_CONGRUENCE_01",
+    "raw_image": "data/raw_images/STU03_GEO_Q03.png",
+    "enhanced_image": "data/enhanced_images/STU03_GEO_Q03.png",
+    "raw_ocr_text": "In $\\triangle PTS$ and $\\triangle RTQ$, $PT = TR$ (Given)\n$PS = RQ$ (Parallel lines are equal)\n$\\triangle PTS \\equiv \\triangle RTQ$ (SAS congruence)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "In $\\triangle PTS$ and $\\triangle RTQ$, $PT = TR$",
+        "justification": "Given",
+        "raw_line": "In $\\triangle PTS$ and $\\triangle RTQ$, $PT = TR$ (Given)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$PS = RQ$",
+        "justification": "Parallel lines are equal",
+        "raw_line": "$PS = RQ$ (Parallel lines are equal)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$\\triangle PTS \\equiv \\triangle RTQ$",
+        "justification": "SAS congruence",
+        "raw_line": "$\\triangle PTS \\equiv \\triangle RTQ$ (SAS congruence)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_017_STU03_GEO_Q04",
+    "student_id": "STU03",
+    "question_id": "GEO_Q04",
+    "topic": "Angle Sum of a Triangle and Vertically Opposite Angles",
+    "problem_text": "Find the values of x and y according to the information given in the figure.",
+    "target_theorem_id": "TH_TRIANGLE_01",
+    "raw_image": "data/raw_images/STU03_GEO_Q04.png",
+    "enhanced_image": "data/enhanced_images/STU03_GEO_Q04.png",
+    "raw_ocr_text": "Vertically opposite interior angle $= 180^\\circ - 120^\\circ = 60^\\circ$ (Angles on a straight line)\n$2x + 2x + 60^\\circ = 180^\\circ$ (Angle sum of a triangle)\n$4x = 120^\\circ \\Rightarrow x = 30^\\circ$ (Solving for x)\n$x + y + 60^\\circ = 180^\\circ \\Rightarrow y = 90^\\circ$ (Angle sum of right triangle)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Vertically opposite interior angle $= 180^\\circ - 120^\\circ = 60^\\circ$",
+        "justification": "Angles on a straight line",
+        "raw_line": "Vertically opposite interior angle $= 180^\\circ - 120^\\circ = 60^\\circ$ (Angles on a straight line)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$2x + 2x + 60^\\circ = 180^\\circ$",
+        "justification": "Angle sum of a triangle",
+        "raw_line": "$2x + 2x + 60^\\circ = 180^\\circ$ (Angle sum of a triangle)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$4x = 120^\\circ \\Rightarrow x = 30^\\circ$",
+        "justification": "Solving for x",
+        "raw_line": "$4x = 120^\\circ \\Rightarrow x = 30^\\circ$ (Solving for x)"
+      },
+      {
+        "step_number": 4,
+        "statement": "$x + y + 60^\\circ = 180^\\circ \\Rightarrow y = 90^\\circ$",
+        "justification": "Angle sum of right triangle",
+        "raw_line": "$x + y + 60^\\circ = 180^\\circ \\Rightarrow y = 90^\\circ$ (Angle sum of right triangle)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_018_STU03_GEO_Q05",
+    "student_id": "STU03",
+    "question_id": "GEO_Q05",
+    "topic": "Exterior Angle of a Triangle",
+    "problem_text": "Write down the value of x° in terms of c°.",
+    "target_theorem_id": "TH_TRIANGLE_02",
+    "raw_image": "data/raw_images/STU03_GEO_Q05.png",
+    "enhanced_image": "data/enhanced_images/STU03_GEO_Q05.png",
+    "raw_ocr_text": "Exterior angle at intermediate intersection $= 2c^\\circ + c^\\circ = 3c^\\circ$ (Exterior angle of triangle)\n$x^\\circ = 3c^\\circ + c^\\circ$ (Exterior angle of small triangle)\n$x^\\circ = 4c^\\circ$ (Simplification)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Exterior angle at intermediate intersection $= 2c^\\circ + c^\\circ = 3c^\\circ$",
+        "justification": "Exterior angle of triangle",
+        "raw_line": "Exterior angle at intermediate intersection $= 2c^\\circ + c^\\circ = 3c^\\circ$ (Exterior angle of triangle)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$x^\\circ = 3c^\\circ + c^\\circ$",
+        "justification": "Exterior angle of small triangle",
+        "raw_line": "$x^\\circ = 3c^\\circ + c^\\circ$ (Exterior angle of small triangle)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$x^\\circ = 4c^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$x^\\circ = 4c^\\circ$ (Simplification)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_019_STU03_GEO_Q06",
+    "student_id": "STU03",
+    "question_id": "GEO_Q06",
+    "topic": "Co-interior (Allied) Angles in Parallel Lines",
+    "problem_text": "Find the value of a in the figure.",
+    "target_theorem_id": "TH_PARALLEL_03",
+    "raw_image": "data/raw_images/STU03_GEO_Q06.png",
+    "enhanced_image": "data/enhanced_images/STU03_GEO_Q06.png",
+    "raw_ocr_text": "Interior angle at top-right $= 180^\\circ - 110^\\circ = 70^\\circ$ (Allied angles, parallel lines)\n$a + 25^\\circ = 70^\\circ$ (Angle addition at vertex)\n$a = 45^\\circ$ (Subtracting $25^\\circ$ from both sides)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Interior angle at top-right $= 180^\\circ - 110^\\circ = 70^\\circ$",
+        "justification": "Allied angles, parallel lines",
+        "raw_line": "Interior angle at top-right $= 180^\\circ - 110^\\circ = 70^\\circ$ (Allied angles, parallel lines)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$a + 25^\\circ = 70^\\circ$",
+        "justification": "Angle addition at vertex",
+        "raw_line": "$a + 25^\\circ = 70^\\circ$ (Angle addition at vertex)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$a = 45^\\circ$",
+        "justification": "Subtracting $25^\\circ$ from both sides",
+        "raw_line": "$a = 45^\\circ$ (Subtracting $25^\\circ$ from both sides)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_020_STU03_GEO_Q07",
+    "student_id": "STU03",
+    "question_id": "GEO_Q07",
+    "topic": "Alternate Angles in Parallel Lines",
+    "problem_text": "Find the value of b in the figure.",
+    "target_theorem_id": "TH_PARALLEL_01",
+    "raw_image": "data/raw_images/STU03_GEO_Q07.png",
+    "enhanced_image": "data/enhanced_images/STU03_GEO_Q07.png",
+    "raw_ocr_text": "Alternate angle at upper intersection $= 130^\\circ$ (Alternate angles, parallel lines)\n$b + 20^\\circ = 130^\\circ$ (Adjacent angles composing alternate angle)\n$b = 110^\\circ$ (Simplification)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Alternate angle at upper intersection $= 130^\\circ$",
+        "justification": "Alternate angles, parallel lines",
+        "raw_line": "Alternate angle at upper intersection $= 130^\\circ$ (Alternate angles, parallel lines)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$b + 20^\\circ = 130^\\circ$",
+        "justification": "Adjacent angles composing alternate angle",
+        "raw_line": "$b + 20^\\circ = 130^\\circ$ (Adjacent angles composing alternate angle)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$b = 110^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$b = 110^\\circ$ (Simplification)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_021_STU03_GEO_Q08",
+    "student_id": "STU03",
+    "question_id": "GEO_Q08",
+    "topic": "Isosceles Triangle Base Angles with Parallel Lines",
+    "problem_text": "In the given figure, BC ∥ PQ. Find the value of b.",
+    "target_theorem_id": "TH_ISOSCELES_01",
+    "raw_image": "data/raw_images/STU03_GEO_Q08.png",
+    "enhanced_image": "data/enhanced_images/STU03_GEO_Q08.png",
+    "raw_ocr_text": "$A\\hat{C}B = 70^\\circ$ [Implicit]\n$b = 70^\\circ$ (Equal angles)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$A\\hat{C}B = 70^\\circ$",
+        "justification": "Implicit",
+        "raw_line": "$A\\hat{C}B = 70^\\circ$ [Implicit]"
+      },
+      {
+        "step_number": 2,
+        "statement": "$b = 70^\\circ$",
+        "justification": "Equal angles",
+        "raw_line": "$b = 70^\\circ$ (Equal angles)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_022_STU03_GEO_Q10",
+    "student_id": "STU03",
+    "question_id": "GEO_Q10",
+    "topic": "Angles on a Straight Line",
+    "problem_text": "Find x + y according to the data given in the figure.",
+    "target_theorem_id": "TH_LINES_02",
+    "raw_image": "data/raw_images/STU03_GEO_Q10.png",
+    "enhanced_image": "data/enhanced_images/STU03_GEO_Q10.png",
+    "raw_ocr_text": "$x + x + y + y = 180^\\circ$ (Angles on straight line ABC)\n$2x + 2y = 180^\\circ$ (Combining like terms)\n$2(x + y) = 180^\\circ \\Rightarrow x + y = 90^\\circ$ (Dividing by 2)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$x + x + y + y = 180^\\circ$",
+        "justification": "Angles on straight line ABC",
+        "raw_line": "$x + x + y + y = 180^\\circ$ (Angles on straight line ABC)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$2x + 2y = 180^\\circ$",
+        "justification": "Combining like terms",
+        "raw_line": "$2x + 2y = 180^\\circ$ (Combining like terms)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$2",
+        "justification": "x + y) = 180^\\circ \\Rightarrow x + y = 90^\\circ$ (Dividing by 2",
+        "raw_line": "$2(x + y) = 180^\\circ \\Rightarrow x + y = 90^\\circ$ (Dividing by 2)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_023_STU04_GEO_Q01",
+    "student_id": "STU04",
+    "question_id": "GEO_Q01",
+    "topic": "Vertically Opposite Angles and Angles on a Straight Line",
+    "problem_text": "In the given figure, the straight lines AB, CD and EF intersect each other at O. Find (i) the value of DÔB (ii) the value of AÔC.",
+    "target_theorem_id": "TH_LINES_01",
+    "raw_image": "data/raw_images/STU04_GEO_Q01.png",
+    "enhanced_image": "data/enhanced_images/STU04_GEO_Q01.png",
+    "raw_ocr_text": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 180^\\circ$ (Angles on straight line EF)\n$57^\\circ + D\\hat{O}B + 43^\\circ = 180^\\circ$ (Substitution of given angles)\n$D\\hat{O}B = 80^\\circ$ (Simplification)\n$A\\hat{O}C = D\\hat{O}B = 80^\\circ$ (Vertically opposite angles)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 180^\\circ$",
+        "justification": "Angles on straight line EF",
+        "raw_line": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 180^\\circ$ (Angles on straight line EF)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$57^\\circ + D\\hat{O}B + 43^\\circ = 180^\\circ$",
+        "justification": "Substitution of given angles",
+        "raw_line": "$57^\\circ + D\\hat{O}B + 43^\\circ = 180^\\circ$ (Substitution of given angles)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$D\\hat{O}B = 80^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$D\\hat{O}B = 80^\\circ$ (Simplification)"
+      },
+      {
+        "step_number": 4,
+        "statement": "$A\\hat{O}C = D\\hat{O}B = 80^\\circ$",
+        "justification": "Vertically opposite angles",
+        "raw_line": "$A\\hat{O}C = D\\hat{O}B = 80^\\circ$ (Vertically opposite angles)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_024_STU04_GEO_Q02",
+    "student_id": "STU04",
+    "question_id": "GEO_Q02",
+    "topic": "Exterior Angle of a Triangle",
+    "problem_text": "Find the value of x according to the data given in the figure.",
+    "target_theorem_id": "TH_TRIANGLE_02",
+    "raw_image": "data/raw_images/STU04_GEO_Q02.png",
+    "enhanced_image": "data/enhanced_images/STU04_GEO_Q02.png",
+    "raw_ocr_text": "$3x + 2x = 150^\\circ$ (Exterior angle of a triangle equals sum of interior opposite angles)\n$5x = 150^\\circ$ (Adding like terms)\n$x = 30^\\circ$ (Dividing both sides by 5)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$3x + 2x = 150^\\circ$",
+        "justification": "Exterior angle of a triangle equals sum of interior opposite angles",
+        "raw_line": "$3x + 2x = 150^\\circ$ (Exterior angle of a triangle equals sum of interior opposite angles)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$5x = 150^\\circ$",
+        "justification": "Adding like terms",
+        "raw_line": "$5x = 150^\\circ$ (Adding like terms)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$x = 30^\\circ$",
+        "justification": "Dividing both sides by 5",
+        "raw_line": "$x = 30^\\circ$ (Dividing both sides by 5)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_025_STU04_GEO_Q03",
+    "student_id": "STU04",
+    "question_id": "GEO_Q03",
+    "topic": "Congruence of Triangles (AAS)",
+    "problem_text": "Name a pair of congruent triangles in the given figure and state the case under which they are congruent.",
+    "target_theorem_id": "TH_CONGRUENCE_01",
+    "raw_image": "data/raw_images/STU04_GEO_Q03.png",
+    "enhanced_image": "data/enhanced_images/STU04_GEO_Q03.png",
+    "raw_ocr_text": "In $\\triangle PTS$ and $\\triangle RTQ$, $PT = TR$ (Given)\n$P\\hat{T}S = R\\hat{T}Q$ (Vertically opposite angles)\n$T\\hat{P}S = T\\hat{R}Q$ (Alternate angles, $PS \\parallel RQ$)\n$\\triangle PTS \\equiv \\triangle RTQ$ (AAS congruence condition)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "In $\\triangle PTS$ and $\\triangle RTQ$, $PT = TR$",
+        "justification": "Given",
+        "raw_line": "In $\\triangle PTS$ and $\\triangle RTQ$, $PT = TR$ (Given)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$P\\hat{T}S = R\\hat{T}Q$",
+        "justification": "Vertically opposite angles",
+        "raw_line": "$P\\hat{T}S = R\\hat{T}Q$ (Vertically opposite angles)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$T\\hat{P}S = T\\hat{R}Q$",
+        "justification": "Alternate angles, $PS \\parallel RQ$",
+        "raw_line": "$T\\hat{P}S = T\\hat{R}Q$ (Alternate angles, $PS \\parallel RQ$)"
+      },
+      {
+        "step_number": 4,
+        "statement": "$\\triangle PTS \\equiv \\triangle RTQ$",
+        "justification": "AAS congruence condition",
+        "raw_line": "$\\triangle PTS \\equiv \\triangle RTQ$ (AAS congruence condition)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_026_STU04_GEO_Q04",
+    "student_id": "STU04",
+    "question_id": "GEO_Q04",
+    "topic": "Angle Sum of a Triangle and Vertically Opposite Angles",
+    "problem_text": "Find the values of x and y according to the information given in the figure.",
+    "target_theorem_id": "TH_TRIANGLE_01",
+    "raw_image": "data/raw_images/STU04_GEO_Q04.png",
+    "enhanced_image": "data/enhanced_images/STU04_GEO_Q04.png",
+    "raw_ocr_text": "$2x + 2x = 120^\\circ$ [Implicit]\n$x = 30^\\circ$ [Implicit]\n$y = 90^\\circ$ [Implicit]",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$2x + 2x = 120^\\circ$",
+        "justification": "Implicit",
+        "raw_line": "$2x + 2x = 120^\\circ$ [Implicit]"
+      },
+      {
+        "step_number": 2,
+        "statement": "$x = 30^\\circ$",
+        "justification": "Implicit",
+        "raw_line": "$x = 30^\\circ$ [Implicit]"
+      },
+      {
+        "step_number": 3,
+        "statement": "$y = 90^\\circ$",
+        "justification": "Implicit",
+        "raw_line": "$y = 90^\\circ$ [Implicit]"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_027_STU04_GEO_Q05",
+    "student_id": "STU04",
+    "question_id": "GEO_Q05",
+    "topic": "Exterior Angle of a Triangle",
+    "problem_text": "Write down the value of x° in terms of c°.",
+    "target_theorem_id": "TH_TRIANGLE_02",
+    "raw_image": "data/raw_images/STU04_GEO_Q05.png",
+    "enhanced_image": "data/enhanced_images/STU04_GEO_Q05.png",
+    "raw_ocr_text": "Exterior angle at intermediate intersection $= 2c^\\circ + c^\\circ = 3c^\\circ$ (Exterior angle of triangle)\n$x^\\circ = 3c^\\circ + c^\\circ$ (Exterior angle of small triangle)\n$x^\\circ = 4c^\\circ$ (Simplification)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Exterior angle at intermediate intersection $= 2c^\\circ + c^\\circ = 3c^\\circ$",
+        "justification": "Exterior angle of triangle",
+        "raw_line": "Exterior angle at intermediate intersection $= 2c^\\circ + c^\\circ = 3c^\\circ$ (Exterior angle of triangle)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$x^\\circ = 3c^\\circ + c^\\circ$",
+        "justification": "Exterior angle of small triangle",
+        "raw_line": "$x^\\circ = 3c^\\circ + c^\\circ$ (Exterior angle of small triangle)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$x^\\circ = 4c^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$x^\\circ = 4c^\\circ$ (Simplification)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_028_STU04_GEO_Q06",
+    "student_id": "STU04",
+    "question_id": "GEO_Q06",
+    "topic": "Co-interior (Allied) Angles in Parallel Lines",
+    "problem_text": "Find the value of a in the figure.",
+    "target_theorem_id": "TH_PARALLEL_03",
+    "raw_image": "data/raw_images/STU04_GEO_Q06.png",
+    "enhanced_image": "data/enhanced_images/STU04_GEO_Q06.png",
+    "raw_ocr_text": "Interior angle at top-right $= 180^\\circ - 110^\\circ = 70^\\circ$ (Allied angles, parallel lines)\n$a + 25^\\circ = 70^\\circ$ (Angle addition at vertex)\n$a = 45^\\circ$ (Subtracting $25^\\circ$ from both sides)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Interior angle at top-right $= 180^\\circ - 110^\\circ = 70^\\circ$",
+        "justification": "Allied angles, parallel lines",
+        "raw_line": "Interior angle at top-right $= 180^\\circ - 110^\\circ = 70^\\circ$ (Allied angles, parallel lines)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$a + 25^\\circ = 70^\\circ$",
+        "justification": "Angle addition at vertex",
+        "raw_line": "$a + 25^\\circ = 70^\\circ$ (Angle addition at vertex)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$a = 45^\\circ$",
+        "justification": "Subtracting $25^\\circ$ from both sides",
+        "raw_line": "$a = 45^\\circ$ (Subtracting $25^\\circ$ from both sides)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_029_STU04_GEO_Q07",
+    "student_id": "STU04",
+    "question_id": "GEO_Q07",
+    "topic": "Alternate Angles in Parallel Lines",
+    "problem_text": "Find the value of b in the figure.",
+    "target_theorem_id": "TH_PARALLEL_01",
+    "raw_image": "data/raw_images/STU04_GEO_Q07.png",
+    "enhanced_image": "data/enhanced_images/STU04_GEO_Q07.png",
+    "raw_ocr_text": "Alternate angle at upper intersection $= 130^\\circ$ (Alternate angles, parallel lines)\n$b + 20^\\circ = 130^\\circ$ (Adjacent angles composing alternate angle)\n$b = 110^\\circ$ (Simplification)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Alternate angle at upper intersection $= 130^\\circ$",
+        "justification": "Alternate angles, parallel lines",
+        "raw_line": "Alternate angle at upper intersection $= 130^\\circ$ (Alternate angles, parallel lines)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$b + 20^\\circ = 130^\\circ$",
+        "justification": "Adjacent angles composing alternate angle",
+        "raw_line": "$b + 20^\\circ = 130^\\circ$ (Adjacent angles composing alternate angle)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$b = 110^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$b = 110^\\circ$ (Simplification)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_030_STU04_GEO_Q08",
+    "student_id": "STU04",
+    "question_id": "GEO_Q08",
+    "topic": "Isosceles Triangle Base Angles with Parallel Lines",
+    "problem_text": "In the given figure, BC ∥ PQ. Find the value of b.",
+    "target_theorem_id": "TH_ISOSCELES_01",
+    "raw_image": "data/raw_images/STU04_GEO_Q08.png",
+    "enhanced_image": "data/enhanced_images/STU04_GEO_Q08.png",
+    "raw_ocr_text": "$A\\hat{C}B = 180^\\circ - (80^\\circ + 30^\\circ) = 70^\\circ$ (Angle sum of $\\triangle ABC$)\n$P\\hat{Q}C = P\\hat{C}Q = 70^\\circ$ (Angles opposite equal sides $PC = CQ$)\n$C\\hat{P}Q = 180^\\circ - 140^\\circ = 40^\\circ$ (Angle sum of $\\triangle PCQ$)\n$b = 70^\\circ$ (Base angle of isosceles triangle $\\triangle PCQ$)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$A\\hat{C}B = 180^\\circ -",
+        "justification": "80^\\circ + 30^\\circ) = 70^\\circ$ (Angle sum of $\\triangle ABC$",
+        "raw_line": "$A\\hat{C}B = 180^\\circ - (80^\\circ + 30^\\circ) = 70^\\circ$ (Angle sum of $\\triangle ABC$)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$P\\hat{Q}C = P\\hat{C}Q = 70^\\circ$",
+        "justification": "Angles opposite equal sides $PC = CQ$",
+        "raw_line": "$P\\hat{Q}C = P\\hat{C}Q = 70^\\circ$ (Angles opposite equal sides $PC = CQ$)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$C\\hat{P}Q = 180^\\circ - 140^\\circ = 40^\\circ$",
+        "justification": "Angle sum of $\\triangle PCQ$",
+        "raw_line": "$C\\hat{P}Q = 180^\\circ - 140^\\circ = 40^\\circ$ (Angle sum of $\\triangle PCQ$)"
+      },
+      {
+        "step_number": 4,
+        "statement": "$b = 70^\\circ$",
+        "justification": "Base angle of isosceles triangle $\\triangle PCQ$",
+        "raw_line": "$b = 70^\\circ$ (Base angle of isosceles triangle $\\triangle PCQ$)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_031_STU04_GEO_Q09",
+    "student_id": "STU04",
+    "question_id": "GEO_Q09",
+    "topic": "Alternate Angles in Parallel Lines and Angle Sum of a Triangle",
+    "problem_text": "In triangle ABC, BÂC = 100°, AC ∥ EF and CĜF = 50°. Find the value of x.",
+    "target_theorem_id": "TH_PARALLEL_01",
+    "raw_image": "data/raw_images/STU04_GEO_Q09.png",
+    "enhanced_image": "data/enhanced_images/STU04_GEO_Q09.png",
+    "raw_ocr_text": "$A\\hat{C}B = 50^\\circ$ (Corresponding angles, $AC \\parallel EF$)\n$x = 180^\\circ - 150^\\circ = 30^\\circ$ (Angle sum of triangle)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$A\\hat{C}B = 50^\\circ$",
+        "justification": "Corresponding angles, $AC \\parallel EF$",
+        "raw_line": "$A\\hat{C}B = 50^\\circ$ (Corresponding angles, $AC \\parallel EF$)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$x = 180^\\circ - 150^\\circ = 30^\\circ$",
+        "justification": "Angle sum of triangle",
+        "raw_line": "$x = 180^\\circ - 150^\\circ = 30^\\circ$ (Angle sum of triangle)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_032_STU04_GEO_Q10",
+    "student_id": "STU04",
+    "question_id": "GEO_Q10",
+    "topic": "Angles on a Straight Line",
+    "problem_text": "Find x + y according to the data given in the figure.",
+    "target_theorem_id": "TH_LINES_02",
+    "raw_image": "data/raw_images/STU04_GEO_Q10.png",
+    "enhanced_image": "data/enhanced_images/STU04_GEO_Q10.png",
+    "raw_ocr_text": "$x + x + y + y = 180^\\circ$ (Angles on straight line ABC)\n$2x + 2y = 180^\\circ$ (Combining like terms)\n$2(x + y) = 180^\\circ \\Rightarrow x + y = 90^\\circ$ (Dividing by 2)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$x + x + y + y = 180^\\circ$",
+        "justification": "Angles on straight line ABC",
+        "raw_line": "$x + x + y + y = 180^\\circ$ (Angles on straight line ABC)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$2x + 2y = 180^\\circ$",
+        "justification": "Combining like terms",
+        "raw_line": "$2x + 2y = 180^\\circ$ (Combining like terms)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$2",
+        "justification": "x + y) = 180^\\circ \\Rightarrow x + y = 90^\\circ$ (Dividing by 2",
+        "raw_line": "$2(x + y) = 180^\\circ \\Rightarrow x + y = 90^\\circ$ (Dividing by 2)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_033_STU05_GEO_Q01",
+    "student_id": "STU05",
+    "question_id": "GEO_Q01",
+    "topic": "Vertically Opposite Angles and Angles on a Straight Line",
+    "problem_text": "In the given figure, the straight lines AB, CD and EF intersect each other at O. Find (i) the value of DÔB (ii) the value of AÔC.",
+    "target_theorem_id": "TH_LINES_01",
+    "raw_image": "data/raw_images/STU05_GEO_Q01.png",
+    "enhanced_image": "data/enhanced_images/STU05_GEO_Q01.png",
+    "raw_ocr_text": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 180^\\circ$ (Angles on straight line EF)\n$57^\\circ + D\\hat{O}B + 43^\\circ = 180^\\circ$ (Substitution of given angles)\n$D\\hat{O}B = 80^\\circ$ (Simplification)\n$A\\hat{O}C = D\\hat{O}B = 80^\\circ$ (Vertically opposite angles)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 180^\\circ$",
+        "justification": "Angles on straight line EF",
+        "raw_line": "$E\\hat{O}D + D\\hat{O}B + F\\hat{O}B = 180^\\circ$ (Angles on straight line EF)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$57^\\circ + D\\hat{O}B + 43^\\circ = 180^\\circ$",
+        "justification": "Substitution of given angles",
+        "raw_line": "$57^\\circ + D\\hat{O}B + 43^\\circ = 180^\\circ$ (Substitution of given angles)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$D\\hat{O}B = 80^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$D\\hat{O}B = 80^\\circ$ (Simplification)"
+      },
+      {
+        "step_number": 4,
+        "statement": "$A\\hat{O}C = D\\hat{O}B = 80^\\circ$",
+        "justification": "Vertically opposite angles",
+        "raw_line": "$A\\hat{O}C = D\\hat{O}B = 80^\\circ$ (Vertically opposite angles)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_034_STU05_GEO_Q02",
+    "student_id": "STU05",
+    "question_id": "GEO_Q02",
+    "topic": "Exterior Angle of a Triangle",
+    "problem_text": "Find the value of x according to the data given in the figure.",
+    "target_theorem_id": "TH_TRIANGLE_02",
+    "raw_image": "data/raw_images/STU05_GEO_Q02.png",
+    "enhanced_image": "data/enhanced_images/STU05_GEO_Q02.png",
+    "raw_ocr_text": "$3x + 2x = 150^\\circ$ (Exterior angle of a triangle equals sum of interior opposite angles)\n$5x = 150^\\circ$ (Adding like terms)\n$x = 30^\\circ$ (Dividing both sides by 5)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$3x + 2x = 150^\\circ$",
+        "justification": "Exterior angle of a triangle equals sum of interior opposite angles",
+        "raw_line": "$3x + 2x = 150^\\circ$ (Exterior angle of a triangle equals sum of interior opposite angles)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$5x = 150^\\circ$",
+        "justification": "Adding like terms",
+        "raw_line": "$5x = 150^\\circ$ (Adding like terms)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$x = 30^\\circ$",
+        "justification": "Dividing both sides by 5",
+        "raw_line": "$x = 30^\\circ$ (Dividing both sides by 5)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_035_STU05_GEO_Q03",
+    "student_id": "STU05",
+    "question_id": "GEO_Q03",
+    "topic": "Congruence of Triangles (AAS)",
+    "problem_text": "Name a pair of congruent triangles in the given figure and state the case under which they are congruent.",
+    "target_theorem_id": "TH_CONGRUENCE_01",
+    "raw_image": "data/raw_images/STU05_GEO_Q03.png",
+    "enhanced_image": "data/enhanced_images/STU05_GEO_Q03.png",
+    "raw_ocr_text": "In $\\triangle PTS$ and $\\triangle RTQ$, $PT = TR$ (Given)\n$P\\hat{T}S = R\\hat{T}Q$ (Vertically opposite angles)\n$T\\hat{P}S = T\\hat{R}Q$ (Alternate angles, $PS \\parallel RQ$)\n$\\triangle PTS \\equiv \\triangle RTQ$ (AAS congruence condition)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "In $\\triangle PTS$ and $\\triangle RTQ$, $PT = TR$",
+        "justification": "Given",
+        "raw_line": "In $\\triangle PTS$ and $\\triangle RTQ$, $PT = TR$ (Given)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$P\\hat{T}S = R\\hat{T}Q$",
+        "justification": "Vertically opposite angles",
+        "raw_line": "$P\\hat{T}S = R\\hat{T}Q$ (Vertically opposite angles)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$T\\hat{P}S = T\\hat{R}Q$",
+        "justification": "Alternate angles, $PS \\parallel RQ$",
+        "raw_line": "$T\\hat{P}S = T\\hat{R}Q$ (Alternate angles, $PS \\parallel RQ$)"
+      },
+      {
+        "step_number": 4,
+        "statement": "$\\triangle PTS \\equiv \\triangle RTQ$",
+        "justification": "AAS congruence condition",
+        "raw_line": "$\\triangle PTS \\equiv \\triangle RTQ$ (AAS congruence condition)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_036_STU05_GEO_Q04",
+    "student_id": "STU05",
+    "question_id": "GEO_Q04",
+    "topic": "Angle Sum of a Triangle and Vertically Opposite Angles",
+    "problem_text": "Find the values of x and y according to the information given in the figure.",
+    "target_theorem_id": "TH_TRIANGLE_01",
+    "raw_image": "data/raw_images/STU05_GEO_Q04.png",
+    "enhanced_image": "data/enhanced_images/STU05_GEO_Q04.png",
+    "raw_ocr_text": "Vertically opposite interior angle $= 180^\\circ - 120^\\circ = 60^\\circ$ (Angles on a straight line)\n$2x + 2x + 60^\\circ = 180^\\circ$ (Angle sum of a triangle)\n$4x = 120^\\circ \\Rightarrow x = 30^\\circ$ (Solving for x)\n$x + y + 60^\\circ = 180^\\circ \\Rightarrow y = 90^\\circ$ (Angle sum of right triangle)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Vertically opposite interior angle $= 180^\\circ - 120^\\circ = 60^\\circ$",
+        "justification": "Angles on a straight line",
+        "raw_line": "Vertically opposite interior angle $= 180^\\circ - 120^\\circ = 60^\\circ$ (Angles on a straight line)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$2x + 2x + 60^\\circ = 180^\\circ$",
+        "justification": "Angle sum of a triangle",
+        "raw_line": "$2x + 2x + 60^\\circ = 180^\\circ$ (Angle sum of a triangle)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$4x = 120^\\circ \\Rightarrow x = 30^\\circ$",
+        "justification": "Solving for x",
+        "raw_line": "$4x = 120^\\circ \\Rightarrow x = 30^\\circ$ (Solving for x)"
+      },
+      {
+        "step_number": 4,
+        "statement": "$x + y + 60^\\circ = 180^\\circ \\Rightarrow y = 90^\\circ$",
+        "justification": "Angle sum of right triangle",
+        "raw_line": "$x + y + 60^\\circ = 180^\\circ \\Rightarrow y = 90^\\circ$ (Angle sum of right triangle)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_037_STU05_GEO_Q05",
+    "student_id": "STU05",
+    "question_id": "GEO_Q05",
+    "topic": "Exterior Angle of a Triangle",
+    "problem_text": "Write down the value of x° in terms of c°.",
+    "target_theorem_id": "TH_TRIANGLE_02",
+    "raw_image": "data/raw_images/STU05_GEO_Q05.png",
+    "enhanced_image": "data/enhanced_images/STU05_GEO_Q05.png",
+    "raw_ocr_text": "Exterior angle at intermediate intersection $= 2c^\\circ + c^\\circ = 3c^\\circ$ (Exterior angle of triangle)\n$x^\\circ = 3c^\\circ + c^\\circ$ (Exterior angle of small triangle)\n$x^\\circ = 4c^\\circ$ (Simplification)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Exterior angle at intermediate intersection $= 2c^\\circ + c^\\circ = 3c^\\circ$",
+        "justification": "Exterior angle of triangle",
+        "raw_line": "Exterior angle at intermediate intersection $= 2c^\\circ + c^\\circ = 3c^\\circ$ (Exterior angle of triangle)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$x^\\circ = 3c^\\circ + c^\\circ$",
+        "justification": "Exterior angle of small triangle",
+        "raw_line": "$x^\\circ = 3c^\\circ + c^\\circ$ (Exterior angle of small triangle)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$x^\\circ = 4c^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$x^\\circ = 4c^\\circ$ (Simplification)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_038_STU05_GEO_Q06",
+    "student_id": "STU05",
+    "question_id": "GEO_Q06",
+    "topic": "Co-interior (Allied) Angles in Parallel Lines",
+    "problem_text": "Find the value of a in the figure.",
+    "target_theorem_id": "TH_PARALLEL_03",
+    "raw_image": "data/raw_images/STU05_GEO_Q06.png",
+    "enhanced_image": "data/enhanced_images/STU05_GEO_Q06.png",
+    "raw_ocr_text": "Interior angle at top-right $= 180^\\circ - 110^\\circ = 70^\\circ$ (Allied angles, parallel lines)\n$a + 25^\\circ = 70^\\circ$ (Angle addition at vertex)\n$a = 45^\\circ$ (Subtracting $25^\\circ$ from both sides)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Interior angle at top-right $= 180^\\circ - 110^\\circ = 70^\\circ$",
+        "justification": "Allied angles, parallel lines",
+        "raw_line": "Interior angle at top-right $= 180^\\circ - 110^\\circ = 70^\\circ$ (Allied angles, parallel lines)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$a + 25^\\circ = 70^\\circ$",
+        "justification": "Angle addition at vertex",
+        "raw_line": "$a + 25^\\circ = 70^\\circ$ (Angle addition at vertex)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$a = 45^\\circ$",
+        "justification": "Subtracting $25^\\circ$ from both sides",
+        "raw_line": "$a = 45^\\circ$ (Subtracting $25^\\circ$ from both sides)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_039_STU05_GEO_Q07",
+    "student_id": "STU05",
+    "question_id": "GEO_Q07",
+    "topic": "Alternate Angles in Parallel Lines",
+    "problem_text": "Find the value of b in the figure.",
+    "target_theorem_id": "TH_PARALLEL_01",
+    "raw_image": "data/raw_images/STU05_GEO_Q07.png",
+    "enhanced_image": "data/enhanced_images/STU05_GEO_Q07.png",
+    "raw_ocr_text": "Alternate angle at upper intersection $= 130^\\circ$ (Alternate angles, parallel lines)\n$b + 20^\\circ = 130^\\circ$ (Adjacent angles composing alternate angle)\n$b = 110^\\circ$ (Simplification)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "Alternate angle at upper intersection $= 130^\\circ$",
+        "justification": "Alternate angles, parallel lines",
+        "raw_line": "Alternate angle at upper intersection $= 130^\\circ$ (Alternate angles, parallel lines)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$b + 20^\\circ = 130^\\circ$",
+        "justification": "Adjacent angles composing alternate angle",
+        "raw_line": "$b + 20^\\circ = 130^\\circ$ (Adjacent angles composing alternate angle)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$b = 110^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$b = 110^\\circ$ (Simplification)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_040_STU05_GEO_Q08",
+    "student_id": "STU05",
+    "question_id": "GEO_Q08",
+    "topic": "Isosceles Triangle Base Angles with Parallel Lines",
+    "problem_text": "In the given figure, BC ∥ PQ. Find the value of b.",
+    "target_theorem_id": "TH_ISOSCELES_01",
+    "raw_image": "data/raw_images/STU05_GEO_Q08.png",
+    "enhanced_image": "data/enhanced_images/STU05_GEO_Q08.png",
+    "raw_ocr_text": "$A\\hat{C}B = 180^\\circ - (80^\\circ + 30^\\circ) = 70^\\circ$ (Angle sum of $\\triangle ABC$)\n$P\\hat{Q}C = P\\hat{C}Q = 70^\\circ$ (Angles opposite equal sides $PC = CQ$)\n$C\\hat{P}Q = 180^\\circ - 140^\\circ = 40^\\circ$ (Angle sum of $\\triangle PCQ$)\n$b = 70^\\circ$ (Base angle of isosceles triangle $\\triangle PCQ$)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$A\\hat{C}B = 180^\\circ -",
+        "justification": "80^\\circ + 30^\\circ) = 70^\\circ$ (Angle sum of $\\triangle ABC$",
+        "raw_line": "$A\\hat{C}B = 180^\\circ - (80^\\circ + 30^\\circ) = 70^\\circ$ (Angle sum of $\\triangle ABC$)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$P\\hat{Q}C = P\\hat{C}Q = 70^\\circ$",
+        "justification": "Angles opposite equal sides $PC = CQ$",
+        "raw_line": "$P\\hat{Q}C = P\\hat{C}Q = 70^\\circ$ (Angles opposite equal sides $PC = CQ$)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$C\\hat{P}Q = 180^\\circ - 140^\\circ = 40^\\circ$",
+        "justification": "Angle sum of $\\triangle PCQ$",
+        "raw_line": "$C\\hat{P}Q = 180^\\circ - 140^\\circ = 40^\\circ$ (Angle sum of $\\triangle PCQ$)"
+      },
+      {
+        "step_number": 4,
+        "statement": "$b = 70^\\circ$",
+        "justification": "Base angle of isosceles triangle $\\triangle PCQ$",
+        "raw_line": "$b = 70^\\circ$ (Base angle of isosceles triangle $\\triangle PCQ$)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_041_STU05_GEO_Q09",
+    "student_id": "STU05",
+    "question_id": "GEO_Q09",
+    "topic": "Alternate Angles in Parallel Lines and Angle Sum of a Triangle",
+    "problem_text": "In triangle ABC, BÂC = 100°, AC ∥ EF and CĜF = 50°. Find the value of x.",
+    "target_theorem_id": "TH_PARALLEL_01",
+    "raw_image": "data/raw_images/STU05_GEO_Q09.png",
+    "enhanced_image": "data/enhanced_images/STU05_GEO_Q09.png",
+    "raw_ocr_text": "$A\\hat{C}G = C\\hat{G}F = 50^\\circ$ (Alternate angles, $AC \\parallel EF$)\n$100^\\circ + 50^\\circ + x = 180^\\circ$ (Angle sum of $\\triangle ABC$)\n$x = 30^\\circ$ (Simplification)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$A\\hat{C}G = C\\hat{G}F = 50^\\circ$",
+        "justification": "Alternate angles, $AC \\parallel EF$",
+        "raw_line": "$A\\hat{C}G = C\\hat{G}F = 50^\\circ$ (Alternate angles, $AC \\parallel EF$)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$100^\\circ + 50^\\circ + x = 180^\\circ$",
+        "justification": "Angle sum of $\\triangle ABC$",
+        "raw_line": "$100^\\circ + 50^\\circ + x = 180^\\circ$ (Angle sum of $\\triangle ABC$)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$x = 30^\\circ$",
+        "justification": "Simplification",
+        "raw_line": "$x = 30^\\circ$ (Simplification)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  },
+  {
+    "sample_id": "SMP_042_STU05_GEO_Q10",
+    "student_id": "STU05",
+    "question_id": "GEO_Q10",
+    "topic": "Angles on a Straight Line",
+    "problem_text": "Find x + y according to the data given in the figure.",
+    "target_theorem_id": "TH_LINES_02",
+    "raw_image": "data/raw_images/STU05_GEO_Q10.png",
+    "enhanced_image": "data/enhanced_images/STU05_GEO_Q10.png",
+    "raw_ocr_text": "$x + x + y + y = 180^\\circ$ (Angles on straight line ABC)\n$2x + 2y = 180^\\circ$ (Combining like terms)\n$2(x + y) = 180^\\circ \\Rightarrow x + y = 90^\\circ$ (Dividing by 2)",
+    "extracted_steps": [
+      {
+        "step_number": 1,
+        "statement": "$x + x + y + y = 180^\\circ$",
+        "justification": "Angles on straight line ABC",
+        "raw_line": "$x + x + y + y = 180^\\circ$ (Angles on straight line ABC)"
+      },
+      {
+        "step_number": 2,
+        "statement": "$2x + 2y = 180^\\circ$",
+        "justification": "Combining like terms",
+        "raw_line": "$2x + 2y = 180^\\circ$ (Combining like terms)"
+      },
+      {
+        "step_number": 3,
+        "statement": "$2",
+        "justification": "x + y) = 180^\\circ \\Rightarrow x + y = 90^\\circ$ (Dividing by 2",
+        "raw_line": "$2(x + y) = 180^\\circ \\Rightarrow x + y = 90^\\circ$ (Dividing by 2)"
+      }
+    ],
+    "label": "",
+    "flagged_step": ""
+  }
+]
