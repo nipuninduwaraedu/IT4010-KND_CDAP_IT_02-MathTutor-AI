@@ -30,6 +30,7 @@ class RecommendedResource(BaseModel):
     title: str
     type: str
     difficulty: str
+    url: str = ""
     reason: str
 
 
@@ -42,3 +43,11 @@ class UsageEvent(BaseModel):
     resource_id: str
     action: str
     timestamp: str
+
+
+class UsageLogRequest(BaseModel):
+    """Request body for POST /recommend/usage."""
+
+    student_id: str = "STU01"
+    resource_id: str
+    action: str = "opened"

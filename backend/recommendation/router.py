@@ -1,10 +1,11 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from recommendation.schemas import (
     RecommendationRequest,
     RecommendationResponse,
     RecommendedResource,
     UsageEvent,
+    UsageLogRequest,
 )
 from recommendation.services.fallback import is_low_confidence, topic_fallback
 from recommendation.services.reason_generator import generate_reason
@@ -16,8 +17,9 @@ router = APIRouter(prefix="/recommend", tags=["recommendation"])
 
 @router.post("", response_model=RecommendationResponse)
 def recommend(req: RecommendationRequest):
-    concept = req.concept.value if req.concept else None
-    misconception = req.misconception.value
+    # Normalise to lowercase so callers can send "Angles" or "ANGLES" etc.
+    concept = req.concept.value.lower() if req.concept else None
+    misconception = req.misconception.value.lower()
 
     if is_low_confidence(req.confidence):
         resources = topic_fallback(concept, req.language)
@@ -28,6 +30,7 @@ def recommend(req: RecommendationRequest):
                 title=r.title,
                 type=r.type.value,
                 difficulty=r.difficulty.value,
+                url=r.url,
                 reason=reason,
             )
             for r in resources
@@ -40,6 +43,7 @@ def recommend(req: RecommendationRequest):
                 title=r.title,
                 type=r.type.value,
                 difficulty=r.difficulty.value,
+                url=r.url,
                 reason=generate_reason(r, misconception),
             )
             for r in resources
@@ -52,3 +56,10 @@ def recommend(req: RecommendationRequest):
         usage_events.append(UsageEvent(**raw))
 
     return RecommendationResponse(recommendations=items)
+
+
+@router.post("/usage", response_model=UsageEvent, status_code=201)
+def track_usage(req: UsageLogRequest):
+    """Record that a student opened/interacted with a resource."""
+    raw = log_usage(req.student_id, req.resource_id, req.action)
+    return UsageEvent(**raw)
