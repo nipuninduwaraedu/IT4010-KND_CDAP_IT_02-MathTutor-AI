@@ -1,0 +1,60 @@
+[
+    {
+        "resource_id": "R005",
+        "title": "Circle Theorems Refresher",
+        "description": "Angles in the same segment, centre and circumference.",
+        "type": "video",
+        "difficulty": "basic",
+        "concept": "circle_theorems",
+        "misconceptions": [
+            "incorrect_theorem_application"
+        ],
+        "language": "en",
+        "duration_minutes": 12,
+        "url": ""
+    },
+    {
+        "resource_id": "R006",
+        "title": "Circle Theorem Practice Set",
+        "description": "Apply circle theorems to find unknown angles.",
+        "type": "practice",
+        "difficulty": "medium",
+        "concept": "circle_theorems",
+        "misconceptions": [
+            "incorrect_theorem_application",
+            "invalid_assumption"
+        ],
+        "language": "en",
+        "duration_minutes": 20,
+        "url": ""
+    },
+    {
+        "resource_id": "R007",
+        "title": "Triangle Congruence Review",
+        "description": "SAS, ASA, SSS conditions and how to state them in proofs.",
+        "type": "video",
+        "difficulty": "medium",
+        "concept": "triangles",
+        "misconceptions": [
+            "missing_proof_step"
+        ],
+        "language": "en",
+        "duration_minutes": 12,
+        "url": ""
+    },
+    {
+        "resource_id": "R008",
+        "title": "Writing Complete Triangle Proofs",
+        "description": "Worked examples showing every required proof step.",
+        "type": "worked_example",
+        "difficulty": "medium",
+        "concept": "triangles",
+        "misconceptions": [
+            "missing_proof_step",
+            "invalid_assumption"
+        ],
+        "language": "en",
+        "duration_minutes": 15,
+        "url": ""
+    }
+]

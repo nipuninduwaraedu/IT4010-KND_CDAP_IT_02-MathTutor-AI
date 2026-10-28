@@ -25,3 +25,12 @@ Thumbs.db
 .idea/
 AGENTS.md
 frontend/AGENTS.md
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+backend/recommendation/data/usage_log.json

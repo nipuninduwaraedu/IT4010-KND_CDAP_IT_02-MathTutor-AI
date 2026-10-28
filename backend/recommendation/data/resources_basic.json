@@ -1,0 +1,58 @@
+[
+    {
+        "resource_id": "R001",
+        "title": "Pythagorean Theorem Explained",
+        "description": "Short video on when and how to apply the theorem.",
+        "type": "video",
+        "difficulty": "basic",
+        "concept": "pythagoras",
+        "misconceptions": [
+            "incorrect_theorem_application"
+        ],
+        "language": "en",
+        "duration_minutes": 8,
+        "url": ""
+    },
+    {
+        "resource_id": "R002",
+        "title": "Pythagoras Worked Examples",
+        "description": "Solved questions showing correct theorem use.",
+        "type": "worked_example",
+        "difficulty": "medium",
+        "concept": "pythagoras",
+        "misconceptions": [
+            "incorrect_theorem_application"
+        ],
+        "language": "en",
+        "duration_minutes": 10,
+        "url": ""
+    },
+    {
+        "resource_id": "R003",
+        "title": "Angle Properties Notes",
+        "description": "Alternate, corresponding and co-interior angles.",
+        "type": "notes",
+        "difficulty": "basic",
+        "concept": "angles",
+        "misconceptions": [
+            "incorrect_angle_relationship"
+        ],
+        "language": "en",
+        "duration_minutes": 5,
+        "url": ""
+    },
+    {
+        "resource_id": "R004",
+        "title": "Angle Relationships Practice",
+        "description": "Practice questions on parallel line angles.",
+        "type": "practice",
+        "difficulty": "medium",
+        "concept": "angles",
+        "misconceptions": [
+            "incorrect_angle_relationship"
+        ],
+        "language": "en",
+        "duration_minutes": 15,
+        "url": ""
+    }
+]
