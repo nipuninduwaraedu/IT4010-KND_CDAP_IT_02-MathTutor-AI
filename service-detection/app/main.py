@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import logging
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any, Optional, Union
 
@@ -10,6 +12,8 @@ from pydantic import BaseModel, Field
 
 from app.embeddings import FeatureExtractor
 from app.normalizer import normalize_math_text
+
+logger = logging.getLogger(__name__)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODEL_ARTIFACT_PATH = BASE_DIR / "models" / "misconception_classifier.pkl"
@@ -36,10 +40,31 @@ class PredictMisconceptionResponse(BaseModel):
     class_probabilities: dict[str, float]
 
 
+extractor = FeatureExtractor(allow_fallback=False)
+model_artifact: Optional[dict[str, Any]] = None
+
+
+def load_model_artifact() -> Optional[dict[str, Any]]:
+    global model_artifact
+    if model_artifact is None and MODEL_ARTIFACT_PATH.exists():
+        model_artifact = joblib.load(MODEL_ARTIFACT_PATH)
+    return model_artifact
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    load_model_artifact()
+    yield
+
+
 app = FastAPI(
     title="Geometry Misconception Detection Service (Component 2)",
-    description="Member 2 (Induwara T.G.N - IT23414778) — Math Token Normalization, MiniLM Embeddings & Calibrated SVM Classifier",
+    description=(
+        "Member 2 (Induwara T.G.N - IT23414778) — Math Token Normalization, "
+        "MiniLM Dense Embeddings & Misconception Classifier"
+    ),
     version="1.0.0",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
@@ -48,21 +73,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-extractor = FeatureExtractor()
-model_bundle: Optional[dict[str, Any]] = None
-
-
-def load_model_bundle() -> Optional[dict[str, Any]]:
-    global model_bundle
-    if model_bundle is None and MODEL_ARTIFACT_PATH.exists():
-        model_bundle = joblib.load(MODEL_ARTIFACT_PATH)
-    return model_bundle
-
-
-@app.on_event("startup")
-def on_startup() -> None:
-    load_model_bundle()
 
 
 def _format_steps_to_text(steps: list[Union[str, StepInput, dict[str, Any]]]) -> str:
@@ -83,14 +93,14 @@ def _format_steps_to_text(steps: list[Union[str, StepInput, dict[str, Any]]]) ->
 
 @app.get("/health")
 def health_check():
-    bundle = load_model_bundle()
+    artifact = load_model_artifact()
     return {
         "status": "ok",
         "service": "service-detection",
-        "component": "Member 2 - Misconception Detection Engine",
-        "embedding_model": extractor.backend_name,
-        "classifier_loaded": bundle is not None,
-        "model_path": str(MODEL_ARTIFACT_PATH),
+        "embedding_backend": extractor.model_type,
+        "classifier_loaded": artifact is not None,
+        "classifier_model": artifact.get("model_name") if artifact is not None else None,
+        "reported_macro_f1": artifact.get("cv_macro_f1") if artifact is not None else None,
     }
 
 
@@ -99,18 +109,30 @@ def predict_misconception(payload: PredictMisconceptionRequest):
     if not payload.extracted_steps:
         raise HTTPException(status_code=422, detail="extracted_steps must not be empty.")
 
-    bundle = load_model_bundle()
-    if bundle is None:
+    artifact = load_model_artifact()
+    if artifact is None:
         raise HTTPException(
             status_code=503,
             detail="Trained model artifact (models/misconception_classifier.pkl) not found. Run train.py first.",
         )
 
+    expected_backend = artifact.get("embedding_backend")
+    if expected_backend and expected_backend != extractor.model_type:
+        msg = (
+            f"Train/serve embedding backend mismatch: artifact expects '{expected_backend}', "
+            f"but runtime extractor is '{extractor.model_type}'."
+        )
+        logger.warning(msg)
+        raise HTTPException(status_code=503, detail=msg)
+
     raw_steps_text = _format_steps_to_text(payload.extracted_steps)
     normalized_text = normalize_math_text(raw_steps_text)
     features = extractor.encode([normalized_text])
 
-    clf = bundle["classifier"]
+    clf = artifact.get("model") or artifact.get("classifier")
+    if clf is None:
+        raise HTTPException(status_code=503, detail="Classifier estimator missing from artifact bundle.")
+
     classes: list[str] = list(clf.classes_)
     probs = clf.predict_proba(features)[0]
 

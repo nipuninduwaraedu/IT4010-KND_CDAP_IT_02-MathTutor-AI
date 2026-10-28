@@ -3,6 +3,7 @@ from __future__ import annotations
 import os
 import sys
 from pathlib import Path
+from typing import Callable
 
 import joblib
 import matplotlib
@@ -47,7 +48,7 @@ TARGET_CLASSES = [
 
 def evaluate_candidate(
     name: str,
-    estimator_factory,
+    estimator_factory: Callable[[], object],
     X: np.ndarray,
     y: np.ndarray,
     groups: np.ndarray,
@@ -69,7 +70,12 @@ def evaluate_candidate(
     return oof_preds, metrics
 
 
-def save_confusion_matrix_plot(y_true: np.ndarray, y_pred: np.ndarray, out_path: Path) -> None:
+def save_confusion_matrix_plot(
+    y_true: np.ndarray,
+    y_pred: np.ndarray,
+    best_model_name: str,
+    out_path: Path,
+) -> None:
     cm = confusion_matrix(y_true, y_pred, labels=TARGET_CLASSES)
     short_labels = [
         "Correct\nReasoning",
@@ -92,8 +98,7 @@ def save_confusion_matrix_plot(y_true: np.ndarray, y_pred: np.ndarray, out_path:
         annot_kws={"size": 12, "weight": "bold"},
     )
     plt.title(
-        "5-Fold GroupKFold Confusion Matrix — O/L Geometry Misconception Classifier\n"
-        "(sentence-transformers/all-MiniLM-L6-v2 + Calibrated LinearSVC)",
+        f"5-Fold Cross-Validation Confusion Matrix ({best_model_name} + MiniLM)",
         fontsize=11,
         fontweight="bold",
         pad=14,
@@ -118,30 +123,40 @@ def main() -> None:
     print("=" * 84)
     print(" COMPONENT 2 (MEMBER 2: INDUWARA T.G.N - IT23414778) MODEL TRAINING & EVALUATION ")
     print("=" * 84)
-    print(f"[Dataset] Loaded {len(df)} labeled student proof records across {df['student_id'].nunique()} student groups.")
+    print(
+        f"[Dataset] Loaded {len(df)} labeled student proof records across "
+        f"{df['student_id'].nunique()} student groups."
+    )
 
-    extractor = FeatureExtractor()
-    print(f"[Embedder] Extracting 384-D semantic vectors using: {extractor.backend_name}")
+    extractor = FeatureExtractor(allow_fallback=False)
+    print(f"[Embedder] Extracting 384-D semantic vectors using: {extractor.model_type}")
     X = extractor.encode(df["normalized_text"].tolist())
     y = df["label"].astype(str).to_numpy()
     groups = df["student_id"].astype(str).to_numpy()
 
     print(f"[Embeddings] Feature matrix shape: {X.shape}")
 
-    svm_oof, svm_metrics = evaluate_candidate(
-        "LinearSVC (C=1.0)",
-        lambda: LinearSVC(C=1.0, class_weight="balanced", random_state=42),
-        X,
-        y,
-        groups,
-    )
-    lr_oof, lr_metrics = evaluate_candidate(
-        "LogisticRegression",
-        lambda: LogisticRegression(C=2.0, class_weight="balanced", max_iter=1000, random_state=42),
-        X,
-        y,
-        groups,
-    )
+    candidates: list[tuple[str, Callable[[], object]]] = [
+        (
+            "LinearSVC",
+            lambda: LinearSVC(C=1.0, class_weight="balanced", random_state=42),
+        ),
+        (
+            "LogisticRegression",
+            lambda: LogisticRegression(
+                C=2.0, class_weight="balanced", max_iter=1000, random_state=42
+            ),
+        ),
+    ]
+
+    results: dict[str, dict[str, object]] = {}
+    for name, factory in candidates:
+        oof_preds, metrics = evaluate_candidate(name, factory, X, y, groups)
+        results[name] = {
+            "factory": factory,
+            "oof_preds": oof_preds,
+            "metrics": metrics,
+        }
 
     print("\n" + "-" * 84)
     print(" 5-FOLD GROUPED CROSS-VALIDATION BENCHMARK (GROUPED BY student_id) ")
@@ -150,26 +165,26 @@ def main() -> None:
         f"| {'Classifier Model':<28} | {'Accuracy':>10} | {'Precision':>11} | {'Recall':>10} | {'Macro-F1':>10} |"
     )
     print("-" * 84)
-    print(
-        f"| {'LinearSVC (C=1.0)':<28} | {svm_metrics['accuracy']*100:>9.2f}% | "
-        f"{svm_metrics['precision_macro']*100:>10.2f}% | {svm_metrics['recall_macro']*100:>9.2f}% | "
-        f"{svm_metrics['f1_macro']*100:>9.2f}% |"
-    )
-    print(
-        f"| {'LogisticRegression (max=1000)':<28} | {lr_metrics['accuracy']*100:>9.2f}% | "
-        f"{lr_metrics['precision_macro']*100:>10.2f}% | {lr_metrics['recall_macro']*100:>9.2f}% | "
-        f"{lr_metrics['f1_macro']*100:>9.2f}% |"
-    )
+    for name, _ in candidates:
+        m = results[name]["metrics"]  # type: ignore[assignment]
+        print(
+            f"| {name:<28} | {m['accuracy']*100:>9.2f}% | "
+            f"{m['precision_macro']*100:>10.2f}% | {m['recall_macro']*100:>9.2f}% | "
+            f"{m['f1_macro']*100:>9.2f}% |"
+        )
     print("-" * 84)
 
-    best_oof = svm_oof if svm_metrics["f1_macro"] >= lr_metrics["f1_macro"] else lr_oof
-    best_name = (
-        "LinearSVC (C=1.0)"
-        if svm_metrics["f1_macro"] >= lr_metrics["f1_macro"]
-        else "LogisticRegression (max_iter=1000)"
+    # Select winning candidate strictly by highest out-of-fold Macro-F1
+    best_model_name = max(
+        results.keys(),
+        key=lambda k: results[k]["metrics"]["f1_macro"],  # type: ignore[index]
     )
+    best_entry = results[best_model_name]
+    best_oof: np.ndarray = best_entry["oof_preds"]  # type: ignore[assignment]
+    best_metrics: dict[str, float] = best_entry["metrics"]  # type: ignore[assignment]
+    best_factory: Callable[[], object] = best_entry["factory"]  # type: ignore[assignment]
 
-    print(f"\n[Out-of-Fold Classification Report — Selected Model: {best_name}]")
+    print(f"\n[Out-of-Fold Classification Report — Selected Model: {best_model_name}]")
     print(
         classification_report(
             y,
@@ -180,22 +195,31 @@ def main() -> None:
         )
     )
 
-    save_confusion_matrix_plot(y, best_oof, CONFUSION_MATRIX_PATH)
+    save_confusion_matrix_plot(y, best_oof, best_model_name, CONFUSION_MATRIX_PATH)
     print(f"[Artifact] Saved 4x4 Confusion Matrix Heatmap -> {CONFUSION_MATRIX_PATH}")
 
-    base_svc = LinearSVC(C=1.0, class_weight="balanced", random_state=42)
-    calibrated_clf = CalibratedClassifierCV(estimator=base_svc, cv=5, method="sigmoid")
-    calibrated_clf.fit(X, y)
+    # Fit selected winning estimator on full corpus (calibrate only if predict_proba unavailable)
+    winning_estimator = best_factory()
+    if hasattr(winning_estimator, "predict_proba"):
+        final_model = winning_estimator.fit(X, y)
+    else:
+        final_model = CalibratedClassifierCV(
+            estimator=winning_estimator, cv=5, method="sigmoid"
+        ).fit(X, y)
 
     artifact_bundle = {
-        "classifier": calibrated_clf,
-        "classes": list(calibrated_clf.classes_),
-        "embedding_model": extractor.model_name,
-        "embedding_dim": int(X.shape[1]),
-        "cv_metrics": svm_metrics,
+        "model": final_model,
+        "model_name": best_model_name,
+        "classes": list(TARGET_CLASSES),
+        "embedding_backend": extractor.model_type,
+        "cv_macro_f1": round(float(best_metrics["f1_macro"]), 4),
+        "cv_accuracy": round(float(best_metrics["accuracy"]), 4),
     }
     joblib.dump(artifact_bundle, MODEL_ARTIFACT_PATH)
-    print(f"[Artifact] Saved Calibrated Production Classifier -> {MODEL_ARTIFACT_PATH}")
+    print(
+        f"[Artifact] Saved Production Classifier ({best_model_name}, "
+        f"Macro-F1={artifact_bundle['cv_macro_f1']:.4f}) -> {MODEL_ARTIFACT_PATH}"
+    )
     print("=" * 84)
 
 
